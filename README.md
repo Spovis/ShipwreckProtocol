@@ -8,6 +8,7 @@
   - Run `git clone git@github.com:Spovis/ShipwreckProtocol.git`
   - This should create a new directory called `ShipwreckProtocol`
   - Open Unity Hub
+  - Install Unity version "2022.3.43f1" if you don't have it installed already.
   - Select the dropdown for "Add" in the top right
   - Choose "Add project from disk"
   - Select the directory you just created
