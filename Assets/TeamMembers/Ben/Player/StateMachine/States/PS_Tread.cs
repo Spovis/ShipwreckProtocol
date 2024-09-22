@@ -2,36 +2,28 @@
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public class PS_Swim : PS_Base {
-    public PS_Swim(PlayerStateMachine machine) : base(machine) { }
-
-    float currentDrag;
+public class PS_Tread : PS_Base {
+    public PS_Tread(PlayerStateMachine machine) : base(machine) { }
 
     public override void EnterState() {
         base.EnterState();
 
-        currentDrag = _machine.Rigidbody.drag;
-        _machine.Rigidbody.drag = 8;
-
-        _machine.Animator.SetTrigger("Swim");
+        _machine.Animator.SetTrigger("Tread");
     }
 
     public override void ExitState() {
         base.ExitState();
-
-        _machine.Rigidbody.drag = currentDrag;
     }
 
     public override void UpdateState() {
-        _machine.GenericMovePlayer(0.8f);
+        _machine.GenericMovePlayer(0.6f);
 
         if(_machine.Input.IsJumpPressed) {
-            _machine.GenericJumpPlayer(1.5f);
+            _machine.GenericJumpPlayer(0.6f);
         }
 
         // We use "IsMoving" to activate/deactivate the current state's idle animation
-        _machine.Animator.SetBool("IsMoving", _machine.Rigidbody.velocity != Vector2.zero);
-
+        _machine.Animator.SetBool("IsMoving", _machine.Rigidbody.velocity.x != 0);
     }
 
     public override void OnTriggerExit2DState(Collider2D collision) {

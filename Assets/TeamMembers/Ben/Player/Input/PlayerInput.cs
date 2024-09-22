@@ -10,7 +10,6 @@ public class PlayerInput : MonoBehaviour
     private Vector2 _currentMovementInput;
 
     private bool _isMovementPressed;
-    // Test
     private bool _isMovementHeld;
 
     private bool _isDashPressed;
@@ -21,6 +20,9 @@ public class PlayerInput : MonoBehaviour
 
     private bool _isInteractPressed;
     private bool _isInteractHeld;
+
+    private bool _isAttackPressed;
+    private bool _isAttackHeld;
 
     /// <summary>
     /// The current movement input vector.
@@ -67,6 +69,15 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     public bool IsInteractHeld { get { return _isInteractHeld; } }
 
+    /// <summary>
+    /// Indicates whether the attack input is currently pressed.
+    /// </summary>
+    public bool IsAttackPressed { get { return _isAttackPressed; } }
+    /// <summary>
+    /// Indicates whether the attack input is currently held.
+    /// </summary>
+    public bool IsAttackHeld { get { return _isAttackHeld; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -94,6 +105,9 @@ public class PlayerInput : MonoBehaviour
 
         _playerInput.Player.Interact.started += OnInteractInput;
         _playerInput.Player.Interact.canceled += OnInteractInput;
+
+        _playerInput.Player.Attack.started += OnAttackInput;
+        _playerInput.Player.Attack.canceled += OnAttackInput;
     }
 
     private void LateUpdate() {
@@ -103,6 +117,7 @@ public class PlayerInput : MonoBehaviour
         _isDashPressed = false;
         _isJumpPressed = false;
         _isInteractPressed = false;
+        _isAttackPressed = false;
     }
 
     private void OnEnable() {
@@ -132,5 +147,10 @@ public class PlayerInput : MonoBehaviour
     void OnDashInput(InputAction.CallbackContext context) {
         _isDashPressed = context.ReadValueAsButton();
         _isDashHeld = _isDashPressed;
+    }
+
+    void OnAttackInput(InputAction.CallbackContext context) {
+        _isAttackPressed = context.ReadValueAsButton();
+        _isAttackHeld = _isAttackPressed;
     }
 }

@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba7a09887a5af84d8b60678942b14a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 8
+  MoveSpeed: 10
   JumpForce: 20
   JumpCount: 0
   MaxJumpCount: 1
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5ff0c1efc4dbd40ae93edd690c2709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayCurrentState: 1
+  _displayCurrentState: 0
 --- !u!1 &4416929171894113572
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +385,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 20e48b80ebe3504409e37d89e090c1cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

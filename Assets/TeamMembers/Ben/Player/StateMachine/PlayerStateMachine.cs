@@ -6,6 +6,7 @@ public enum PlayerStates {
     Idle,
     Walk,
     Swim,
+    Tread,
     Jump,
     Fall
 }
@@ -46,6 +47,7 @@ public class PlayerStateMachine : MonoBehaviour
         _states.Add(PlayerStates.Idle, new PS_Idle(this));
         _states.Add(PlayerStates.Walk, new PS_Walk(this));
         _states.Add(PlayerStates.Swim, new PS_Swim(this));
+        _states.Add(PlayerStates.Tread, new PS_Tread(this));
         _states.Add(PlayerStates.Jump, new PS_Jump(this));
         _states.Add(PlayerStates.Fall, new PS_Fall(this));
 
