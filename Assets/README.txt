@@ -1,0 +1,3 @@
+Anything you create specifically for your features should be placed in the directory with your name, under the "Assets/TeamMembers" folder. We are not allowed to modify any code relating to another person's feature, so this is important.
+
+Things un-related to your feature should be placed somewhere in the general Assets folder, such as the "Player.cs" in the "Assets/Scripts" folder. These are things that anyone can modify.
