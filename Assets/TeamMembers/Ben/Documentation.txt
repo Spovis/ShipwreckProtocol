@@ -1,0 +1,16 @@
+My current two MonoBehavior scripts to be aware of are PlayerInput and PlayerStateMachine.
+
+PlayerInput:
+  - Uses Unity's new Input System to handle player input.
+    - Is easily extendable to multiple input devices.
+  - The script/component is attached to the Player GameObject.
+    - Can be enabled/disabled at runtime to enable/disable the player's input ability.
+
+PlayerStateMachine:
+  - Handles the player's movement logic through various states.
+	- Each state is its own script, inheriting PS_Base.
+	- State naming convention is PS_(StateName). PS stands for Player State.
+	- The states can be expressed as enums using the PlayerStates enum.
+	  - You can get the current state (as enum) by calling the GetCurrentState method from the state machine component.
+  - The script/component is attached to the Player GameObject.
+	- Can be enabled/disabled at runtime to enable/disable the player's state logic.

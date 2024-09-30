@@ -3,12 +3,13 @@ using TMPro;
 using UnityEngine;
 
 public enum PlayerStates {
+    Null = -1, // Null is not a real state, but it's used to represent a state that doesn't exist (mainly because PlayerStates is not a nullable type).
     Idle,
     Walk,
     Swim,
     Tread,
     Jump,
-    Fall
+    Fall,
 }
 
 public class PlayerStateMachine : MonoBehaviour
@@ -55,6 +56,25 @@ public class PlayerStateMachine : MonoBehaviour
         SwitchState(PlayerStates.Idle);
     }
 
+    /// <summary>
+    /// Function used to get the current state of the player state machine.
+    /// </summary>
+    /// <returns>Player's current state as PlayerStates enum.</returns>
+    public PlayerStates GetCurrentState() {
+        // We are doing a sort-of reverse lookup in the dictionary to get the key from the value.
+        foreach (var keyValuePair in _states) {
+            if (keyValuePair.Value == CurrentState) {
+                return keyValuePair.Key;
+            }
+        }
+
+        return PlayerStates.Null;
+    }
+
+    /// <summary>
+    /// Switches the player's state to the new state and performs the corresponding logic.
+    /// </summary>
+    /// <param name="newState"></param>
     public void SwitchState(PlayerStates newState) {
         CurrentState?.ExitState();
         CurrentState = _states[newState];
@@ -71,6 +91,10 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Update() {
         CurrentState.UpdateState();
+
+        if(UnityEngine.Input.GetKeyDown(KeyCode.R)) {
+            Debug.Log(GetCurrentState());
+        }
     }
 
     private void FixedUpdate() {
