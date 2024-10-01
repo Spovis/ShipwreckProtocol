@@ -1066,35 +1066,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &653110419 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2759451233690848111, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
+--- !u!114 &653110428 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4794688368932466284, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
   m_PrefabInstance: {fileID: 2692066501744819472}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &653110422 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8169104502977468257, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
-  m_PrefabInstance: {fileID: 2692066501744819472}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653110419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ba7a09887a5af84d8b60678942b14a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &653110425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653110419}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41b901b919ca63d449ffa6054473ae85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadSceneName: SampleScene
 --- !u!1 &693631216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,7 +1348,7 @@ PrefabInstance:
     - target: {fileID: 3067174718470440534, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 653110422}
+      objectReference: {fileID: 653110428}
     - target: {fileID: 6080729742412639945, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -2009,13 +1991,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4794688368932466284, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
+      propertyPath: reloadSceneName
+      value: SampleScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2759451233690848111, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 653110425}
     - targetCorrespondingSourceObject: {fileID: 1367274269770036300, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
