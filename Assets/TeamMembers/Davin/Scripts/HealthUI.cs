@@ -7,9 +7,7 @@ public class HealthUI : MonoBehaviour, IObserver
 {
     //will observe player object put here
     [SerializeField] Subject player;
-    [SerializeField] Sprite halfHealth;
-    [SerializeField] Sprite fullHealth;
-    Image current;
+    Image healthUI;
 
 
     //when receiving a notification from subject
@@ -19,10 +17,12 @@ public class HealthUI : MonoBehaviour, IObserver
         switch(action)
         {
             case (PlayerActions.Hurt):
-                current.sprite = halfHealth;
+                healthUI.fillAmount = healthUI.fillAmount - .2f;
+                Debug.Log("Hurt received");
                 return;
             case (PlayerActions.Heal):
-                current.sprite = fullHealth;
+                healthUI.fillAmount = healthUI.fillAmount + .2f;
+                Debug.Log("Heal received");
                 return;
         }
     }
@@ -31,7 +31,7 @@ public class HealthUI : MonoBehaviour, IObserver
     private void OnEnable()
     {
         player.addObserver(this);
-        current = gameObject.GetComponent<Image>();
+        healthUI = GetComponentInChildren<Image>();
     }
     
     //removes object as observer when disabled to avoid unecessary signals
