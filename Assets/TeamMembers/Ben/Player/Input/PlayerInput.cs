@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +24,9 @@ public class PlayerInput : MonoBehaviour
 
     private bool _isAttackPressed;
     private bool _isAttackHeld;
+
+    private bool _isPausePressed;
+    private bool _isPauseHeld;
 
     /// <summary>
     /// The current movement input vector.
@@ -78,6 +82,16 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     public bool IsAttackHeld { get { return _isAttackHeld; } }
 
+    /// <summary>
+    /// Indicates whether the pause input is currently pressed.
+    /// </summary>
+    public bool IsPausePressed { get { return _isPausePressed; } }
+
+    /// <summary>
+    /// Indicates whether the pause input is currently held.
+    /// </summary>
+    public bool IsPauseHeld { get { return _isPauseHeld; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -108,6 +122,9 @@ public class PlayerInput : MonoBehaviour
 
         _playerInput.Player.Attack.started += OnAttackInput;
         _playerInput.Player.Attack.canceled += OnAttackInput;
+
+        _playerInput.Player.Pause.started += OnPauseInput;
+        _playerInput.Player.Pause.canceled += OnPauseInput;
     }
 
     private void LateUpdate() {
@@ -152,5 +169,10 @@ public class PlayerInput : MonoBehaviour
     void OnAttackInput(InputAction.CallbackContext context) {
         _isAttackPressed = context.ReadValueAsButton();
         _isAttackHeld = _isAttackPressed;
+    }
+
+    void OnPauseInput(InputAction.CallbackContext context) {
+        _isPausePressed = context.ReadValueAsButton();
+        _isPauseHeld = _isAttackPressed;
     }
 }
