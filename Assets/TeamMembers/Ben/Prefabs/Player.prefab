@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 7354348651098732231}
   - component: {fileID: 108239209900389256}
   - component: {fileID: 8169104502977468257}
+  - component: {fileID: 4794688368932466284}
   - component: {fileID: 7203781630457435448}
   - component: {fileID: 312642660517950502}
   m_Layer: 0
@@ -287,6 +288,19 @@ MonoBehaviour:
   JumpForce: 20
   JumpCount: 0
   MaxJumpCount: 1
+--- !u!114 &4794688368932466284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2759451233690848111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b901b919ca63d449ffa6054473ae85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadSceneName: 
 --- !u!114 &7203781630457435448
 MonoBehaviour:
   m_ObjectHideFlags: 0
