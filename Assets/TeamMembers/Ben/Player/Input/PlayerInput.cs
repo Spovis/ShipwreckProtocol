@@ -34,7 +34,7 @@ public class PlayerInput : MonoBehaviour
     public Vector2 CurrentMovementInput { get { return _currentMovementInput; } }
 
     /// <summary>
-    /// Indicates whether the movement input is currently pressed.
+    /// Indicates whether the movement input was pressed this frame.
     /// </summary>
     public bool IsMovementPressed { get { return _isMovementPressed; } }
 
@@ -44,7 +44,7 @@ public class PlayerInput : MonoBehaviour
     public bool IsMovementHeld { get { return _isMovementHeld; } }
 
     /// <summary>
-    /// Indicates whether the dash input is currently pressed.
+    /// Indicates whether the dash input was pressed this frame.
     /// </summary>
     public bool IsDashPressed { get { return _isDashPressed; } }
 
@@ -54,7 +54,7 @@ public class PlayerInput : MonoBehaviour
     public bool IsDashHeld { get { return _isDashHeld; } }
 
     /// <summary>
-    /// Indicates whether the jump input is currently pressed.
+    /// Indicates whether the jump input was pressed this frame.
     /// </summary>
     public bool IsJumpPressed { get { return _isJumpPressed; } }
 
@@ -64,7 +64,7 @@ public class PlayerInput : MonoBehaviour
     public bool IsJumpHeld { get { return _isJumpHeld; } }
 
     /// <summary>
-    /// Indicates whether the interact input is currently pressed.
+    /// Indicates whether the interact input was pressed this frame.
     /// </summary>
     public bool IsInteractPressed { get { return _isInteractPressed; } }
 
@@ -74,7 +74,7 @@ public class PlayerInput : MonoBehaviour
     public bool IsInteractHeld { get { return _isInteractHeld; } }
 
     /// <summary>
-    /// Indicates whether the attack input is currently pressed.
+    /// Indicates whether the attack input was pressed this frame.
     /// </summary>
     public bool IsAttackPressed { get { return _isAttackPressed; } }
     /// <summary>
@@ -83,7 +83,7 @@ public class PlayerInput : MonoBehaviour
     public bool IsAttackHeld { get { return _isAttackHeld; } }
 
     /// <summary>
-    /// Indicates whether the pause input is currently pressed.
+    /// Indicates whether the pause input was pressed this frame.
     /// </summary>
     public bool IsPausePressed { get { return _isPausePressed; } }
 
