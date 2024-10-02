@@ -30,7 +30,7 @@ public abstract class PS_Base
     // state, we will put the logic here in the base class.
 
     public virtual void UpdateState() {
-        if(_machine.Input.IsJumpPressed && Player.Instance.JumpCount < Player.Instance.MaxJumpCount) {
+        if(_machine.Input.IsJumpPressed && _machine.JumpCount < _machine.MaxJumpCount) {
             _machine.SwitchState(PlayerStates.Jump);
             return;
         }
@@ -40,7 +40,7 @@ public abstract class PS_Base
     public virtual void OnCollisionExit2DState(Collision2D collision) {
         if (collision.gameObject.layer == _groundLayer.value) {
             _machine.SwitchState(PlayerStates.Fall);
-            if (Player.Instance != null) Player.Instance.JumpCount++; // If the player walks off a ledge, we count it towards a jump.
+            _machine.JumpCount++; // If the player walks off a ledge, we count it towards a jump.
             return;
         }
     }

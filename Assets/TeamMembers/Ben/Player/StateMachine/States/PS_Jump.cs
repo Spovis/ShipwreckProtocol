@@ -9,7 +9,7 @@ public class PS_Jump : PS_Base {
 
         _machine.Animator.SetTrigger("Jump");
 
-        Player.Instance.JumpCount++;
+        _machine.JumpCount++;
 
         _machine.GenericJumpPlayer();
     }
@@ -29,7 +29,7 @@ public class PS_Jump : PS_Base {
         base.OnCollisionEnter2DState(collision);
 
         if (collision.gameObject.layer == _groundLayer.value) {
-            Player.Instance.JumpCount = 0;
+            _machine.JumpCount = 0;
             _machine.SwitchState(PlayerStates.Idle);
             return;
         }

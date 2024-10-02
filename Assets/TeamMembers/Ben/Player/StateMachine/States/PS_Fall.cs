@@ -20,7 +20,7 @@ public class PS_Fall : PS_Base {
         base.OnCollisionEnter2DState(collision);
 
         if(collision.gameObject.layer == _groundLayer.value) {
-            Player.Instance.JumpCount = 0;
+            _machine.JumpCount = 0;
             _machine.SwitchState(PlayerStates.Idle);
             return;
         }

@@ -11,7 +11,7 @@ public class PS_Idle : PS_Base
 
         if(!_machine.Collider.IsTouchingLayers(_groundLayerMask)) {
             _machine.SwitchState(PlayerStates.Fall);
-            if(Player.Instance != null) Player.Instance.JumpCount = 1;
+            _machine.JumpCount = 1;
             return;
         }
         else if (_machine.Collider.IsTouchingLayers(_waterLayerMask)) {
@@ -26,7 +26,7 @@ public class PS_Idle : PS_Base
         _machine.Animator.SetTrigger("Idle");
 
         // Just a safety precaution to ensure the jumps get reset when idling (meaning they must be on the ground).
-        if (Player.Instance != null) Player.Instance.JumpCount = 0;
+        _machine.JumpCount = 0;
     }
 
     public override void UpdateState() {

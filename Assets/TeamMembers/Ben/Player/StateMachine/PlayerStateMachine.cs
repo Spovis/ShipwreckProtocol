@@ -14,6 +14,15 @@ public enum PlayerStates {
 
 public class PlayerStateMachine : MonoBehaviour
 {
+    public static PlayerStateMachine Instance { get; private set; }
+
+    [Header("Movement Settings")]
+    public float MoveSpeed = 5f;
+    public float JumpForce = 10f;
+
+    public int MaxJumpCount = 1;
+    [HideInInspector] public int JumpCount;
+
     [Header("Debug")]
     [SerializeField] private bool _displayCurrentState;
     private TMP_Text _debugText;
@@ -21,6 +30,7 @@ public class PlayerStateMachine : MonoBehaviour
     private PlayerInput _input;
     private Rigidbody2D _rb;
     private CapsuleCollider2D _collider;
+    private SpriteRenderer _bodySpriteRenderer;
     private Animator _animator;
 
     private PS_Base _currentState;
@@ -30,19 +40,32 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerInput Input { get { return _input; } private set { _input = value; } }
     public Rigidbody2D Rigidbody { get { return _rb; } private set { _rb = value; } }
     public CapsuleCollider2D Collider { get { return _collider; } private set { _collider = value; } }
+    public SpriteRenderer BodySpriteRenderer { get { return _bodySpriteRenderer; } private set { _bodySpriteRenderer = value; } }
     public Animator Animator { get { return _animator; } private set { _animator = value; } }
     public PS_Base CurrentState { get { return _currentState; } private set { _currentState = value; } }
 
     private void Awake() {
+        // Singleton implementation
+        if (Instance == null) {
+            Instance = this;
+        }
+        else {
+            Destroy(gameObject);
+            return;
+        }
+
+        JumpCount = MaxJumpCount;
+
         Input = GetComponent<PlayerInput>();
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<CapsuleCollider2D>();
         Animator = GetComponentInChildren<Animator>();
+        BodySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        #if UNITY_EDITOR // By using #if UNITY_EDITOR, this code won't be compiled during a build.
+#if UNITY_EDITOR // By using #if UNITY_EDITOR, this code won't be compiled during a build.
         _debugText = GetComponentInChildren<TMP_Text>();
         _debugText.enabled = false;
-        #endif
+#endif
 
         // Initialize the dictionary with each player state
         _states.Add(PlayerStates.Idle, new PS_Idle(this));
@@ -81,18 +104,20 @@ public class PlayerStateMachine : MonoBehaviour
         CurrentState.EnterState();
 
         // Displaying the debug text. By using #if UNITY_EDITOR, this code won't be compiled during a build.
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         _debugText.enabled = _displayCurrentState;
         if (_debugText.enabled) {
             _debugText.text = "Current State: \n" + CurrentState.GetType().Name;
         }
-        #endif
+#endif
     }
 
     private void Update() {
         CurrentState.UpdateState();
 
-        if(UnityEngine.Input.GetKeyDown(KeyCode.R)) {
+        SetSpriteOrientation();
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.R)) {
             Debug.Log(GetCurrentState());
         }
     }
@@ -121,11 +146,19 @@ public class PlayerStateMachine : MonoBehaviour
     // These could have gone in Player.cs, but I decided to keep it here because all player movement is handled in the state machine.
 
     /// <summary>
+    /// Sets the player's sprite to be flipped or not based on the current input.
+    /// </summary>
+    private void SetSpriteOrientation() {
+        if (Input.CurrentMovementInput.x > 0) BodySpriteRenderer.flipX = true;
+        else if (Input.CurrentMovementInput.x < 0) BodySpriteRenderer.flipX = false;
+    }
+
+    /// <summary>
     /// Moves the player based on the current input, the player's move speed, and an optional multiplier.
     /// </summary>
     /// <param name="multiplier"></param>
     public void GenericMovePlayer(float multiplier = 1f) {
-        Rigidbody.velocity = new Vector2(Input.CurrentMovementInput.x * Player.Instance.MoveSpeed * multiplier, Rigidbody.velocity.y);
+        Rigidbody.velocity = new Vector2(Input.CurrentMovementInput.x * MoveSpeed * multiplier, Rigidbody.velocity.y);
     }
 
     /// <summary>
@@ -133,7 +166,7 @@ public class PlayerStateMachine : MonoBehaviour
     /// </summary>
     /// <param name="multiplier"></param>
     public void GenericJumpPlayer(float multiplier = 1f) {
-        Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, Player.Instance.JumpForce * multiplier);
+        Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, JumpForce * multiplier);
     }
 
 }
