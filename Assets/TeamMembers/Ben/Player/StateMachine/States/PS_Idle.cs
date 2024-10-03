@@ -9,12 +9,8 @@ public class PS_Idle : PS_Base
     public override void EnterState() {
         base.EnterState();
 
-        if(!_machine.Collider.IsTouchingLayers(_groundLayerMask)) {
-            _machine.SwitchState(PlayerStates.Fall);
-            _machine.JumpCount = 1;
-            return;
-        }
-        else if (_machine.Collider.IsTouchingLayers(_waterLayerMask)) {
+        
+        if (_machine.Collider.IsTouchingLayers(_waterLayerMask)) {
             _machine.SwitchState(PlayerStates.Swim);
             return;
         }
@@ -22,11 +18,16 @@ public class PS_Idle : PS_Base
             _machine.SwitchState(PlayerStates.Tread);
             return;
         }
+        else if (!_machine.IsGrounded) {
+            _machine.SwitchState(PlayerStates.Fall);
+            PlayerLogic.Instance.JumpCount = 1;
+            return;
+        }
 
         _machine.Animator.SetTrigger("Idle");
 
         // Just a safety precaution to ensure the jumps get reset when idling (meaning they must be on the ground).
-        _machine.JumpCount = 0;
+        PlayerLogic.Instance.JumpCount = 0;
     }
 
     public override void UpdateState() {

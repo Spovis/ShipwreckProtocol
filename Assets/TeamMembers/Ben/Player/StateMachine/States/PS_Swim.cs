@@ -23,10 +23,10 @@ public class PS_Swim : PS_Base {
     }
 
     public override void UpdateState() {
-        _machine.GenericMovePlayer(0.8f);
+        PlayerLogic.Instance.MovePlayer(0.8f);
 
         if(_machine.Input.IsJumpPressed) {
-            _machine.GenericJumpPlayer(1.5f);
+            PlayerLogic.Instance.JumpPlayer(1.5f);
         }
 
         // We use "IsMoving" to activate/deactivate the current state's idle animation

@@ -13,14 +13,14 @@ public class PS_Fall : PS_Base {
     public override void UpdateState() {
         base.UpdateState();
 
-        _machine.GenericMovePlayer();
+        PlayerLogic.Instance.MovePlayer();
     }
 
     public override void OnCollisionEnter2DState(Collision2D collision) {
         base.OnCollisionEnter2DState(collision);
 
         if(collision.gameObject.layer == _groundLayer.value) {
-            _machine.JumpCount = 0;
+            PlayerLogic.Instance.JumpCount = 0;
             _machine.SwitchState(PlayerStates.Idle);
             return;
         }

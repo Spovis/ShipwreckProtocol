@@ -16,10 +16,10 @@ public class PS_Tread : PS_Base {
     }
 
     public override void UpdateState() {
-        _machine.GenericMovePlayer(0.6f);
+        PlayerLogic.Instance.MovePlayer(0.6f);
 
         if(_machine.Input.IsJumpPressed) {
-            _machine.GenericJumpPlayer(0.6f);
+            PlayerLogic.Instance.JumpPlayer(0.6f);
         }
 
         // We use "IsMoving" to activate/deactivate the current state's idle animation

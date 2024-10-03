@@ -9,15 +9,15 @@ public class PS_Jump : PS_Base {
 
         _machine.Animator.SetTrigger("Jump");
 
-        _machine.JumpCount++;
+        PlayerLogic.Instance.JumpCount++;
 
-        _machine.GenericJumpPlayer();
+        PlayerLogic.Instance.JumpPlayer();
     }
 
     public override void UpdateState() {
         base.UpdateState();
 
-        _machine.GenericMovePlayer();
+        PlayerLogic.Instance.MovePlayer();
 
         if (_machine.Rigidbody.velocity.y < 0) {
             _machine.SwitchState(PlayerStates.Fall);
@@ -29,7 +29,7 @@ public class PS_Jump : PS_Base {
         base.OnCollisionEnter2DState(collision);
 
         if (collision.gameObject.layer == _groundLayer.value) {
-            _machine.JumpCount = 0;
+            PlayerLogic.Instance.JumpCount = 0;
             _machine.SwitchState(PlayerStates.Idle);
             return;
         }

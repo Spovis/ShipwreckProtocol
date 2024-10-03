@@ -13,7 +13,7 @@ public class PS_Walk : PS_Base {
     public override void UpdateState() {
         base.UpdateState();
 
-        _machine.GenericMovePlayer();
+        PlayerLogic.Instance.MovePlayer();
 
         if (_machine.Rigidbody.velocity.x == 0) {
             _machine.SwitchState(PlayerStates.Idle);

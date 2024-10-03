@@ -132,7 +132,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4794688368932466284, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
   m_PrefabInstance: {fileID: 2692066501744819472}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1020907090}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41b901b919ca63d449ffa6054473ae85, type: 3}
@@ -398,6 +398,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &457234257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4416929171894113572, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
+  m_PrefabInstance: {fileID: 2692066501744819472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &457234261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457234257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc55603e95a6be34399e7e2a343ff6b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &483397705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1156,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1020907090 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2759451233690848111, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
+  m_PrefabInstance: {fileID: 2692066501744819472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1020907095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020907090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e929fb3eaed7614587322220511d086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 10
+  JumpForce: 20
+  MaxJumpCount: 1
+  JumpCount: 0
 --- !u!1 &1101063374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,6 +1735,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2759451233690848111, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 1020907095}
+    - targetCorrespondingSourceObject: {fileID: 4416929171894113572, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 457234261}
     - targetCorrespondingSourceObject: {fileID: 1367274269770036300, guid: 492cd3bbf965c1d41a1ab037765dde2a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
