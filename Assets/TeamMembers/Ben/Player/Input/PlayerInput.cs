@@ -31,66 +31,66 @@ public class PlayerInput : MonoBehaviour
     /// <summary>
     /// The current movement input vector.
     /// </summary>
-    public Vector2 CurrentMovementInput { get { return _currentMovementInput; } }
+    public Vector2 CurrentMovementInput { get { return _currentMovementInput; } set { _currentMovementInput = value; } }
 
     /// <summary>
     /// Indicates whether the movement input was pressed this frame.
     /// </summary>
-    public bool IsMovementPressed { get { return _isMovementPressed; } }
+    public bool IsMovementPressed { get { return _isMovementPressed; } set { _isMovementPressed = value; } }
 
     /// <summary>
     /// Indicates whether the movement input is currently held.
     /// </summary>
-    public bool IsMovementHeld { get { return _isMovementHeld; } }
+    public bool IsMovementHeld { get { return _isMovementHeld; } set { _isMovementHeld = value; } }
 
     /// <summary>
     /// Indicates whether the dash input was pressed this frame.
     /// </summary>
-    public bool IsDashPressed { get { return _isDashPressed; } }
+    public bool IsDashPressed { get { return _isDashPressed; } set { _isDashPressed = value; } }
 
     /// <summary>
     /// Indicates whether the dash input is currently held.
     /// </summary>
-    public bool IsDashHeld { get { return _isDashHeld; } }
+    public bool IsDashHeld { get { return _isDashHeld; } set { _isDashHeld = value; } }
 
     /// <summary>
     /// Indicates whether the jump input was pressed this frame.
     /// </summary>
-    public bool IsJumpPressed { get { return _isJumpPressed; } }
+    public bool IsJumpPressed { get { return _isJumpPressed; } set { _isJumpPressed = value; } }
 
     /// <summary>
     /// Indicates whether the jump input is currently held.
     /// </summary>
-    public bool IsJumpHeld { get { return _isJumpHeld; } }
+    public bool IsJumpHeld { get { return _isJumpHeld; } set { _isJumpHeld = value; } }
 
     /// <summary>
     /// Indicates whether the interact input was pressed this frame.
     /// </summary>
-    public bool IsInteractPressed { get { return _isInteractPressed; } }
+    public bool IsInteractPressed { get { return _isInteractPressed; } set { _isInteractPressed = value; } }
 
     /// <summary>
     /// Indicates whether the interact input is currently held.
     /// </summary>
-    public bool IsInteractHeld { get { return _isInteractHeld; } }
+    public bool IsInteractHeld { get { return _isInteractHeld; } set { _isInteractHeld = value; } }
 
     /// <summary>
     /// Indicates whether the attack input was pressed this frame.
     /// </summary>
-    public bool IsAttackPressed { get { return _isAttackPressed; } }
+    public bool IsAttackPressed { get { return _isAttackPressed; } set { _isAttackPressed = value; } }
     /// <summary>
     /// Indicates whether the attack input is currently held.
     /// </summary>
-    public bool IsAttackHeld { get { return _isAttackHeld; } }
+    public bool IsAttackHeld { get { return _isAttackHeld; } set { _isAttackHeld = value; } }
 
     /// <summary>
     /// Indicates whether the pause input was pressed this frame.
     /// </summary>
-    public bool IsPausePressed { get { return _isPausePressed; } }
+    public bool IsPausePressed { get { return _isPausePressed; } set { _isPausePressed = value; } }
 
     /// <summary>
     /// Indicates whether the pause input is currently held.
     /// </summary>
-    public bool IsPauseHeld { get { return _isPauseHeld; } }
+    public bool IsPauseHeld { get { return _isPauseHeld; } set { _isPauseHeld = value; } }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()

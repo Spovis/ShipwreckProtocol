@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PS_Tread : PS_Base {
