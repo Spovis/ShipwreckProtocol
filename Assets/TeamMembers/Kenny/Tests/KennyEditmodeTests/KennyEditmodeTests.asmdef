@@ -1,12 +1,19 @@
 {
-    "name": "Playmode",
+    "name": "KennyEditmodeTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "TeamAssembly"
+        "AliceAssembly",
+        "BenAssembly",
+        "DavinAssembly",
+        "KennyAssembly",
+        "SamAssembly",
+        "ShawnAssembly"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,

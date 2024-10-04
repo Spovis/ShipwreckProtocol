@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class Test {
+public class PauseTest {
     GameObject pauseMenu;
     GameObject uiManagerObject;
     GameObject playerInputObject;
