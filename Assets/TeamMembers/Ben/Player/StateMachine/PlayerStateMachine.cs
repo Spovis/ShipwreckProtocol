@@ -73,7 +73,9 @@ public class PlayerStateMachine : MonoBehaviour
         _states.Add(PlayerStates.Jump, new PS_Jump(this));
         _states.Add(PlayerStates.Fall, new PS_Fall(this));
         _states.Add(PlayerStates.Attack, new PS_Attack(this));
+    }
 
+    private void Start() {
         // Sets the default / initial state
         SwitchState(PlayerStates.Idle);
     }
