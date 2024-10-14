@@ -31,7 +31,7 @@ public class HealthUI : MonoBehaviour, IObserver
     private void OnEnable()
     {
         player.addObserver(this);
-        healthUI = GetComponentInChildren<Image>();
+        healthUI = transform.Find("Image").GetComponent<Image>();
     }
     
     //removes object as observer when disabled to avoid unecessary signals
