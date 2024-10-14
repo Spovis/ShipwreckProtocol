@@ -42,8 +42,8 @@ public class UIManager : MonoBehaviour
 
     public void SwitchScene(string scene)
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene(scene);
+        Time.timeScale = 1f;
     }
 
     public void QuitGame()
