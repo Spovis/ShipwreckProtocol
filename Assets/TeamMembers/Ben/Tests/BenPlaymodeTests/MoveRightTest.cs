@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-public class MoveLeftTest
+public class MoveRightTest
 {
     GameObject testObj;
 
@@ -29,18 +29,18 @@ public class MoveLeftTest
     }
 
     [UnityTest]
-    public IEnumerator Simulate_Player_Move_Left() {
+    public IEnumerator Simulate_Player_Move_Right() {
 
         float startX, endX;
 
         startX = playerObj.transform.position.x;
 
-        PlayerInput.Instance.CurrentMovementInput = new Vector2(-1, 0);
+        PlayerInput.Instance.CurrentMovementInput = new Vector2(1, 0);
 
         yield return new WaitForSecondsRealtime(0.5f);
 
         endX = playerObj.transform.position.x;
 
-        Assert.IsTrue(endX < startX, "Player should move left when input is set to -1.");
+        Assert.IsTrue(endX > startX, "Player should move left when input is set to -1.");
     }
 }

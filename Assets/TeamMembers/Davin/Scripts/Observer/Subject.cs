@@ -20,7 +20,7 @@ public abstract class Subject : MonoBehaviour
     }
 
     //notifies observers of an event
-    protected void NotifyObserver(PlayerActions action)
+    public void NotifyObserver(PlayerActions action)
     {
         observers.ForEach((observer) =>
         {
