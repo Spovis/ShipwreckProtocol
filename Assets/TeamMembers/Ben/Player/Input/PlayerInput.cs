@@ -135,6 +135,7 @@ public class PlayerInput : MonoBehaviour
         _isJumpPressed = false;
         _isInteractPressed = false;
         _isAttackPressed = false;
+        _isPausePressed = false;
     }
 
     private void OnEnable() {
