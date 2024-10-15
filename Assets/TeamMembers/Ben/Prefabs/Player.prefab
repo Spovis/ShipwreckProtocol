@@ -269,8 +269,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.03878212}
-  m_Size: {x: 1, y: 2.3650837}
+  m_Offset: {x: -0.0952816, y: -0.112228274}
+  m_Size: {x: 0.83060837, y: 3.0439637}
   m_Direction: 0
 --- !u!114 &4794688368932466284
 MonoBehaviour:
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e929fb3eaed7614587322220511d086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 10
+  MoveSpeed: 15
   JumpForce: 20
   MaxJumpCount: 1
   JumpCount: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5ff0c1efc4dbd40ae93edd690c2709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayCurrentState: 0
+  _displayCurrentState: 1
 --- !u!1 &4416929171894113572
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,12 +401,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 20e48b80ebe3504409e37d89e090c1cd, type: 3}
+  m_Sprite: {fileID: 1823161860, guid: 5e9962daa336c9f45a9eff651ed42c7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.184, y: 3.2737656}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
