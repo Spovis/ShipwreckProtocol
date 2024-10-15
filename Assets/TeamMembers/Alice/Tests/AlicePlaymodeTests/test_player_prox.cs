@@ -25,7 +25,7 @@ public class Alice_Test_Player_Prox {
     // Test: is the player inside the detection range?
     [UnityTest]
     public IEnumerator Test_Player_In_Proximity() { //move the player in range and see if message is output
-        playerObj.transform.position = new Vector3(4f, 0f, 0f); // Move within range (detects_range = 5)
+        playerObj.transform.position = new Vector3(4f, 0f, 0f); // Move within range (detects_range is 5 so 4 will work)
 
         float dist_to_player = Vector3.Distance(testObj.transform.position, playerObj.transform.position);
         // Assert true: player's in range
