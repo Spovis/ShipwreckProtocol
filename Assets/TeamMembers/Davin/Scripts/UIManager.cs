@@ -18,8 +18,17 @@ public class UIManager : MonoBehaviour
         //pauses game when pause button pressed
         if(PlayerInput.Instance.IsPausePressed)
         { 
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0f;
+            if(pauseMenu.activeInHierarchy == false)
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1f;
+            }
+
         }
     }
 
