@@ -1448,6 +1448,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7951931643016593484, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8713577788430521846, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
       propertyPath: m_IsActive
       value: 0
