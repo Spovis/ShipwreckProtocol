@@ -20,11 +20,13 @@ public class UIManager : MonoBehaviour
         { 
             if(pauseMenu.activeInHierarchy == false)
             {
+                PlayerInput.Instance.CanInput = false;
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
             }
             else
             {
+                PlayerInput.Instance.CanInput = true;
                 pauseMenu.SetActive(false);
                 Time.timeScale = 1f;
             }
@@ -35,6 +37,7 @@ public class UIManager : MonoBehaviour
     //function for closing menu
     public void CloseMenu(GameObject go)
     {
+        PlayerInput.Instance.CanInput = true;
         go.SetActive(false);
         Time.timeScale = 1f;
     }
