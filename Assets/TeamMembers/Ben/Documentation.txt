@@ -3,11 +3,11 @@ My current two MonoBehavior scripts to be aware of are PlayerInput and PlayerSta
 PlayerInput:
   - Uses Unity's new Input System to handle player input.
     - Is easily extendable to multiple input devices.
-  - The script/component is attached to the Player GameObject.
-    - Can be enabled/disabled at runtime to enable/disable the player's input ability.
   - To access the player's input from any script, use the singleton:
     - (Code example) `if(PlayerInput.Instance.IsAttackPressed) {}`
 	  - There are many public properties to access the player's input, such as IsJumpPressed, IsMovementHeld, etc.
+  - The script/component is attached to the Player GameObject.
+	- If you want to enable or disable input, change the "CanInput" property to true or false (PlayerInput.Instance.CanInput = false;)
 
 PlayerStateMachine:
   - Handles the player's movement logic through various states.

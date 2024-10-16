@@ -8,6 +8,8 @@ public class PlayerInput : MonoBehaviour
 
     private PlayerInputAction _playerInput;
 
+    private bool _canInput = true;
+    
     private Vector2 _currentMovementInput;
 
     private bool _isMovementPressed;
@@ -27,6 +29,11 @@ public class PlayerInput : MonoBehaviour
 
     private bool _isPausePressed;
     private bool _isPauseHeld;
+
+    /// <summary>
+    /// Indicates whether the player is able to input or not.
+    /// </summary>
+    public bool CanInput { get { return _canInput; } set { _canInput = value; } }
 
     /// <summary>
     /// The current movement input vector.
@@ -147,32 +154,38 @@ public class PlayerInput : MonoBehaviour
     }
 
     void OnMovementInput(InputAction.CallbackContext context) {
+        if(!CanInput) return;
         _currentMovementInput = context.ReadValue<Vector2>();
         _isMovementPressed = _currentMovementInput.x != 0;
         _isMovementHeld = _isMovementPressed;
     }
 
     void OnJumpInput(InputAction.CallbackContext context) {
+        if(!CanInput) return;
         _isJumpPressed = context.ReadValueAsButton();
         _isJumpHeld = _isJumpPressed;
     }
 
     void OnInteractInput(InputAction.CallbackContext context) {
+        if(!CanInput) return;
         _isInteractPressed = context.ReadValueAsButton();
         _isInteractHeld = _isInteractPressed;
     }
 
     void OnDashInput(InputAction.CallbackContext context) {
+        if(!CanInput) return;
         _isDashPressed = context.ReadValueAsButton();
         _isDashHeld = _isDashPressed;
     }
 
     void OnAttackInput(InputAction.CallbackContext context) {
+        if(!CanInput) return;
         _isAttackPressed = context.ReadValueAsButton();
         _isAttackHeld = _isAttackPressed;
     }
 
     void OnPauseInput(InputAction.CallbackContext context) {
+        if(!CanInput) return;
         _isPausePressed = context.ReadValueAsButton();
         _isPauseHeld = _isAttackPressed;
     }
