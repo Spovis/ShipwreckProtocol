@@ -15,9 +15,10 @@ public class ShootStressTest
 
     private int bulletCount;
 
-    public float currentFPS;
-    private Queue<float> fpsHistory = new Queue<float>(); // Queue to store FPS history
-    private const int fpsSampleSize = 10; // Number of frames to average over
+    const float fpsMeasurePeriod = 0.5f;
+    private int m_FpsAccumulator = 0;
+    private float m_FpsNextPeriod = 0;
+    private int m_CurrentFps;
 
     [UnitySetUp]
     public IEnumerator Setup()  // Ensure this method is IEnumerator for coroutines
@@ -30,6 +31,7 @@ public class ShootStressTest
 
     private void OnSceneLoad(Scene arg0, LoadSceneMode arg1) {
         hasSceneLoaded = true;
+        m_FpsNextPeriod = Time.realtimeSinceStartup + fpsMeasurePeriod;
         GetReferences();
     }
 
@@ -41,18 +43,9 @@ public class ShootStressTest
     }
 
     [UnityTest]
-    public IEnumerator Simulate_Player_Move_Right() {
+    public IEnumerator SimulateShootingExponentially() {
 
         bool hasFailed = false;
-
-        bool startup = false;
-
-        // ** Warm-up phase to let Unity stabilize FPS **
-        int warmupFrames = 200;
-        for (int w = 0; w < warmupFrames; w++)
-        {
-            yield return null;  // Wait for several frames to allow FPS to stabilize
-        }
 
         bulletCount = 1;
 
@@ -71,7 +64,7 @@ public class ShootStressTest
             }
 
             // Calculate the current FPS using Time.deltaTime
-            currentFPS = 1.0f / Time.deltaTime;
+            currentFPS = 1.0f / Time.unscaledDeltaTime;
 
             // Add current FPS to history
             fpsHistory.Enqueue(currentFPS);
@@ -80,19 +73,10 @@ public class ShootStressTest
                 fpsHistory.Dequeue(); // Remove the oldest frame to keep the queue size constant
             }
 
-            // Calculate the average FPS from the fpsHistory queue
-            float averageFPS = 0f;
-            foreach (float fps in fpsHistory)
-            {
-                averageFPS += fps;
-            }
-            averageFPS /= fpsHistory.Count;
-
             // Break the loop if average FPS drops below 60 after the startup phase
             if (currentFPS < 5)
             {
-                Debug.Log(averageFPS + " average fps");
-                Assert.Pass(i + " buttons drop average fps lower than 60");
+                Assert.Pass(bulletCount + " bullets drop average fps lower than 5");
                 yield break;  // Exit the coroutine
             }
 
@@ -105,7 +89,7 @@ public class ShootStressTest
             //Assert.Fail("Player moved past right wall at speed of " + bulletCount);
         }
         else {
-            Assert.Pass("Game did not crash with " + bulletCount + " bullets.");
+            Assert.Fail("Game did not crash with " + bulletCount + " bullets.");
         }
     }
 }
