@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    ParticleSystem _burstParticle;
+    private ParticleSystem _burstParticle;
 
-    SpriteRenderer _spriteRenderer;
-    CircleCollider2D _collider;
+    private SpriteRenderer _spriteRenderer;
+    private CircleCollider2D _collider;
+    private TrailRenderer _trailRenderer;
 
     private float lifetime;
 
     private void Awake() {
         _burstParticle = GetComponentInChildren<ParticleSystem>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _trailRenderer = GetComponent<TrailRenderer>();
         _collider = GetComponent<CircleCollider2D>();
     }
 
@@ -31,6 +33,7 @@ public class Bullet : MonoBehaviour
     {
         _spriteRenderer.enabled = state;
         _collider.enabled = state;
+        _trailRenderer.enabled = state;
     }
 
     private void OnEnable() {
