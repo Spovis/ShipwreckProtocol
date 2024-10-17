@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-public class ShootStressTest
+public class ShootStressTest : MonoBehaviour
 {
     private bool hasSceneLoaded = false;
 
@@ -15,10 +15,9 @@ public class ShootStressTest
 
     private int bulletCount;
 
-    const float fpsMeasurePeriod = 0.5f;
-    private int m_FpsAccumulator = 0;
-    private float m_FpsNextPeriod = 0;
-    private int m_CurrentFps;
+    public float currentFPS;
+    private Queue<float> fpsHistory = new Queue<float>(); // Queue to store FPS history
+    private const int fpsSampleSize = 10; // Number of frames to average over
 
     [UnitySetUp]
     public IEnumerator Setup()  // Ensure this method is IEnumerator for coroutines
@@ -31,7 +30,6 @@ public class ShootStressTest
 
     private void OnSceneLoad(Scene arg0, LoadSceneMode arg1) {
         hasSceneLoaded = true;
-        m_FpsNextPeriod = Time.realtimeSinceStartup + fpsMeasurePeriod;
         GetReferences();
     }
 
@@ -61,23 +59,6 @@ public class ShootStressTest
             for(int j = 0; j < bulletCount; j++)
             {
                 PlayerLogic.Instance.Shoot();
-            }
-
-            // Calculate the current FPS using Time.deltaTime
-            currentFPS = 1.0f / Time.unscaledDeltaTime;
-
-            // Add current FPS to history
-            fpsHistory.Enqueue(currentFPS);
-            if (fpsHistory.Count > fpsSampleSize)
-            {
-                fpsHistory.Dequeue(); // Remove the oldest frame to keep the queue size constant
-            }
-
-            // Break the loop if average FPS drops below 60 after the startup phase
-            if (currentFPS < 5)
-            {
-                Assert.Pass(bulletCount + " bullets drop average fps lower than 5");
-                yield break;  // Exit the coroutine
             }
 
             hasSceneLoaded = false;
