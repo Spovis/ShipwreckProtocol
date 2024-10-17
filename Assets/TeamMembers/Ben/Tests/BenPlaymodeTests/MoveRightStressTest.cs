@@ -21,8 +21,6 @@ public class MoveRightStressTest
         SceneManager.sceneLoaded += OnSceneLoad;
         SceneManager.LoadScene("Scenes/SampleScene");
 
-        Assert.Pass("Test not finished.");
-
         yield return null; 
     }
 
@@ -46,7 +44,7 @@ public class MoveRightStressTest
         playerSpeed = playerLogic.MoveSpeed;
 
         for (int i = 0; i < 500; i++) {
-            Debug.LogWarning("Speed Modifier - " + playerSpeed); // Only doing it as a warning so I can hide other Debug.Logs
+            Debug.Log("Speed Modifier - " + playerSpeed); // Only doing it as a warning so I can hide other Debug.Logs
             if (playerSpeed == Mathf.Infinity) {
                 Assert.Pass("Player speed reached infinity");
             }
@@ -62,7 +60,7 @@ public class MoveRightStressTest
             playerLogic.MoveSpeed = playerSpeed;
 
             yield return new WaitForSeconds(0.5f);
-            Debug.LogWarning("Player Velocity - " + playerObj.GetComponent<Rigidbody2D>().velocity); // Only doing it as an error so I can hide other Debug.Logs
+            Debug.Log("Player Velocity - " + playerObj.GetComponent<Rigidbody2D>().velocity); // Only doing it as an error so I can hide other Debug.Logs
 
             if (playerObj.transform.position.x >= rWall.transform.position.x) {
                 hasFailed = true;
