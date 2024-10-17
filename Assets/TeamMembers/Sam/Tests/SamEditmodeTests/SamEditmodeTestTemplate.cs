@@ -25,4 +25,12 @@ public class SamEditmodeTest {
 
         yield return null;
     }
+
+    [UnityTest]
+    public IEnumerator TestRunLargeRoom() {
+
+       EditorSceneManager.OpenScene("Assets/TeamMembers/Sam/Tests/SamEditmodeTests/TestLargeScene.unity");
+
+        yield return null;
+    }
 }
