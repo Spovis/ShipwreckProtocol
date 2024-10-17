@@ -8,7 +8,7 @@ public class Alice_Test_Player_Prox {
 
     GameObject testObj;
     GameObject playerObj;
-    float detects_range = 5f;
+    float detects_range = 15f;
 
     [UnitySetUp]
     public IEnumerator Setup() {

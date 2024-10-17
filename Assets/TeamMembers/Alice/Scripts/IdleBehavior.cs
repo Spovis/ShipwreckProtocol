@@ -2,15 +2,8 @@ using UnityEngine;
 
 public class IdleBehavior : EnemyBaseBehavior
 {
-    public Vector2 boundaryMin; 
-    public Vector2 boundaryMax;
-
     public IdleBehavior(enemy enemy, Vector2 boundaryMin, Vector2 boundaryMax) : base(enemy)
-    {
-        this.boundaryMin = boundaryMin;
-        this.boundaryMax = boundaryMax;
-    }
-
+    {}
     public override void OnEnterBehavior()
     {
         Debug.Log("Entering the idle state");
@@ -22,15 +15,22 @@ public class IdleBehavior : EnemyBaseBehavior
         float dist_to_player = Vector3.Distance(enemy.transform.position, enemy.player.position);
         
         // Check if the player in bounds and within detection range
-        if (IsPlayerInBounds() && dist_to_player <= enemy.detectRange)
+        if (dist_to_player <= enemy.detectRange)
         {
-            Debug.Log("Player detected within idle range and bounds!");
+            Debug.Log("Player detected within idle range ");
             enemy.SetBehavior(new AttackBehavior(enemy)); // Transition to AttackBehavior
         }
         else
         {
-            Debug.Log("Player out of bounds or out of detection range.");
+            Debug.Log($"Player  out of detection range. dist ={dist_to_player} range is {enemy.detectRange} ");
         }
+        if(IsPlayerInBounds()){
+            Debug.Log("Plaayer is in bounds");
+        }
+        else{
+            Debug.Log("Not in bounds");
+        }
+       
     }
 
     public override void OnExitBehavior()
@@ -43,7 +43,10 @@ public class IdleBehavior : EnemyBaseBehavior
     {
         Vector3 playerPos = enemy.player.position; // Get the player's current position
         // Check if the player's position is within the defined boundaries
-        return playerPos.x >= boundaryMin.x && playerPos.x <= boundaryMax.x &&
-               playerPos.y >= boundaryMin.y && playerPos.y <= boundaryMax.y;
+        Debug.Log($"Player Position: {playerPos}");
+        Debug.Log($"Min Boundary: {enemy.minBoundary}, Max Boundary: {enemy.maxBoundary}");
+
+        return playerPos.x >= enemy.minBoundary.x && playerPos.x <= enemy.maxBoundary.x &&
+               playerPos.y >= enemy.minBoundary.y && playerPos.y <= enemy.maxBoundary.y;
     }
 }

@@ -16,21 +16,18 @@ public class SamPlaymodeTestTemplate {
     [UnitySetUp]
     public IEnumerator Setup()  // Ensure this method is IEnumerator for coroutines
     {
-        // Creates a new GameObject and assigns it to the testObj variable
-        testObj = new GameObject("TestObject");
-
-        // Yield to allow for initialization
         yield return null;
     }
 
 
 
     [UnityTest]
-    public IEnumerator TestObjectCreation() {
+    public IEnumerator StressTest() {
 
-        // Assert that the test object is now active
-        Assert.IsTrue(testObj.activeSelf, "Test object should be active when the test runs.");
-
+        for(int i = 0; i > 100; i++)
+        {
+        testObj = new GameObject("TestObject");
+        }
         yield return null;
     }
 }

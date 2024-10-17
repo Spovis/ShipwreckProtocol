@@ -6,12 +6,11 @@ using UnityEngine;
 public class enemy : MonoBehaviour
 {
     public Transform player;
-    public float detectRange = 5f;
+    public float detectRange = 15f;
     private Animator animator;
-    public Vector2 minBoundary = new Vector2(-0.03f, 9.940499f); 
+    public Vector2 minBoundary = new Vector2(-74f, -18f); 
     public Vector2 maxBoundary = new Vector2(116.05f, 9.940499f); 
     
-    //update is called once per frame
     private EnemyBaseBehavior currentBehavior;
 
         void Start(){

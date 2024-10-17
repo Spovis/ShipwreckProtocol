@@ -9,7 +9,7 @@ public class test_boundary_detection {
 
     GameObject testObj;
     GameObject playerObj;
-    float detects_range = 5f;
+    float detects_range = 15f;
 
     [UnitySetUp]
     public IEnumerator Setup()  // Ensure this method is IEnumerator for coroutines
