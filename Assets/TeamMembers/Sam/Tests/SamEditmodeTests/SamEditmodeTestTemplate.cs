@@ -2,18 +2,17 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 
-public class SamEditmodeTestTemplate {
+public class SamEditmodeTest {
 
-    GameObject testObj;
+    
 
     [UnitySetUp]
-    public IEnumerator Setup()  // Ensure this method is IEnumerator for coroutines
+    public IEnumerator Setup()  
     {
-        // Creates a new GameObject and assigns it to the testObj variable
-        testObj = new GameObject("TestObject");
-
-        // Yield to allow for initialization
+        
         yield return null;
     }
 
@@ -22,8 +21,7 @@ public class SamEditmodeTestTemplate {
     [UnityTest]
     public IEnumerator TestRunRoom() {
 
-        // Assert that the test object is now active
-        Assert.IsTrue(testObj.activeSelf, "Test object should be active when the test runs.");
+       EditorSceneManager.OpenScene("Assets/TeamMembers/Sam/Tests/SamEditmodeTests/TestSampleScene.unity");
 
         yield return null;
     }
