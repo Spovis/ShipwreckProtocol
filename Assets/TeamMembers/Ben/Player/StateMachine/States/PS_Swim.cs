@@ -9,23 +9,16 @@ public class PS_Swim : PS_Base {
     public override void EnterState() {
         base.EnterState();
 
-        currentDrag = _machine.Rigidbody.drag;
-        _machine.Rigidbody.drag = 8;
-
         _machine.Animator.SetTrigger("Swim");
     }
 
-    public override void ExitState() {
-        base.ExitState();
-
-        _machine.Rigidbody.drag = currentDrag;
-    }
+    public override void ExitState() { base.ExitState(); }
 
     public override void UpdateState() {
-        PlayerLogic.Instance.MovePlayer(0.8f);
+        _machine.Logic.MovePlayer(0.8f);
 
         if(_machine.Input.IsJumpPressed) {
-            PlayerLogic.Instance.JumpPlayer(1.5f);
+            _machine.Logic.JumpPlayer(1.5f);
         }
 
         // We use "IsMoving" to activate/deactivate the current state's idle animation
