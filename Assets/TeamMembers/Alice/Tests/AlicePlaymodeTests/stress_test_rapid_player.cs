@@ -2,7 +2,8 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-
+/*this test looks at if the enemy can keep up with the player moving in
+and out rapidly.*/
 public class test_boundary_detection {
 
 

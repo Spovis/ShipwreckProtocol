@@ -2,26 +2,48 @@ using UnityEngine;
 
 public class IdleBehavior : EnemyBaseBehavior
 {
-    public IdleBehavior(enemy enemy) : base(enemy) { }
+    public Vector2 boundaryMin; 
+    public Vector2 boundaryMax;
+
+    public IdleBehavior(enemy enemy, Vector2 boundaryMin, Vector2 boundaryMax) : base(enemy)
+    {
+        this.boundaryMin = boundaryMin;
+        this.boundaryMax = boundaryMax;
+    }
 
     public override void OnEnterBehavior()
     {
-        Debug.Log("entering the idle state");
+        Debug.Log("Entering the idle state");
         enemy.GetComponent<Animator>().SetBool("is_idle", true);
     }
 
     public override void OnBehaviorUpdate()
     {
         float dist_to_player = Vector3.Distance(enemy.transform.position, enemy.player.position);
-        if (dist_to_player <= enemy.detectRange)
+        
+        // Check if the player in bounds and within detection range
+        if (IsPlayerInBounds() && dist_to_player <= enemy.detectRange)
         {
-            enemy.SetBehavior(new AttackBehavior(enemy));
+            Debug.Log("Player detected within idle range and bounds!");
+            enemy.SetBehavior(new AttackBehavior(enemy)); // Transition to AttackBehavior
+        }
+        else
+        {
+            Debug.Log("Player out of bounds or out of detection range.");
         }
     }
 
     public override void OnExitBehavior()
     {
-        Debug.Log("now leaving the idle state");
+        Debug.Log("Now leaving the idle state");
         enemy.GetComponent<Animator>().SetBool("is_idle", false);
+    }
+
+    private bool IsPlayerInBounds()
+    {
+        Vector3 playerPos = enemy.player.position; // Get the player's current position
+        // Check if the player's position is within the defined boundaries
+        return playerPos.x >= boundaryMin.x && playerPos.x <= boundaryMax.x &&
+               playerPos.y >= boundaryMin.y && playerPos.y <= boundaryMax.y;
     }
 }

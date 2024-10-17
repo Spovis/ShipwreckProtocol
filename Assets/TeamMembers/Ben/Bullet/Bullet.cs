@@ -42,7 +42,8 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.CompareTag("Player") || collision.CompareTag("PlayerAttack")) return;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Water") || collision.gameObject.layer == LayerMask.NameToLayer("ShallowWater")) return;
+        if (collision.CompareTag("Player") || collision.CompareTag("PlayerAttack")) return;
 
         _burstParticle.Play();
         ToggleComponents(false);

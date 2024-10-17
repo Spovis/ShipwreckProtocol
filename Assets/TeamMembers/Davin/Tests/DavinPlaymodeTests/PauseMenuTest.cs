@@ -7,19 +7,13 @@ using UnityEngine.TestTools;
 
 public class PauseMenuTest
 {
-    bool sceneLoaded = false;
     [UnitySetUp]
     public IEnumerator OneTimeSetUp()
     {
-        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         SceneManager.LoadScene("Scenes/SampleScene");
         yield return null;
     }
 
-    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        sceneLoaded = true;
-    }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
     // `yield return null;` to skip a frame.
