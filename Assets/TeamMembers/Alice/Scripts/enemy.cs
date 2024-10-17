@@ -6,26 +6,46 @@ using UnityEngine;
 public class enemy : MonoBehaviour
 {
     public Transform player;
-    public float detects_range = 5f;
+    public float detectRange = 5f;
+    private Animator animator;
 
     //update is called once per frame
-    void Update()
-    {
-        detecting_player();
-    }
+    private EnemyBaseBehavior currentBehavior;
 
-    //detects the player if they are in range
-    private void detecting_player()
-    {
-        float dist_to_player = Vector3.Distance(transform.position, player.position);
-
-        if (dist_to_player <= detects_range){
-            Debug.Log("Player is detected within range! The distance= " + dist_to_player);
-            // Call specific function when the player is in range(some kind of attack function for example)
-        }else{
-            Debug.Log("Player is not in range. The distance= " + dist_to_player);
+        public void SetBehavior(EnemyBaseBehavior newBehavior)
+        {
+            if (currentBehavior != null)
+            {
+                currentBehavior.OnExitBehavior();
+            }
+            currentBehavior = newBehavior;
+            currentBehavior.OnEnterBehavior();
         }
-    }
+        //once per frame this updates, checking for player in proximity. When noticed, it then can call a behavior.
+        void Update()
+        {
+            if (currentBehavior != null){
+                currentBehavior.OnBehaviorUpdate();  // Call behavior update logic
+            }
+        }
+        
+        //when colliding, enter
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (currentBehavior != null)
+            {
+                currentBehavior.OnBehaviorCollisionEnter2D();
+            }
+        }
+        //on behavior, trigger
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (currentBehavior != null)
+            {
+                currentBehavior.OnBehaviorTriggerEnter2D();
+            }
+        }
+       
 }
 
 
