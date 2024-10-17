@@ -2,7 +2,8 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-
+/*this test tests if the enemy is correctly id'ng if the player is
+in the detection range or not.*/
 public class Alice_Test_Player_Prox {
 
     GameObject testObj;
@@ -22,13 +23,13 @@ public class Alice_Test_Player_Prox {
         yield return null; 
     }
 
-    // Test: is the player inside the detection range?
+    //is player in range?
     [UnityTest]
     public IEnumerator Test_Player_In_Proximity() { //move the player in range and see if message is output
         playerObj.transform.position = new Vector3(4f, 0f, 0f); // Move within range (detects_range is 5 so 4 will work)
 
         float dist_to_player = Vector3.Distance(testObj.transform.position, playerObj.transform.position);
-        // Assert true: player's in range
+        //yes player is in range
         Assert.IsTrue(dist_to_player <= detects_range, $"Player is in range. Distance: {dist_to_player}");
 
         yield return null;

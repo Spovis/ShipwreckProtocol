@@ -8,9 +8,15 @@ public class enemy : MonoBehaviour
     public Transform player;
     public float detectRange = 5f;
     private Animator animator;
-
+    public Vector2 minBoundary = new Vector2(-0.03f, 9.940499f); 
+    public Vector2 maxBoundary = new Vector2(116.05f, 9.940499f); 
+    
     //update is called once per frame
     private EnemyBaseBehavior currentBehavior;
+
+        void Start(){
+        SetBehavior(new IdleBehavior(this, minBoundary, maxBoundary));
+    }
 
         public void SetBehavior(EnemyBaseBehavior newBehavior)
         {
@@ -22,12 +28,17 @@ public class enemy : MonoBehaviour
             currentBehavior.OnEnterBehavior();
         }
         //once per frame this updates, checking for player in proximity. When noticed, it then can call a behavior.
-        void Update()
-        {
-            if (currentBehavior != null){
+       
+        void Update(){
+            if (currentBehavior != null)
+            {
                 currentBehavior.OnBehaviorUpdate();  // Call behavior update logic
             }
+
         }
+
+    // Check if the player is within the defined boundaries
+    
         
         //when colliding, enter
         private void OnCollisionEnter2D(Collision2D collision)
