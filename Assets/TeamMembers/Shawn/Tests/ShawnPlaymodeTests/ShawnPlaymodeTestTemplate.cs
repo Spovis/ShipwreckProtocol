@@ -3,7 +3,8 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class ShawnPlaymodeTestTemplate {
+public class ShawnRunmodeTestTemplate
+{
 
     /* 
      * This is basically an empty test script. This test simply creates an empty GameObject and asserts that it is active.
@@ -26,7 +27,8 @@ public class ShawnPlaymodeTestTemplate {
 
 
     [UnityTest]
-    public IEnumerator TestObjectCreation() {
+    public IEnumerator TestObjectCreation()
+    {
 
         // Assert that the test object is now active
         Assert.IsTrue(testObj.activeSelf, "Test object should be active when the test runs.");

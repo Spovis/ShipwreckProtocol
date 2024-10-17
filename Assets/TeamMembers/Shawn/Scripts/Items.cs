@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Items : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,10 +14,5 @@ public class NewBehaviourScript : MonoBehaviour
     void Update()
     {
         
-    }
-
-     public void addHealth(int health)
-    {
-        Debug.Log("Add " + health + " Health!"); //debug, to make sure function can be called.
     }
 }
