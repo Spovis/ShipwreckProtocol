@@ -7,8 +7,6 @@ using UnityEngine.TestTools;
 
 public class MoveLeftTest
 {
-    GameObject testObj;
-
     bool hasSceneLoaded = false;
 
     GameObject playerObj;
@@ -30,11 +28,14 @@ public class MoveLeftTest
 
     [UnityTest]
     public IEnumerator Simulate_Player_Move_Left() {
+        
+        yield return new WaitUntil(() => hasSceneLoaded);
 
         float startX, endX;
 
         startX = playerObj.transform.position.x;
 
+        PlayerInput.Instance.CanInput = false; // Stops the player from being able to change input. We will set inputs manually.
         PlayerInput.Instance.CurrentMovementInput = new Vector2(-1, 0);
 
         yield return new WaitForSecondsRealtime(0.5f);
