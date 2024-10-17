@@ -137,6 +137,8 @@ public class PlayerInput : MonoBehaviour
     private void LateUpdate() {
         // Here we set all of the "Pressed" bools to false, in LateUpdate, so it true for just one Update call.
         // A reminder: LateUpdate() is called once per frame after all Update() calls are done.
+        if (!CanInput) return;
+
         _isMovementPressed = false;
         _isDashPressed = false;
         _isJumpPressed = false;
