@@ -6,6 +6,7 @@ using UnityEngine;
 public enum PoolType
 {
     PlayerBullet,
+    WaterParticles,
     None
 }
 
@@ -16,6 +17,7 @@ public class ObjectPoolManager : MonoBehaviour
     private GameObject _objectPoolParent;
 
     private static GameObject _playerBulletPoolParent;
+    private static GameObject _waterParticlePoolParent;
 
     private void Awake() {
         SetupPoolParentObjects();
@@ -27,6 +29,9 @@ public class ObjectPoolManager : MonoBehaviour
 
         _playerBulletPoolParent = new GameObject("Player Bullets");
         _playerBulletPoolParent.transform.SetParent(_objectPoolParent.transform);
+
+        _waterParticlePoolParent = new GameObject("Water Particles");
+        _waterParticlePoolParent.transform.SetParent(_objectPoolParent.transform);
     }
 
     public static GameObject SpawnObject(GameObject objectToSpawn, PoolType poolType = PoolType.None)
@@ -90,6 +95,8 @@ public class ObjectPoolManager : MonoBehaviour
         {
             case PoolType.PlayerBullet:
                 return _playerBulletPoolParent;
+            case PoolType.WaterParticles:
+                return _waterParticlePoolParent;
             case PoolType.None:
                 return null;
             default:
