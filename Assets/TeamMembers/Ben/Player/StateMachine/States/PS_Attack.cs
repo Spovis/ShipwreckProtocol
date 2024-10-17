@@ -10,9 +10,12 @@ public class PS_Attack : PS_Base
         base.EnterState();
 
         _machine.Animator.SetTrigger("Attack");
+        _machine.Logic.Shoot();
 
-        if(_machine.IsGrounded) _machine.Rigidbody.velocity *= Vector3.up;
+        if (_machine.IsGrounded) _machine.Rigidbody.velocity *= Vector3.up;
     }
+
+    public override void ExitState() { base.ExitState(); }
 
     public override void OnCollisionEnter2DState(Collision2D collision) {
         _machine.Rigidbody.velocity *= Vector3.up;
@@ -20,6 +23,5 @@ public class PS_Attack : PS_Base
 
     public override void UpdateState() {
         base.UpdateState();
-
     }
 }

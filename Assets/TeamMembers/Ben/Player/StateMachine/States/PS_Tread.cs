@@ -10,15 +10,13 @@ public class PS_Tread : PS_Base {
         _machine.Animator.SetTrigger("Tread");
     }
 
-    public override void ExitState() {
-        base.ExitState();
-    }
+    public override void ExitState() { base.ExitState(); }
 
     public override void UpdateState() {
-        PlayerLogic.Instance.MovePlayer(0.6f);
+        _machine.Logic.MovePlayer(0.6f);
 
         if(_machine.Input.IsJumpPressed) {
-            PlayerLogic.Instance.JumpPlayer(0.6f);
+            _machine.Logic.JumpPlayer(0.6f);
         }
 
         // We use "IsMoving" to activate/deactivate the current state's idle animation

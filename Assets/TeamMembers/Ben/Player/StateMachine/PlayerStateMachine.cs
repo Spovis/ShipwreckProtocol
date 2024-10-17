@@ -22,22 +22,26 @@ public class PlayerStateMachine : MonoBehaviour
     private TMP_Text _debugText;
 
     private PlayerInput _input;
+    private PlayerLogic _logic;
     private Rigidbody2D _rb;
     private CapsuleCollider2D _collider;
     private SpriteRenderer _bodySpriteRenderer;
     private Animator _animator;
 
     private PS_Base _currentState;
+    private PS_Base _previousState;
     private Dictionary<PlayerStates, PS_Base> _states = new Dictionary<PlayerStates, PS_Base>();
 
     LayerMask _groundLayerMask;
 
     // Getters & Setters
     public PlayerInput Input { get { return _input; } private set { _input = value; } }
+    public PlayerLogic Logic { get { return _logic; } private set { _logic = value; } }
     public Rigidbody2D Rigidbody { get { return _rb; } private set { _rb = value; } }
     public CapsuleCollider2D Collider { get { return _collider; } private set { _collider = value; } }
     public SpriteRenderer BodySpriteRenderer { get { return _bodySpriteRenderer; } private set { _bodySpriteRenderer = value; } }
     public Animator Animator { get { return _animator; } private set { _animator = value; } }
+    public PS_Base PreviousState { get { return _previousState; } private set { _previousState = value; } }
     public PS_Base CurrentState { get { return _currentState; } private set { _currentState = value; } }
 
     public bool IsGrounded => Collider.IsTouchingLayers(_groundLayerMask);
@@ -53,6 +57,7 @@ public class PlayerStateMachine : MonoBehaviour
         }
 
         Input = GetComponent<PlayerInput>();
+        Logic = GetComponent<PlayerLogic>();
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<CapsuleCollider2D>();
         Animator = GetComponentInChildren<Animator>();
@@ -95,6 +100,17 @@ public class PlayerStateMachine : MonoBehaviour
         return PlayerStates.Null;
     }
 
+    public PlayerStates GetPreviousState() {
+        // We are doing a sort-of reverse lookup in the dictionary to get the key from the value.
+        foreach (var keyValuePair in _states) {
+            if (keyValuePair.Value == PreviousState) {
+                return keyValuePair.Key;
+            }
+        }
+
+        return PlayerStates.Null;
+    }
+
 
     /// <summary>
     /// Function used to compare the current state of the player state machine with the inputted state.
@@ -111,6 +127,8 @@ public class PlayerStateMachine : MonoBehaviour
     /// <param name="newState"></param>
     public void SwitchState(PlayerStates newState) {
         CurrentState?.ExitState();
+        if(CurrentState != null) PreviousState = CurrentState;
+
         CurrentState = _states[newState];
         CurrentState.EnterState();
 
