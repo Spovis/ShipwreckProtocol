@@ -6,13 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 public class KennyTestTakeDamage {
-
-    /*
-     * This is basically an empty test script. This test simply creates an empty GameObject and asserts that it is active.
-     * The purpose of this existing is to ensure that tests are working for everyone. You can edit this test to be one you need,
-     * or delete it and create your own test script. It also works as a basic template for a boundary test script.
-    */
-
     GameObject bossObj;
     bool hasSceneLoaded = false;
 
@@ -30,12 +23,20 @@ public class KennyTestTakeDamage {
         hasSceneLoaded = true;
     }
 
-
     [UnityTest]
     public IEnumerator TestTakeDamage() {
         Assert.IsTrue(bossObj.activeSelf, "Boss should be active when the test runs.");
         bossObj.GetComponent<Boss>().TakeDamage(1);
         Assert.AreEqual(99, bossObj.GetComponent<Boss>().GetHealth(), "Boss should have 99 health after taking 1 damage.");
+
+        yield return null;
+    }
+
+    [UnityTest]
+    public IEnumerator TestTakeALotOfDamage() {
+        Assert.IsTrue(bossObj.activeSelf, "Boss should be active when the test runs.");
+        bossObj.GetComponent<Boss>().TakeDamage(1000);
+        Assert.AreEqual(0, bossObj.GetComponent<Boss>().GetHealth(), "Boss should have 0 health after taking more than 100 damage.");
 
         yield return null;
     }
