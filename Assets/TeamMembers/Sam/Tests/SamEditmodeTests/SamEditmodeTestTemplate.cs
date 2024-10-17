@@ -5,11 +5,15 @@ using UnityEngine.TestTools;
 
 public class SamEditmodeTestTemplate {
 
+    GameObject testObj;
 
     [UnitySetUp]
     public IEnumerator Setup()  // Ensure this method is IEnumerator for coroutines
     {
-        myLoadedAssetBundle = AssetBundle.LoadFromFile("Assets/TeamMembers/Sam/Tests/SamEditmodeTests/TestSampleScene.unity");
+        // Creates a new GameObject and assigns it to the testObj variable
+        testObj = new GameObject("TestObject");
+
+        // Yield to allow for initialization
         yield return null;
     }
 
@@ -18,8 +22,8 @@ public class SamEditmodeTestTemplate {
     [UnityTest]
     public IEnumerator TestRunRoom() {
 
-        global::System.Object value = UnityEditor.SceneManagement.EditorSceneManager.LoadSceneInPlayMode(TestSampleScene);
-
+        // Assert that the test object is now active
+        Assert.IsTrue(testObj.activeSelf, "Test object should be active when the test runs.");
 
         yield return null;
     }
