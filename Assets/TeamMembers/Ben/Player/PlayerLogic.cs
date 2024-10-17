@@ -6,6 +6,12 @@ public class PlayerLogic : MonoBehaviour
 {
     public static PlayerLogic Instance { get; private set; }
 
+    [Header("Attack Settings")]
+    //[SerializeField] private float _attackCooldown = 0.5f;
+    [SerializeField] private float _bulletSpeed = 10f;
+    [SerializeField] private GameObject _bulletPrefab;
+    private ParticleSystem _shootParticle;
+
     [Header("Movement Settings")]
     public float MoveSpeed = 10f;
     public float JumpForce = 20f;
@@ -17,6 +23,9 @@ public class PlayerLogic : MonoBehaviour
     private CapsuleCollider2D _collider;
     private SpriteRenderer _bodySpriteRenderer;
     private PlayerStateMachine Machine => PlayerStateMachine.Instance; // Doing this just so it's less to type.
+
+    [HideInInspector] public bool isFacingRight => _bodySpriteRenderer.flipX;
+    [HideInInspector] public Vector3 facingDirection => isFacingRight ? Vector3.right : Vector3.left;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,6 +42,8 @@ public class PlayerLogic : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
         _bodySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        _shootParticle = transform.Find("ShootParticle").GetComponent<ParticleSystem>();
 
         JumpCount = MaxJumpCount;
     }
@@ -73,5 +84,12 @@ public class PlayerLogic : MonoBehaviour
 
                 Machine.SwitchState(PlayerStates.Attack);
         }
+    }
+
+    public void Shoot() {
+        _shootParticle.transform.position = transform.position + facingDirection * 1.1f;
+        _shootParticle.transform.up = facingDirection;
+        _shootParticle.Play();
+        ObjectPoolManager.SpawnObject(_bulletPrefab, _shootParticle.transform.position, Quaternion.identity, PoolType.PlayerBullet).GetComponent<Rigidbody2D>().velocity = facingDirection * _bulletSpeed;
     }
 }

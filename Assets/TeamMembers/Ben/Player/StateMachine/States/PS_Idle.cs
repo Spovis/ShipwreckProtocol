@@ -20,15 +20,17 @@ public class PS_Idle : PS_Base
         }
         else if (!_machine.IsGrounded) {
             _machine.SwitchState(PlayerStates.Fall);
-            PlayerLogic.Instance.JumpCount = 1;
+            _machine.Logic.JumpCount = 1;
             return;
         }
 
         _machine.Animator.SetTrigger("Idle");
 
         // Just a safety precaution to ensure the jumps get reset when idling (meaning they must be on the ground).
-        PlayerLogic.Instance.JumpCount = 0;
+        _machine.Logic.JumpCount = 0;
     }
+
+    public override void ExitState() { base.ExitState(); }
 
     public override void UpdateState() {
         base.UpdateState();

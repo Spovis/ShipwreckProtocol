@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UIManager
   - Boss
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX

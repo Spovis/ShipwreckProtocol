@@ -10,10 +10,12 @@ public class PS_Walk : PS_Base {
         _machine.Animator.SetTrigger("Walk");
     }
 
+    public override void ExitState() { base.ExitState(); }
+
     public override void UpdateState() {
         base.UpdateState();
 
-        PlayerLogic.Instance.MovePlayer();
+        _machine.Logic.MovePlayer();
 
         if (_machine.Rigidbody.velocity.x == 0) {
             _machine.SwitchState(PlayerStates.Idle);
