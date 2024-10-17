@@ -22,7 +22,10 @@ public class PauseMenuTest
     {
         GameObject UIManager = GameObject.FindGameObjectWithTag("UIManager");
         GameObject PauseMenu = UIManager.transform.Find("PauseMenu").gameObject;
+        PlayerInput.Instance.CanInput = false;
         PlayerInput.Instance.IsPausePressed = true;
+        yield return null;
+        PlayerInput.Instance.IsPausePressed = false;
         // Wait one frame for the Update method to run
         yield return new WaitForSecondsRealtime(2);
 
