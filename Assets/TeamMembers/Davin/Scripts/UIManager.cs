@@ -17,15 +17,18 @@ public class UIManager : MonoBehaviour
     {
         //pauses game when pause button pressed
         if(PlayerInput.Instance.IsPausePressed)
-        { 
+        {
+            Debug.Log("pressed");
             if(pauseMenu.activeInHierarchy == false)
             {
+                Debug.Log("Paused");
                 PlayerInput.Instance.CanInput = false;
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
             }
             else
             {
+                Debug.Log("Unpause");
                 PlayerInput.Instance.CanInput = true;
                 pauseMenu.SetActive(false);
                 Time.timeScale = 1f;
