@@ -29,7 +29,7 @@ public class ButtonStress
     {
         player = GameObject.FindGameObjectWithTag("Player");
         bool startup = false;
-        int poolSize = 10000;
+        int poolSize = 100000;
         float randomX, randomY;
 
         // ** Warm-up phase to let Unity stabilize FPS **

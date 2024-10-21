@@ -10,7 +10,28 @@ public class enemy : MonoBehaviour
     private Animator animator;
     public Vector2 minBoundary = new Vector2(-74f, -18f); 
     public Vector2 maxBoundary = new Vector2(116.05f, 9.940499f); 
-    
+    private bool canAttack = true;
+    public int attackDamage = 10;
+    public float attackPause = 2f; // it should wait 2 seconds between attacks
+    public int health = 100;  
+
+    // weapon hits enemy. amount of damage given by the weapon hitting it
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    //enemy dies
+    private void Die()
+    {
+        Debug.Log("Enemy died and was removed from screen");
+        Destroy(gameObject);  // take enemy offscreen
+    }
+
     private EnemyBaseBehavior currentBehavior;
 
         void Start(){
