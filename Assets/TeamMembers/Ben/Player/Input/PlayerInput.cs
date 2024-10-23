@@ -128,6 +128,7 @@ public class PlayerInput : MonoBehaviour
         _playerInput.Player.Interact.canceled += OnInteractInput;
 
         _playerInput.Player.Attack.started += OnAttackInput;
+        _playerInput.Player.Attack.performed += OnAttackInput;
         _playerInput.Player.Attack.canceled += OnAttackInput;
 
         _playerInput.Player.Pause.started += OnPauseInput;
