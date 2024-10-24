@@ -9,16 +9,18 @@ public class AmmoUI : MonoBehaviour, IObserver
     //will observe player object put here
     [SerializeField] Subject player;
     Image heatImage;
-
+    Animator animator;
     void Update()
     {
         if (heatImage.fillAmount == 1)
         {
             PlayerInput.Instance.CanAttack = false;
+            animator.SetBool("Overheated", true);
         }
         else if (heatImage.fillAmount == 0)
         {
             PlayerInput.Instance.CanAttack = true;
+            animator.SetBool("Overheated", false);
         }
         heatImage.fillAmount = heatImage.fillAmount - Time.deltaTime * .3f;
 
@@ -41,7 +43,8 @@ public class AmmoUI : MonoBehaviour, IObserver
     private void OnEnable()
     {
         player.addObserver(this);
-        heatImage = transform.Find("FullGun").GetComponent<Image>();
+        animator = transform.Find("GunSpace").GetComponent<Animator>();
+        heatImage = transform.Find("GunSpace").Find("FullGun").GetComponent<Image>();
     }
 
     //removes object as observer when disabled to avoid unecessary signals
