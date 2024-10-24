@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
             Debug.Log("pressed");
             if(pauseMenu.activeInHierarchy == false)
             {
+                PlayerInput.Instance.IsPausePressed = false;
                 Debug.Log("Paused");
                 PlayerInput.Instance.CanInput = false;
                 pauseMenu.SetActive(true);
