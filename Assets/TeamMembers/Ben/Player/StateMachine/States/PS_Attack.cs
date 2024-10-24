@@ -9,7 +9,7 @@ public class PS_Attack : PS_Base
     public override void EnterState() {
         base.EnterState();
 
-        if (_machine.Input.CanAttack)
+        if (!_machine.Input.CanAttack)
         {
             PlayerStateMachine.Instance.SwitchState(PlayerStates.Idle);
             return;
