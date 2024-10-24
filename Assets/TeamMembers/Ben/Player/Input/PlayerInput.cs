@@ -188,7 +188,6 @@ public class PlayerInput : MonoBehaviour
     }
 
     void OnPauseInput(InputAction.CallbackContext context) {
-        if(!CanInput) return;
         _isPausePressed = context.ReadValueAsButton();
         _isPauseHeld = _isAttackPressed;
     }
