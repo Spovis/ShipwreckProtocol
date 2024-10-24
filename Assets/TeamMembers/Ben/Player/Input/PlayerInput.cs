@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     private PlayerInputAction _playerInput;
 
     private bool _canInput = true;
+    private bool _canAttack = true;
     
     private Vector2 _currentMovementInput;
 
@@ -34,6 +35,11 @@ public class PlayerInput : MonoBehaviour
     /// Indicates whether the player is able to input or not.
     /// </summary>
     public bool CanInput { get { return _canInput; } set { _canInput = value; } }
+
+    /// <summary>
+    /// Indicates whether the player is able to attack or not.
+    /// </summary>
+    public bool CanAttack { get { return _canAttack; } set { _canAttack = value; } }
 
     /// <summary>
     /// The current movement input vector.
