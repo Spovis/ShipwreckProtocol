@@ -2,5 +2,6 @@
 public enum PlayerActions
 {
     Hurt,
-    Heal
+    Heal,
+    Fire
 }
