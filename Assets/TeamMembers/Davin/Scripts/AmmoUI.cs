@@ -8,9 +8,21 @@ public class AmmoUI : MonoBehaviour, IObserver
 {
     //will observe player object put here
     [SerializeField] Subject player;
-    TMP_Text text;
-    private int ammo = 5;
+    Image heatImage;
 
+    void Update()
+    {
+        if (heatImage.fillAmount == 1)
+        {
+            PlayerInput.Instance.CanAttack = false;
+        }
+        else if (heatImage.fillAmount == 0)
+        {
+            PlayerInput.Instance.CanAttack = true;
+        }
+        heatImage.fillAmount = heatImage.fillAmount - Time.deltaTime * .3f;
+
+    }
 
     //when receiving a notification from subject
     public void OnNotify(PlayerActions action)
@@ -19,12 +31,7 @@ public class AmmoUI : MonoBehaviour, IObserver
         switch (action)
         {
             case (PlayerActions.Fire):
-                ammo--;
-                if (ammo == 0)
-                {
-                    ammo = 5;
-                }
-                text.text = ("Ammo: " + ammo);
+                heatImage.fillAmount = heatImage.fillAmount + .2f;
                 Debug.Log("Fire Received");
                 return;
         }
@@ -34,7 +41,7 @@ public class AmmoUI : MonoBehaviour, IObserver
     private void OnEnable()
     {
         player.addObserver(this);
-        text = transform.Find("AmmoNum").GetComponent<TMP_Text>();
+        heatImage = transform.Find("FullGun").GetComponent<Image>();
     }
 
     //removes object as observer when disabled to avoid unecessary signals
