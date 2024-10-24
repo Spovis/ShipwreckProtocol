@@ -12,6 +12,7 @@ public class Yarn : MonoBehaviour, ICollectables
         //TBD yarn(score)++, 
         OnYarnTouched?.Invoke();
         Debug.Log("Yarn Touched");
+        AudioManager.Instance.PlayFX("Yarn");
         Destroy(gameObject);
     }
 }
