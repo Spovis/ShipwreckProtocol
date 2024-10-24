@@ -30,7 +30,7 @@ public class PlayerHealth : Subject
             NotifyObserver(PlayerActions.Heal);
             Debug.Log("Health raised to " + health);
         }
-        if (Input.GetMouseButtonDown(0) && PlayerInput.Instance.CanAttack == true)
+        if (PlayerInput.Instance.IsAttackPressed && PlayerInput.Instance.CanAttack == true)
         {
             NotifyObserver(PlayerActions.Fire);
         }
