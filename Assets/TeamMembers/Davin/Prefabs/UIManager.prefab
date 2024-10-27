@@ -34,11 +34,11 @@ RectTransform:
   - {fileID: 3876646439489581692}
   m_Father: {fileID: 6447701602852587803}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -429.75385, y: 315.9428}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 420.4923, y: 87.7616}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &3067174718470440534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.427, y: -0.000012398}
+  m_AnchoredPosition: {x: 1.427002, y: -0.000015258789}
   m_SizeDelta: {x: 417.6383, y: 73.4228}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7844361197729435881
@@ -605,7 +605,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.427, y: -0.000012398}
+  m_AnchoredPosition: {x: 1.427002, y: -0.000015258789}
   m_SizeDelta: {x: 417.6383, y: 73.4228}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5935413421512589005
@@ -1063,7 +1063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.427, y: -0.00007844}
+  m_AnchoredPosition: {x: 1.427002, y: -0.000076293945}
   m_SizeDelta: {x: 417.6383, y: 87.761}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8604637687454398005
@@ -1416,11 +1416,11 @@ RectTransform:
   - {fileID: 7112546595284949222}
   m_Father: {fileID: 1872929857083441597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -429.75385, y: -316.09}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 420.4923, y: 87.7616}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &7854692223901773824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1443,7 +1443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7112546595284949222}
-  - component: {fileID: 6709866952631009564}
+  - component: {fileID: 115070739176126113}
   m_Layer: 5
   m_Name: GunSpace
   m_TagString: Untagged
@@ -1472,7 +1472,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &6709866952631009564
+--- !u!95 &115070739176126113
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
