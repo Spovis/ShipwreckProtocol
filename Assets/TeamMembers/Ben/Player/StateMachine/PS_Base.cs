@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 // The naming convention for player states is PS_<StateName>. PS stands for "Player State".
 public abstract class PS_Base
