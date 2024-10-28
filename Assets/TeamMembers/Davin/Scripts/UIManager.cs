@@ -7,17 +7,18 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingsMenu;
+
     // Start is called before the first frame update
     void Start()
     {
-        settingsMenu.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
         //pauses game when pause button pressed
-        if(PlayerInput.Instance.IsPausePressed)
+        if (PlayerInput.Instance.IsPausePressed)
         {
             Debug.Log("pressed");
             if(pauseMenu.activeInHierarchy == false)

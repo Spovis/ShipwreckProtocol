@@ -3,6 +3,11 @@ using TMPro;
 
 public class MusicVolumeSlider : SliderBase
 {
+    private void Start()
+    {
+        AudioManager.Instance.musicSource.volume = value;
+        UpdateVolumeText(value);
+    }
     private TextMeshProUGUI volumeText; // Text component to display the volume value
 
     public MusicVolumeSlider(TextMeshProUGUI volumeText)
