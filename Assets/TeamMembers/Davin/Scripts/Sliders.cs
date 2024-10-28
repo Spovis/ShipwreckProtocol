@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sliders : MonoBehaviour
+public abstract class SliderBase
 {
-    // Start is called before the first frame update
-    void Start()
+    protected float value;
+
+    public float Value
     {
-        
+        get => value;
+        set
+        {
+            this.value = value;
+            OnValueChanged(value);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    protected abstract void OnValueChanged(float value);
+
+    public abstract void LoadSetting();
+    public abstract void SaveSetting();
 }
+

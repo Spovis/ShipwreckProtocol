@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject settingsMenu;
     // Start is called before the first frame update
     void Start()
     {
-        
+        settingsMenu.SetActive(false);
     }
 
     // Update is called once per frame
