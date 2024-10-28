@@ -17,7 +17,7 @@ public class PlayerHealth : Subject
     void Update()
     {
         //lowers health
-        if (Input.GetKeyDown(KeyCode.K) && health != 0)
+        /*if (Input.GetKeyDown(KeyCode.K) && health != 0)
         {
             health--;
             NotifyObserver(PlayerActions.Hurt);
@@ -29,10 +29,15 @@ public class PlayerHealth : Subject
             health++;
             NotifyObserver(PlayerActions.Heal);
             Debug.Log("Health raised to " + health);
+        }*/
+        if (PlayerInput.Instance.IsAttackPressed && PlayerInput.Instance.CanAttack == true)
+        {
+            NotifyObserver(PlayerActions.Fire);
         }
-        if(health == 0) 
+        if (health == 0) 
         { 
             SceneManager.LoadScene(reloadSceneName);
         }
+        
     }
 }

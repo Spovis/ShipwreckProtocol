@@ -39,6 +39,10 @@ public class PlayerLogic : MonoBehaviour
             return;
         }
 
+        // This is needed for mobile building. Doing it in this script cause why not.
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
+
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
         _bodySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -48,7 +52,8 @@ public class PlayerLogic : MonoBehaviour
         JumpCount = MaxJumpCount;
     }
 
-    private void Update() {
+    private void Update()
+    {
         SetSpriteOrientation();
 
         TryAttack();

@@ -143,10 +143,6 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Update() {
         CurrentState.UpdateState();
-
-        if (UnityEngine.Input.GetKeyDown(KeyCode.R)) {
-            Debug.Log(GetCurrentState());
-        }
     }
 
     private void FixedUpdate() {

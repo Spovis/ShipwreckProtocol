@@ -278,6 +278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  detectRange: 15
+  minBoundary: {x: -74, y: -18}
+  maxBoundary: {x: 116.05, y: 9.940499}
 --- !u!61 &1178441597827659748
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -333,7 +336,7 @@ Animator:
   m_GameObject: {fileID: 5835636704138190372}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cfdcc57d4d225435eb79e2b981462c35, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

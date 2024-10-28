@@ -13,7 +13,16 @@ public class AttackBehavior : EnemyBaseBehavior
     public override void OnBehaviorUpdate()
     {
         Debug.Log("Attacking the player");
-        // Implement attack logic here
+        /*canAttack = false;
+        PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+        if (playerHealth != NULL)
+        {
+            playerHealth.||whatever function is to take damage||(attackDamage);
+        }
+        
+        //then wait 2 secs before attacking again
+        yield return new WaitForSeconds(attackPause);
+        canAttack = true;*/
     }
 
     public override void OnExitBehavior()

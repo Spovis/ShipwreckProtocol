@@ -37,16 +37,16 @@ public class MoveRightStressTest
     }
 
     [UnityTest]
-    public IEnumerator Simulate_Player_Move_Right() {
+    public IEnumerator Simulate_Player_Move_Right_Exponentially() {
 
         bool hasFailed = false;
 
         playerSpeed = playerLogic.MoveSpeed;
 
         for (int i = 0; i < 500; i++) {
-            Debug.LogWarning("Speed Modifier - " + playerSpeed); // Only doing it as a warning so I can hide other Debug.Logs
+            Debug.Log("Speed Modifier - " + playerSpeed); // Only doing it as a warning so I can hide other Debug.Logs
             if (playerSpeed == Mathf.Infinity) {
-                Assert.Fail("Player speed reached infinity");
+                Assert.Pass("Player speed reached infinity");
             }
 
             SceneManager.LoadScene("Scenes/SampleScene");
@@ -60,7 +60,7 @@ public class MoveRightStressTest
             playerLogic.MoveSpeed = playerSpeed;
 
             yield return new WaitForSeconds(0.5f);
-            Debug.LogWarning("Player Velocity - " + playerObj.GetComponent<Rigidbody2D>().velocity); // Only doing it as an error so I can hide other Debug.Logs
+            Debug.Log("Player Velocity - " + playerObj.GetComponent<Rigidbody2D>().velocity); // Only doing it as an error so I can hide other Debug.Logs
 
             if (playerObj.transform.position.x >= rWall.transform.position.x) {
                 hasFailed = true;
@@ -73,10 +73,10 @@ public class MoveRightStressTest
         }
 
         if(hasFailed) {
-            Assert.Fail("Player moved past right wall at speed of " + playerSpeed);
+            Assert.Pass("Player moved past right wall at speed of " + playerSpeed);
         }
         else {
-            Assert.Pass("Player did not move past right wall. Reached total speed of " + playerSpeed);
+            Assert.Fail("Player did not move past right wall. Reached total speed of " + playerSpeed);
         }
     }
 }

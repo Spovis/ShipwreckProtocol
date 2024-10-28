@@ -5,11 +5,7 @@ using UnityEngine.TestTools;
 
 public class SamPlaymodeTestTemplate {
 
-    /* 
-     * This is basically an empty test script. This test simply creates an empty GameObject and asserts that it is active.
-     * The purpose of this existing is to ensure that tests are working for everyone. You can edit this test to be one you need,
-     * or delete it and create your own test script. It also works as a basic template for a boundary test script.
-    */
+
 
     GameObject testObj;
 
@@ -24,7 +20,7 @@ public class SamPlaymodeTestTemplate {
     [UnityTest]
     public IEnumerator StressTest() {
 
-        for(int i = 0; i > 100; i++)
+        for(int i = 0; i > 10000; i++)
         {
         testObj = new GameObject("TestObject");
         }
