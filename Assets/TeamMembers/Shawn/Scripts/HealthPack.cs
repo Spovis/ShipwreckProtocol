@@ -11,6 +11,7 @@ public class HealthPack : MonoBehaviour, ICollectables
         //TBD Player Health ++, if Player Health == Full, exit, else do
         OnHealthPackTouched?.Invoke();
         Debug.Log("HealthPack Touched");
+        AudioManager.Instance.PlayFX("HealthPack");
         Destroy(gameObject);
     }
 

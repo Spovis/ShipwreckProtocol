@@ -48,7 +48,8 @@ public class PlayerLogic : MonoBehaviour
         JumpCount = MaxJumpCount;
     }
 
-    private void Update() {
+    private void Update()
+    {
         SetSpriteOrientation();
 
         TryAttack();

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : Subject
 {
     private int health = 5;
+    private int ammo = 5;
     [SerializeField] string reloadSceneName;
     // Start is called before the first frame update
     void Start()
@@ -30,9 +31,20 @@ public class PlayerHealth : Subject
             NotifyObserver(PlayerActions.Heal);
             Debug.Log("Health raised to " + health);
         }
-        if(health == 0) 
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (ammo == 1)
+            {
+                ammo = 5;
+            }
+            ammo--;
+            NotifyObserver(PlayerActions.Fire);
+            Debug.Log("Shot Fired; ammo left " + ammo);
+        }
+        if (health == 0) 
         { 
             SceneManager.LoadScene(reloadSceneName);
         }
+        
     }
 }
