@@ -33,7 +33,7 @@ public class IdleBehavior : EnemyBaseBehavior
        
     }
 
-    public override void OnExitBehavior()
+    public /*override*/ void OnExitBehavior()
     {
         Debug.Log("Now leaving the idle state");
         enemy.GetComponent<Animator>().SetBool("is_idle", false);
