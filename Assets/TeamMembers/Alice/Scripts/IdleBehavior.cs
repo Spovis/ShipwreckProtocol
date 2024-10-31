@@ -9,7 +9,7 @@ public class IdleBehavior : EnemyBaseBehavior
         enemy.GetComponent<Animator>().SetBool("is_idle", true);
     }
 
-    public /*override*/ void OnBehaviorUpdate()
+    public override void OnBehaviorUpdate()
     {
         float dist_to_player = Vector3.Distance(enemy.transform.position, enemy.player.position);
         
@@ -33,7 +33,7 @@ public class IdleBehavior : EnemyBaseBehavior
        
     }
 
-    public /*override*/ void OnExitBehavior()
+    public override void OnExitBehavior()
     {
         Debug.Log("Now leaving the idle state");
         enemy.GetComponent<Animator>().SetBool("is_idle", false);
