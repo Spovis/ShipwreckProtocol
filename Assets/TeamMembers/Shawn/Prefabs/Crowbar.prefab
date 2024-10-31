@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1769040600292319179}
   - component: {fileID: 7831330782295081360}
   - component: {fileID: 5340423326554858679}
+  - component: {fileID: -4671800184889078019}
   m_Layer: 0
   m_Name: Crowbar
   m_TagString: Collectable
@@ -130,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9549999, y: 2.1906652}
   m_EdgeRadius: 0
+--- !u!114 &-4671800184889078019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7129867692644390234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6eb82d853a99e438b7394fb5b315f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

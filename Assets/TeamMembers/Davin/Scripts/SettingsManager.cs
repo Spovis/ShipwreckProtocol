@@ -1,57 +1,41 @@
 using UnityEngine; 
-using TMPro; 
+using TMPro;
+using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
-    // Static instance for the singleton pattern
-    private static SettingsManager instance;
-
-    // Static property to get the singleton instance
-    public static SettingsManager Instance
-    {
-        get
-        {
-            // Create a new instance if one does not exist
-            if (instance == null)
-            {
-                instance = FindObjectOfType<SettingsManager>();
-                if (instance == null)
-                {
-                    GameObject obj = new GameObject("SettingsManager");
-                    instance = obj.AddComponent<SettingsManager>();
-                    DontDestroyOnLoad(obj); // Keep this object across scenes
-                }
-            }
-            return instance; // Return the existing or new instance
-        }
-    }
 
     private SliderBase musicVolumeSlider; // Slider for music volume
     private SliderBase sfxVolumeSlider; // Slider for sound effects volume
+    private Slider musicSlider;
+    private Slider sfxSlider;
 
     private void Awake()
     {
-        // Ensure only one instance of SettingsManager exists
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this; // Set this instance as the singleton
-        DontDestroyOnLoad(gameObject); // Persist this object across scenes
+        
 
         // Locate the text components in the scene for volume displays
-        TextMeshProUGUI musicVolumeText = GameObject.Find("MusicVolumeText").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI sfxVolumeText = GameObject.Find("SFXVolumeText").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI musicVolumeText = GameObject.Find("MusicVolumeText").gameObject.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI sfxVolumeText = GameObject.Find("SFXVolumeText").gameObject.GetComponent<TextMeshProUGUI>();
 
+        musicSlider = musicVolumeText.transform.parent.GetComponent<Slider>();
+        sfxSlider = sfxVolumeText.transform.parent.GetComponent<Slider>();
+
+        //DYNAMIC BINDING
         // Initialize the volume sliders with the found text components
         musicVolumeSlider = new MusicVolumeSlider(musicVolumeText);
         sfxVolumeSlider = new SFXVolumeSlider(sfxVolumeText);
 
+
+
+
         // Load saved settings for both volume sliders
         musicVolumeSlider.LoadSetting();
         sfxVolumeSlider.LoadSetting();
+    }
+    private void OnEnable()
+    {
+        musicSlider.value = musicVolumeSlider.Value;
     }
 
     // Method to set the music volume and save the setting
