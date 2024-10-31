@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class IdleBehavior : EnemyBaseBehavior
 {
     public IdleBehavior(enemy enemy, Vector2 boundaryMin, Vector2 boundaryMax) : base(enemy)
@@ -10,14 +9,15 @@ public class IdleBehavior : EnemyBaseBehavior
         enemy.GetComponent<Animator>().SetBool("is_idle", true);
     }
 
-    public override void OnBehaviorUpdate()
+    public /*override*/ void OnBehaviorUpdate()
     {
         float dist_to_player = Vector3.Distance(enemy.transform.position, enemy.player.position);
         
         // Check if the player in bounds and within detection range
         if (dist_to_player <= enemy.detectRange)
         {
-            Debug.Log("Player detected within idle range ");
+            Debug.Log("Player detected within idle range, moving to attack ");
+            enemy.GetComponent<Animator>().SetBool("is_idle", false);
             enemy.SetBehavior(new AttackBehavior(enemy)); // Transition to AttackBehavior
         }
         else

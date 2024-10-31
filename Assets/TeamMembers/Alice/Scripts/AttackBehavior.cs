@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class AttackBehavior : EnemyBaseBehavior
 {
     public AttackBehavior(enemy enemy) : base(enemy) { }
@@ -7,7 +6,7 @@ public class AttackBehavior : EnemyBaseBehavior
     public override void OnEnterBehavior()
     {
         Debug.Log("Now about to start attacking");
-        //enemy.GetComponent<Animator>().SetBool("is_attacking", true);
+        enemy.GetComponent<Animator>().SetBool("is_attacking", true);
     }
 
     public override void OnBehaviorUpdate()
@@ -28,6 +27,6 @@ public class AttackBehavior : EnemyBaseBehavior
     public override void OnExitBehavior()
     {
         Debug.Log("leaving the attack state");
-        //enemy.GetComponent<Animator>().SetBool("is_attacking", false);
+        enemy.GetComponent<Animator>().SetBool("is_attacking", false);
     }
 }
