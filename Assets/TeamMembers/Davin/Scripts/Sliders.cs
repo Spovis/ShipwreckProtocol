@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Abstract base class for slider implementations
-public abstract class SliderBase
+// Base class for slider implementations
+public class SliderBase
 {
     // Protected field to store the slider's current value
     protected float value;
@@ -19,10 +19,21 @@ public abstract class SliderBase
         }
     }
 
-    // Abstract method to handle actions when the value changes
-    protected abstract void OnValueChanged(float value);
+    // Virtual method to handle actions when the value changes
+    protected virtual void OnValueChanged(float value)
+    {
+        Debug.Log("Value changed to: " + value);
+    }
 
-    // Abstract methods for loading and saving slider settings
-    public abstract void LoadSetting();
-    public abstract void SaveSetting();
+    // Virtual methods for loading and saving slider settings
+    public virtual void LoadSetting()
+    {
+        value = 0f;
+        Debug.Log("LoadSetting called in base class");
+    }
+
+    public virtual void SaveSetting()
+    {
+        Debug.Log("SaveSetting called in base class");
+    }
 }
