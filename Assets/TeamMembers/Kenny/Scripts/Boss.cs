@@ -6,16 +6,20 @@ public class Boss : MonoBehaviour {
     private int health = 100;
     private int attackPower;
     public Transform player;
+    private Animator animator;
+    private BossStateMachine stateMachine = new BossStateMachine();
 
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        stateMachine.GetState().OnStateUpdate(gameObject, animator);
+
         if (shouldTakeDamage()) {
             TakeDamage(25);
         }
@@ -32,9 +36,7 @@ public class Boss : MonoBehaviour {
     }
 
     private void Die() {
-        // remove the boss from the scene
-        Destroy(gameObject);
-        Debug.Log("Boss died!");
+        stateMachine.UpdateState(1, animator);
     }
 
     public int GetHealth() {
@@ -43,7 +45,6 @@ public class Boss : MonoBehaviour {
 
     private bool shouldTakeDamage() {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        // if the player is within 1 unit of the boss, take damage
         if (distanceToPlayer < 2.1) {
             return true;
         }
