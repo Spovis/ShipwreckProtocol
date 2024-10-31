@@ -25,6 +25,7 @@ public class SFXVolumeSlider : SliderBase
     // Update the displayed volume percentage
     private void UpdateVolumeText(float value)
     {
+
         volumeText.text = "Volume: " + $"{Mathf.RoundToInt(value * 100)}" + "%"; // Display as a percentage (0–100)
     }
 
