@@ -92,7 +92,7 @@ public class PlayerLogic : MonoBehaviour
     }
 
     public void Shoot() {
-        _shootParticle.transform.position = transform.position + facingDirection * 1.1f;
+        _shootParticle.transform.position = transform.position + (facingDirection * 1.1f) + (Vector3.up * 0.3f);
         _shootParticle.transform.up = facingDirection;
         _shootParticle.Play();
         ObjectPoolManager.SpawnObject(_bulletPrefab, _shootParticle.transform.position, Quaternion.identity, PoolType.PlayerBullet).GetComponent<Rigidbody2D>().velocity = facingDirection * _bulletSpeed;
