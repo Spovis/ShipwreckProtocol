@@ -150,6 +150,8 @@ public class PlayerInput : MonoBehaviour
 
     private void LateUpdate()
     {
+        // Here we set all of the "Pressed" bools to false, in LateUpdate, so it true for just one Update call.
+        // A reminder: LateUpdate() is called once per frame after all Update() calls are done.
         if (!CanInput && !ForceResetPresses) return;
 
         IsMovementPressed = false;
@@ -161,11 +163,11 @@ public class PlayerInput : MonoBehaviour
     }
 
     private void OnEnable() {
-        _playerInput.Player.Enable();
+        _playerInput?.Player.Enable();
     }
 
     private void OnDisable() {
-        _playerInput.Player.Disable();
+        _playerInput?.Player.Disable();
     }
 
     void OnMovementInput(InputAction.CallbackContext context) {

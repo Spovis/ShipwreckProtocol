@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticlePooling : MonoBehaviour
+public class WaterSplashParticlePooling : MonoBehaviour
 {
     private void OnParticleSystemStopped()
     {

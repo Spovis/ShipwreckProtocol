@@ -64,4 +64,29 @@ public class MoveTests
 
         Assert.IsTrue(endX > startX, "Player should move left when input is set to -1.");
     }
+
+    [UnityTest]
+    public IEnumerator Test_Player_Facing_Correct_Direction()
+    {
+
+        yield return new WaitUntil(() => hasSceneLoaded);
+
+        PlayerInput.Instance.CanInput = false; // Stops the player from being able to change input. We will set inputs manually.
+
+        PlayerInput.Instance.CurrentMovementInput = new Vector2(1, 0);
+        yield return new WaitForSecondsRealtime(0.25f);
+        if(!PlayerLogic.Instance.isFacingRight)
+        {
+            Assert.Fail("Player should be facing right when moving right.");
+        }
+
+        PlayerInput.Instance.CurrentMovementInput = new Vector2(-1, 0);
+        yield return new WaitForSecondsRealtime(0.25f);
+        if (PlayerLogic.Instance.isFacingRight)
+        {
+            Assert.Fail("Player should be facing right when moving right.");
+        }
+
+        Assert.Pass("Player faces the correct directions when moving.");
+    }
 }
