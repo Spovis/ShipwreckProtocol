@@ -47,7 +47,7 @@ public abstract class PS_Base
     public virtual void FixedUpdateState() { }
     public virtual void OnCollisionEnter2DState(Collision2D collision) { }
     public virtual void OnCollisionExit2DState(Collision2D collision) {
-        if (collision.gameObject.layer == _groundLayer.value) {
+        if (collision.gameObject.layer == _groundLayer.value && _machine.Logic.JumpCount < 1) {
             _machine.SwitchState(PlayerStates.Fall);
             _machine.Logic.JumpCount++; // If the player walks off a ledge, we count it towards a jump.
             return;

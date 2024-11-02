@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e929fb3eaed7614587322220511d086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpeed: 30
+  _bulletSpeed: 40
   _bulletPrefab: {fileID: 8947272925407141667, guid: b77d1b5cdb0087e42a903f87cbfa6f83, type: 3}
   MoveSpeed: 15
   JumpForce: 25
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5ff0c1efc4dbd40ae93edd690c2709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayCurrentState: 1
+  _displayCurrentState: 0
 --- !u!114 &1637465286717493083
 MonoBehaviour:
   m_ObjectHideFlags: 0

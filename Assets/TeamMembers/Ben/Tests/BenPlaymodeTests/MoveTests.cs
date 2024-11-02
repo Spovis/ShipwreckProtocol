@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-public class MoveLeftTest
+public class MoveTests
 {
     bool hasSceneLoaded = false;
 
@@ -43,5 +43,25 @@ public class MoveLeftTest
         endX = playerObj.transform.position.x;
 
         Assert.IsTrue(endX < startX, "Player should move left when input is set to -1.");
+    }
+
+    [UnityTest]
+    public IEnumerator Simulate_Player_Move_Right()
+    {
+
+        yield return new WaitUntil(() => hasSceneLoaded);
+
+        float startX, endX;
+
+        startX = playerObj.transform.position.x;
+
+        PlayerInput.Instance.CanInput = false; // Stops the player from being able to change input. We will set inputs manually.
+        PlayerInput.Instance.CurrentMovementInput = new Vector2(1, 0);
+
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        endX = playerObj.transform.position.x;
+
+        Assert.IsTrue(endX > startX, "Player should move left when input is set to -1.");
     }
 }

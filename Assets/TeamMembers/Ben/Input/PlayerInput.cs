@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +10,7 @@ public class PlayerInput : MonoBehaviour
     private PlayerInputAction _playerInput;
 
     private bool _canInput = true;
+    private bool _forceResetPresses = false;
     private bool _canAttack = true;
     
     private Vector2 _currentMovementInput;
@@ -35,6 +37,11 @@ public class PlayerInput : MonoBehaviour
     /// Indicates whether the player is able to input or not.
     /// </summary>
     public bool CanInput { get { return _canInput; } set { _canInput = value; } }
+
+    /// <summary>
+    /// Decides whether to force reset all input presses or not on late update or not. Default is false.
+    /// </summary>
+    public bool ForceResetPresses { get { return _forceResetPresses; } set { _forceResetPresses = value; } }
 
     /// <summary>
     /// Indicates whether the player is able to attack or not.
@@ -141,17 +148,16 @@ public class PlayerInput : MonoBehaviour
         _playerInput.Player.Pause.canceled += OnPauseInput;
     }
 
-    private void LateUpdate() {
-        // Here we set all of the "Pressed" bools to false, in LateUpdate, so it true for just one Update call.
-        // A reminder: LateUpdate() is called once per frame after all Update() calls are done.
-        if (!CanInput) return;
+    private void LateUpdate()
+    {
+        if (!CanInput && !ForceResetPresses) return;
 
-        _isMovementPressed = false;
-        _isDashPressed = false;
-        _isJumpPressed = false;
-        _isInteractPressed = false;
-        _isAttackPressed = false;
-        _isPausePressed = false;
+        IsMovementPressed = false;
+        IsDashPressed = false;
+        IsJumpPressed = false;
+        IsInteractPressed = false;
+        IsAttackPressed = false;
+        IsPausePressed = false;
     }
 
     private void OnEnable() {
