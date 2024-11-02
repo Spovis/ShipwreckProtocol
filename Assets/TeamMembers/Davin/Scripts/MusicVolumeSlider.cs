@@ -23,7 +23,7 @@ public class MusicVolumeSlider : SliderBase
     protected override void OnValueChanged(float value)
     {
         // Update the audio source volume based on the slider value
-        AudioManager.Instance.musicSource.volume = value;
+        AudioManager.Instance.musicSource.volume = value/100;
 
         // Change the volume text display
         UpdateVolumeText(value);
@@ -32,7 +32,7 @@ public class MusicVolumeSlider : SliderBase
     // Update the displayed volume percentage
     private void UpdateVolumeText(float value)
     {
-        volumeText.text = "Volume: " + $"{Mathf.RoundToInt(value * 100)}" + "%"; // Display as a percentage (0–100)
+        volumeText.text = "Volume: " + $"{Mathf.RoundToInt(value)}" + "%"; // Display as a percentage (0–100)
     }
 
     // Save the current volume setting to PlayerPrefs
