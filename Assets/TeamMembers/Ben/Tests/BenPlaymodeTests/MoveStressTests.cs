@@ -38,7 +38,7 @@ public class MoveStressTests
     }
 
     [UnityTest]
-    public IEnumerator Simulate_Player_Move_Left_Exponentially() {
+    public IEnumerator Test_Player_Move_Left_Exponential() {
 
         bool hasFailed = false;
 
@@ -82,7 +82,7 @@ public class MoveStressTests
     }
 
     [UnityTest]
-    public IEnumerator Simulate_Player_Move_Right_Exponentially()
+    public IEnumerator Test_Player_Move_Right_Exponential()
     {
 
         bool hasFailed = false;

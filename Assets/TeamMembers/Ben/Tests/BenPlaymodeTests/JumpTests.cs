@@ -27,8 +27,8 @@ public class JumpTests
     }
 
     [UnityTest]
-    public IEnumerator Simulate_Player_Jump() {
-        
+    public IEnumerator Simulate_Player_Jump() 
+    {
         yield return new WaitUntil(() => hasSceneLoaded);
 
         float startY, endY;
@@ -46,7 +46,7 @@ public class JumpTests
     }
 
     [UnityTest]
-    public IEnumerator Check_Multi_Jump_Limit()
+    public IEnumerator Test_Multi_Jump_Limit()
     {
         yield return new WaitUntil(() => hasSceneLoaded);
 
@@ -54,7 +54,7 @@ public class JumpTests
 
         PlayerInput.Instance.CanInput = false; // Stops the player from being able to change input. We will set inputs manually.
         
-        for(int i = 0; i < PlayerLogic.Instance.MaxJumpCount * 2; i++)
+        for(int i = 0; i < PlayerLogic.Instance.MaxJumpCount * 3; i++)
         {
             PlayerInput.Instance.IsJumpPressed = true;
             yield return null;

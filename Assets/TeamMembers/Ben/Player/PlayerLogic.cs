@@ -26,6 +26,7 @@ public class PlayerLogic : MonoBehaviour
 
     [HideInInspector] public bool isFacingRight => _bodySpriteRenderer.flipX;
     [HideInInspector] public Vector3 facingDirection => isFacingRight ? Vector3.right : Vector3.left;
+    [HideInInspector] public bool isShootParticlePlaying => _shootParticle.isPlaying;
 
     // Start is called before the first frame update
     void Awake()

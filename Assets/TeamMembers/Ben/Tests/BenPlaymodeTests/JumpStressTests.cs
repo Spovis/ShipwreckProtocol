@@ -27,7 +27,7 @@ public class JumpStressTests
     }
 
     [UnityTest]
-    public IEnumerator Player_Jump_Expoenential_Stress()
+    public IEnumerator Test_Player_Jump_Exponential()
     {
 
         yield return new WaitUntil(() => hasSceneLoaded && PlayerStateMachine.Instance.IsGrounded);

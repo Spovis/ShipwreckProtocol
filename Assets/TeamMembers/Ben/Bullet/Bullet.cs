@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     private TrailRenderer _trailRenderer;
 
     private float lifetime;
+    public static float bulletLifetime = 10f;
 
     private void Awake() {
         _burstParticle = GetComponentInChildren<ParticleSystem>();
@@ -23,7 +24,7 @@ public class Bullet : MonoBehaviour
     private void Update() {
         lifetime += Time.deltaTime;
 
-        if (lifetime >= 30f)
+        if (lifetime >= bulletLifetime) // Bullet will automatically destroy/return to pool after 30 seconds
         {
             ObjectPoolManager.ReturnObjectToPool(gameObject);
         }
