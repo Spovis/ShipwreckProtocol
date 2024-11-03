@@ -8,8 +8,13 @@ public class HealthUI : MonoBehaviour, IObserver
     //will observe player object put here
     [SerializeField] Subject player;
     Image healthUI;
+    [SerializeField] float maxHealth = 5;
+    [SerializeField] float health = 4;
 
-
+    public void Start()
+    {
+        healthUI.fillAmount = health/maxHealth;
+    }
     //when receiving a notification from subject
     public void OnNotify(PlayerActions action)
     {
@@ -18,11 +23,16 @@ public class HealthUI : MonoBehaviour, IObserver
         {
             case (PlayerActions.Hurt):
                 healthUI.fillAmount = healthUI.fillAmount - .2f;
+                health--;
                 Debug.Log("Hurt received");
                 return;
             case (PlayerActions.Heal):
                 healthUI.fillAmount = healthUI.fillAmount + .2f;
+                health++;
                 Debug.Log("Heal received");
+                return;
+            case (PlayerActions.SetHealth):
+                healthUI.fillAmount = health/maxHealth;
                 return;
         }
     }
@@ -31,7 +41,7 @@ public class HealthUI : MonoBehaviour, IObserver
     private void OnEnable()
     {
         player.addObserver(this);
-        healthUI = transform.Find("Image").GetComponent<Image>();
+        healthUI = transform.Find("HealthFill").GetComponent<Image>();
     }
     
     //removes object as observer when disabled to avoid unecessary signals

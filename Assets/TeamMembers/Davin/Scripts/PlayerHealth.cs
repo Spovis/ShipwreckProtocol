@@ -5,13 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Subject
 {
-    private int health = 5;
+    private int health = 4;
     [SerializeField] string reloadSceneName;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -39,5 +35,15 @@ public class PlayerHealth : Subject
             SceneManager.LoadScene(reloadSceneName);
         }
         
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<HealthPack>(out HealthPack component))
+        {
+            health++;
+            NotifyObserver(PlayerActions.Heal);
+        }
     }
 }
