@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject confirmationMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +22,19 @@ public class UIManager : MonoBehaviour
         //pauses game when pause button pressed
         if (PlayerInput.Instance.IsPausePressed)
         {
-            Debug.Log("pressed");
-            if(pauseMenu.activeInHierarchy == false)
+            if(pauseMenu.activeInHierarchy == false && !settingsMenu.activeInHierarchy && !confirmationMenu.activeInHierarchy)
             {
                 PlayerInput.Instance.IsPausePressed = false;
-                Debug.Log("Paused");
                 PlayerInput.Instance.CanInput = false;
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
+            }
+            else if (settingsMenu.activeInHierarchy || confirmationMenu.activeInHierarchy)
+            {
+                PlayerInput.Instance.IsPausePressed = false;
+                pauseMenu.SetActive(true);
+                settingsMenu.SetActive(false);
+                confirmationMenu.SetActive(false);
             }
             else
             {
