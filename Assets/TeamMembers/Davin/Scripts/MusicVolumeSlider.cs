@@ -45,6 +45,7 @@ public class MusicVolumeSlider : SliderBase
     public override void LoadSetting()
     {
         value = PlayerPrefs.GetFloat("MusicVolume", 1.0f); // Default to 1.0 if no setting exists
+        OnValueChanged(value);
         UpdateVolumeText(value); // Initialize text display with loaded value
     }
 }

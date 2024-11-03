@@ -10,6 +10,8 @@ public class SettingsManager : MonoBehaviour
     private Slider musicSlider;
     private Slider sfxSlider;
 
+    
+
     private void Awake()
     {
         
