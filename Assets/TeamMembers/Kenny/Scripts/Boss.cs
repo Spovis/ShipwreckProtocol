@@ -18,14 +18,15 @@ public class Boss : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        stateMachine.GetState().OnStateUpdate(gameObject, animator);
+        stateMachine.GetState().OnStateUpdate(gameObject, animator, stateMachine);
+    }
 
-        if (shouldTakeDamage()) {
-            TakeDamage(25);
-        }
+    void OnTriggerEnter2D(Collider2D collider) {
+        stateMachine.GetState().OnTriggerEnter2D(collider, this);
     }
 
     public void TakeDamage(int damage) {
+        stateMachine.UpdateState(2, animator);
         health -= damage;
         if (health < 0) {
             health = 0;
@@ -41,13 +42,5 @@ public class Boss : MonoBehaviour {
 
     public int GetHealth() {
         return health;
-    }
-
-    private bool shouldTakeDamage() {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        if (distanceToPlayer < 2.1) {
-            return true;
-        }
-        return false;
     }
 }
