@@ -56,6 +56,26 @@ public class MenuNavigationTests
     }
 
     [UnityTest]
+    public IEnumerator PauseMenuCloseWithEsc()
+    {
+        GameObject UIManager = GameObject.FindGameObjectWithTag("UIManager");
+        GameObject PauseMenu = UIManager.transform.Find("PauseMenu").gameObject;
+        PlayerInput.Instance.CanInput = false;
+        PlayerInput.Instance.IsPausePressed = true;
+        yield return null;
+        PlayerInput.Instance.IsPausePressed = false;
+        // Wait one frame for the Update method to run
+        yield return new WaitForSecondsRealtime(2);
+        PlayerInput.Instance.IsPausePressed = true;
+        yield return null;
+        PlayerInput.Instance.IsPausePressed = false;
+        yield return new WaitForSecondsRealtime(2);
+        // Assert that the pause menu is now active
+        Assert.IsTrue(!PauseMenu.activeSelf, "Pause menu should be inactive");
+        Assert.AreEqual(Time.timeScale, 1f, "Time scale should be 1");
+    }
+
+    [UnityTest]
     public IEnumerator SettingsMenuOpen()
     {
         GameObject UIManager = GameObject.FindGameObjectWithTag("UIManager");
@@ -92,6 +112,28 @@ public class MenuNavigationTests
         UnityEngine.UI.Button back = SettingsMenu.transform.Find("Back").GetComponent<UnityEngine.UI.Button>();
         back.onClick.Invoke();
         // Wait one frame for the Update method to run
+        yield return new WaitForSecondsRealtime(2);
+
+        // Assert that the pause menu is now active
+        Assert.IsTrue(PauseMenu.activeSelf, "Pause menu should be active");
+    }
+
+    [UnityTest]
+    public IEnumerator SettingsMenuCloseWithEsc()
+    {
+        GameObject UIManager = GameObject.FindGameObjectWithTag("UIManager");
+        GameObject PauseMenu = UIManager.transform.Find("PauseMenu").gameObject;
+        UnityEngine.UI.Button options = PauseMenu.transform.Find("SettingsButton").GetComponent<UnityEngine.UI.Button>();
+        PlayerInput.Instance.CanInput = false;
+        PlayerInput.Instance.IsPausePressed = true;
+        yield return null;
+        PlayerInput.Instance.IsPausePressed = false;
+        yield return new WaitForSecondsRealtime(2);
+        options.onClick.Invoke();
+        yield return new WaitForSecondsRealtime(2);
+        PlayerInput.Instance.IsPausePressed = true;
+        yield return null;
+        PlayerInput.Instance.IsPausePressed = false;
         yield return new WaitForSecondsRealtime(2);
 
         // Assert that the pause menu is now active
@@ -139,5 +181,28 @@ public class MenuNavigationTests
 
         // Assert that the pause menu is now active
         Assert.IsTrue(PauseMenu.activeSelf, "Pause menu should be active");
+    }
+
+    [UnityTest]
+    public IEnumerator GoToMainMenu()
+    {
+        GameObject UIManager = GameObject.FindGameObjectWithTag("UIManager");
+        GameObject PauseMenu = UIManager.transform.Find("PauseMenu").gameObject;
+        UnityEngine.UI.Button exit = PauseMenu.transform.Find("Exit").GetComponent<UnityEngine.UI.Button>();
+        PlayerInput.Instance.CanInput = false;
+        PlayerInput.Instance.IsPausePressed = true;
+        yield return null;
+        PlayerInput.Instance.IsPausePressed = false;
+        yield return new WaitForSecondsRealtime(2);
+        exit.onClick.Invoke();
+        yield return new WaitForSecondsRealtime(2);
+        GameObject ConfirmationMenu = GameObject.Find("ConfirmationMenu");
+        UnityEngine.UI.Button back = ConfirmationMenu.transform.Find("Yes").GetComponent<UnityEngine.UI.Button>();
+        back.onClick.Invoke();
+        // Wait one frame for the Update method to run
+        yield return new WaitForSecondsRealtime(2);
+        GameObject MainMenu = GameObject.Find("MainMenu");
+        // Assert that the pause menu is now active
+        Assert.IsTrue(MainMenu.activeSelf, "Pause menu should be active");
     }
 }
