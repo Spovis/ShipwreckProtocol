@@ -23,7 +23,7 @@ public class Oxygen : MonoBehaviour
 
             // Set the UI element's position to the screen position
             slider.gameObject.transform.position = new Vector3(mainCamera.WorldToScreenPoint(player.transform.position).x, mainCamera.WorldToScreenPoint(player.transform.position).y + 120, mainCamera.WorldToScreenPoint(mainCamera.transform.position).z);
-            slider.value = PlayerLogic.Instance.GetRemainingBreath() / 4;
+            slider.value = PlayerLogic.Instance.GetRemainingBreath() / PlayerLogic.Instance.MaxBreath;
             if (slider.value == 0)
             {
                 fill.gameObject.SetActive(false);
