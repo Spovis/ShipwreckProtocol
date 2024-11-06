@@ -7,6 +7,7 @@ public class Boss : MonoBehaviour {
     private int attackPower;
     public Transform player;
     private Animator animator;
+    public Rigidbody2D fireballPrefab;
     private BossStateMachine stateMachine = new BossStateMachine();
 
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class Boss : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        stateMachine.GetState().OnStateUpdate(gameObject, animator, stateMachine);
+        stateMachine.GetState().OnStateUpdate(gameObject, animator, stateMachine, fireballPrefab, player);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {

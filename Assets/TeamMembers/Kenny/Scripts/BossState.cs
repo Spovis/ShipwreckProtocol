@@ -5,7 +5,13 @@ public abstract class BossState {
     Debug.Log("abstract class definition of OnEnterState called");
   }
 
-  public virtual void OnStateUpdate(GameObject gameObject, Animator animator, BossStateMachine stateMachine) {
+  public virtual void OnStateUpdate(
+    GameObject gameObject,
+    Animator animator,
+    BossStateMachine stateMachine,
+    Rigidbody2D fireballPrefab,
+    Transform player)
+  {
     Debug.Log("abstract class definition of OnStateUpdate called");
   }
 

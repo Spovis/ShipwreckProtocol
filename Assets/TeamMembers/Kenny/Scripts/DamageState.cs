@@ -7,7 +7,13 @@ public class DamageState : BossState {
     animator.SetTrigger("DamageTrigger");
   }
 
-  public override void OnStateUpdate(GameObject gameObject, Animator animator, BossStateMachine stateMachine) {
+  public override void OnStateUpdate(
+    GameObject gameObject,
+    Animator animator,
+    BossStateMachine stateMachine,
+    Rigidbody2D fireballPrefab,
+    Transform player)
+  {
     if (animator.GetCurrentAnimatorStateInfo(0).IsName("Damage") &&
       animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.98f)
     {
@@ -18,6 +24,5 @@ public class DamageState : BossState {
   public override void OnExitState(Animator animator) { }
 
   public override void OnTriggerEnter2D(Collider2D collider, Boss boss) {
-    Debug.Log("DamageState.OnTriggerEnter2D called");
   }
 }

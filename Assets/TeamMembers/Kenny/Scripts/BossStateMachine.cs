@@ -7,6 +7,7 @@ public class BossStateMachine {
     new IdleState(),
     new DeathState(),
     new DamageState(),
+    new AttackState(),
   };
   private BossState state = possibleStates[0];
 
