@@ -1418,10 +1418,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1236586397}
+    - target: {fileID: 2212341185501999250, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 40100464}
+    - target: {fileID: 2212341185501999250, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1247944541}
     - target: {fileID: 3067174718470440534, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 653110428}
+    - target: {fileID: 3459522454157399803, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3459522454157399803, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4914690761169476956, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
       propertyPath: settingsMenu
       value: 
