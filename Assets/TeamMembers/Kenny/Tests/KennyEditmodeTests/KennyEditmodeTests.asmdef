@@ -4,12 +4,7 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "AliceAssembly",
-        "BenAssembly",
-        "DavinAssembly",
-        "KennyAssembly",
-        "SamAssembly",
-        "ShawnAssembly"
+        "TeamMembersScripts"
     ],
     "includePlatforms": [
         "Editor"
