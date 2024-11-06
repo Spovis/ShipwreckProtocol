@@ -10,6 +10,7 @@ public enum PlayerStates {
     Tread,
     Jump,
     Fall,
+    Die,
     Attack,
 }
 
@@ -27,6 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
     private CapsuleCollider2D _collider;
     private SpriteRenderer _bodySpriteRenderer;
     private Animator _animator;
+    private HealthUI _health;
 
     private PS_Base _currentState;
     private PS_Base _previousState;
@@ -41,6 +43,7 @@ public class PlayerStateMachine : MonoBehaviour
     public CapsuleCollider2D Collider { get { return _collider; } private set { _collider = value; } }
     public SpriteRenderer BodySpriteRenderer { get { return _bodySpriteRenderer; } private set { _bodySpriteRenderer = value; } }
     public Animator Animator { get { return _animator; } private set { _animator = value; } }
+    public HealthUI Health { get { return _health; } private set { _health = value; } }
     public PS_Base PreviousState { get { return _previousState; } private set { _previousState = value; } }
     public PS_Base CurrentState { get { return _currentState; } private set { _currentState = value; } }
 
@@ -61,6 +64,7 @@ public class PlayerStateMachine : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<CapsuleCollider2D>();
         Animator = GetComponentInChildren<Animator>();
+        Health = GameObject.Find("Health").GetComponent<HealthUI>();
         BodySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         _groundLayerMask = LayerMask.GetMask("Ground");
@@ -78,6 +82,7 @@ public class PlayerStateMachine : MonoBehaviour
         _states.Add(PlayerStates.Jump, new PS_Jump(this));
         _states.Add(PlayerStates.Fall, new PS_Fall(this));
         _states.Add(PlayerStates.Attack, new PS_Attack(this));
+        _states.Add(PlayerStates.Die, new PS_Die(this));
     }
 
     private void Start() {
@@ -111,7 +116,6 @@ public class PlayerStateMachine : MonoBehaviour
         return PlayerStates.Null;
     }
 
-
     /// <summary>
     /// Function used to compare the current state of the player state machine with the inputted state.
     /// </summary>
@@ -128,6 +132,7 @@ public class PlayerStateMachine : MonoBehaviour
     public void SwitchState(PlayerStates newState) {
         CurrentState?.ExitState();
         if(CurrentState != null) PreviousState = CurrentState;
+        Debug.Log("Switching from: " + (CurrentState?.GetType().Name ?? "null") + ", to: " + newState.ToString());
 
         CurrentState = _states[newState];
         CurrentState.EnterState();
