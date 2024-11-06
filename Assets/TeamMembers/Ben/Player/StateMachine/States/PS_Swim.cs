@@ -6,13 +6,20 @@ public class PS_Swim : PS_Base {
 
     float currentDrag;
 
-    public override void EnterState() {
+    public override void EnterState() 
+    {
         base.EnterState();
 
         _machine.Animator.SetTrigger("Swim");
+        PlayerLogic.Instance.IsDrowning = true;
     }
 
-    public override void ExitState() { base.ExitState(); }
+    public override void ExitState() 
+    { 
+        base.ExitState();
+
+        PlayerLogic.Instance.IsDrowning = false;
+    }
 
     public override void UpdateState() {
         _machine.Logic.MovePlayer(0.8f);

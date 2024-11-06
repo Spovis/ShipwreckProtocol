@@ -27,7 +27,7 @@ public abstract class PS_Base
     public virtual void EnterState() {
         // Sets physics depending on current environment
         if (_machine.Collider.IsTouchingLayers(_waterLayerMask)) { // In water (we don't apply this for shallow water)
-            _machine.Rigidbody.drag = 8; // Raises drag
+            _machine.Rigidbody.drag = PlayerLogic.Instance.WaterDrag; // Raises drag
         }
         else { // Not in water
             _machine.Rigidbody.drag = playerDrag;

@@ -6,6 +6,30 @@ public class PlayerLogic : MonoBehaviour
 {
     public static PlayerLogic Instance { get; private set; }
 
+    [Header("Water Settings")]
+    public float WaterDrag = 8f;
+    [SerializeField] private float _maxBreath = 4f;
+    private float _drownTimer = 0;
+    private bool _isDrowning = false;
+    public bool IsDrowning
+    {
+        get { return _isDrowning; }
+        set
+        {
+            if(value)
+            {
+                _isDrowning = true;
+                InvokeRepeating("Drown", 1, 1);
+            }
+            else
+            {
+                _isDrowning = false;
+                _drownTimer = 0;
+                CancelInvoke("Drown");
+            }
+        }
+    }
+
     [Header("Attack Settings")]
     //[SerializeField] private float _attackCooldown = 0.5f;
     [SerializeField] private float _bulletSpeed = 10f;
@@ -22,6 +46,7 @@ public class PlayerLogic : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private CapsuleCollider2D _collider;
     private SpriteRenderer _bodySpriteRenderer;
+    //private PlayerHealth _health;
     private PlayerStateMachine Machine => PlayerStateMachine.Instance; // Doing this just so it's less to type.
 
     [HideInInspector] public bool isFacingRight => _bodySpriteRenderer.flipX;
@@ -89,6 +114,21 @@ public class PlayerLogic : MonoBehaviour
             // If the player is already attacking and tries to attack again, skip the initiation.
 
                 Machine.SwitchState(PlayerStates.Attack);
+        }
+    }
+
+    private void Drown()
+    {
+        if (!IsDrowning) return;
+
+        if(_drownTimer >= _maxBreath)
+        {
+            // hurt player
+            Debug.Log("Take Damage");
+        }
+        else
+        {
+            _drownTimer++;
         }
     }
 
