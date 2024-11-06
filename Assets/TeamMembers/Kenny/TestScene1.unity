@@ -2216,7 +2216,7 @@ Transform:
   m_GameObject: {fileID: 1247944537}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.600485, y: -2.36052, z: -10}
+  m_LocalPosition: {x: 28.905104, y: -2.36237, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3674,13 +3674,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 904695963504768673, guid: 971c5b186f6004fcab3e01a0ef2c5ca4, type: 3}
+      propertyPath: m_Size.x
+      value: 8.277185
+      objectReference: {fileID: 0}
+    - target: {fileID: 904695963504768673, guid: 971c5b186f6004fcab3e01a0ef2c5ca4, type: 3}
+      propertyPath: m_Size.y
+      value: 6.455197
+      objectReference: {fileID: 0}
+    - target: {fileID: 904695963504768673, guid: 971c5b186f6004fcab3e01a0ef2c5ca4, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.2128649
+      objectReference: {fileID: 0}
+    - target: {fileID: 904695963504768673, guid: 971c5b186f6004fcab3e01a0ef2c5ca4, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.16171475
+      objectReference: {fileID: 0}
     - target: {fileID: 4053332504323879784, guid: 971c5b186f6004fcab3e01a0ef2c5ca4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -49.75
+      value: 21.43
       objectReference: {fileID: 0}
     - target: {fileID: 4053332504323879784, guid: 971c5b186f6004fcab3e01a0ef2c5ca4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.26
+      value: -2.76
       objectReference: {fileID: 0}
     - target: {fileID: 4053332504323879784, guid: 971c5b186f6004fcab3e01a0ef2c5ca4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3718,14 +3734,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 7735610395181269765, guid: 971c5b186f6004fcab3e01a0ef2c5ca4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8767653759661114698, guid: 971c5b186f6004fcab3e01a0ef2c5ca4, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 40100464}
+    - target: {fileID: 8767653759661114698, guid: 971c5b186f6004fcab3e01a0ef2c5ca4, type: 3}
+      propertyPath: fireballPrefab
+      value: 
+      objectReference: {fileID: 6936026672058861158, guid: e1227494ae217496d97bb75b1e56ad4c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
