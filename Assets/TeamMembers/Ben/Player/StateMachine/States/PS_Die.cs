@@ -7,9 +7,8 @@ public class PS_Die : PS_Base {
     public override void EnterState() {
         base.EnterState();
 
+        // Death visuals are ran in PlayerLogic, where this state is also being switched to from.
         DisableAll();
-
-        _machine.Logic.PlayDeathVisuals();
     }
 
     private void DisableAll()

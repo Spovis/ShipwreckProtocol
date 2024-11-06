@@ -286,7 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b901b919ca63d449ffa6054473ae85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadSceneName: SampleScene
 --- !u!114 &7203781630457435448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaterDrag: 8
-  _maxBreath: 4
+  MaxBreath: 3
   _bulletSpeed: 40
   _bulletPrefab: {fileID: 8947272925407141667, guid: b77d1b5cdb0087e42a903f87cbfa6f83, type: 3}
   MoveSpeed: 15
@@ -5432,7 +5431,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0

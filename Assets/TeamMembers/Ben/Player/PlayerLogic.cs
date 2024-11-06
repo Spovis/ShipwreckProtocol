@@ -8,7 +8,7 @@ public class PlayerLogic : MonoBehaviour
 
     [Header("Water Settings")]
     public float WaterDrag = 8f;
-    [SerializeField] private float _maxBreath = 4f;
+    public float MaxBreath = 3f; // This + 1 is time until player starts taking damage in water
     private float _drownTimer = 0;
     private bool _isDrowning = false;
     public bool IsDrowning
@@ -19,7 +19,7 @@ public class PlayerLogic : MonoBehaviour
             if(value)
             {
                 _isDrowning = true;
-                InvokeRepeating("Drown", 1, 1.25f);
+                InvokeRepeating("Drown", 1, 1f);
             }
             else
             {
@@ -48,6 +48,9 @@ public class PlayerLogic : MonoBehaviour
     private SpriteRenderer _bodySpriteRenderer;
     private ParticleSystem _dieParticle;
     private PlayerInteractions _playerInteractions;
+    private HealthUI _health;
+
+    private bool _hasDied = false;
     private PlayerStateMachine Machine => PlayerStateMachine.Instance; // Doing this just so it's less to type.
 
     [HideInInspector] public bool isFacingRight => _bodySpriteRenderer.flipX;
@@ -74,6 +77,7 @@ public class PlayerLogic : MonoBehaviour
         _collider = GetComponent<CapsuleCollider2D>();
         _playerInteractions = GetComponent<PlayerInteractions>();
         _bodySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _health = GameObject.Find("Health").GetComponent<HealthUI>();
 
         _shootParticle = transform.Find("Particles").Find("ShootParticle").GetComponent<ParticleSystem>();
         _dieParticle = transform.Find("Particles").Find("DieParticle").GetComponent<ParticleSystem>();
@@ -86,6 +90,8 @@ public class PlayerLogic : MonoBehaviour
         SetSpriteOrientation();
 
         TryAttack();
+
+        TryDie();
     }
 
     /// <summary>
@@ -114,9 +120,7 @@ public class PlayerLogic : MonoBehaviour
 
     public void TryAttack() {
         if (PlayerInput.Instance.IsAttackPressed) {
-            // If the player is already attacking and tries to attack again, skip the initiation.
-
-                Machine.SwitchState(PlayerStates.Attack);
+            Machine.SwitchState(PlayerStates.Attack);
         }
     }
 
@@ -124,7 +128,7 @@ public class PlayerLogic : MonoBehaviour
     {
         if (!IsDrowning) return;
 
-        if(_drownTimer >= _maxBreath)
+        if(_drownTimer >= MaxBreath)
         {
             _playerInteractions.NotifyObserver(PlayerActions.Hurt);
         }
@@ -141,7 +145,19 @@ public class PlayerLogic : MonoBehaviour
         ObjectPoolManager.SpawnObject(_bulletPrefab, _shootParticle.transform.position, Quaternion.identity, PoolType.PlayerBullet).GetComponent<Rigidbody2D>().velocity = facingDirection * _bulletSpeed;
     }
 
-    public void PlayDeathVisuals()
+    private void TryDie()
+    {
+        // Check if the player dies, doing it here because some states completely override UpdateState
+        if (!_hasDied && _health.getHealth() <= 0)
+        {
+            PlayDeathVisuals();
+            PlayerStateMachine.Instance.SwitchState(PlayerStates.Die);
+            _hasDied = true;
+            return;
+        }
+    }
+
+    private void PlayDeathVisuals()
     {
         _bodySpriteRenderer.enabled = false;
         _dieParticle.Play();
@@ -154,6 +170,6 @@ public class PlayerLogic : MonoBehaviour
     /// <returns>The remaining breath of the player as a float.</returns>
     public float GetRemainingBreath()
     {
-        return _maxBreath - _drownTimer;
+        return MaxBreath - _drownTimer;
     }
 }

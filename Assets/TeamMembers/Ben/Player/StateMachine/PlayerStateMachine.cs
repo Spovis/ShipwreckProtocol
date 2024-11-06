@@ -28,7 +28,6 @@ public class PlayerStateMachine : MonoBehaviour
     private CapsuleCollider2D _collider;
     private SpriteRenderer _bodySpriteRenderer;
     private Animator _animator;
-    private HealthUI _health;
 
     private PS_Base _currentState;
     private PS_Base _previousState;
@@ -43,7 +42,6 @@ public class PlayerStateMachine : MonoBehaviour
     public CapsuleCollider2D Collider { get { return _collider; } private set { _collider = value; } }
     public SpriteRenderer BodySpriteRenderer { get { return _bodySpriteRenderer; } private set { _bodySpriteRenderer = value; } }
     public Animator Animator { get { return _animator; } private set { _animator = value; } }
-    public HealthUI Health { get { return _health; } private set { _health = value; } }
     public PS_Base PreviousState { get { return _previousState; } private set { _previousState = value; } }
     public PS_Base CurrentState { get { return _currentState; } private set { _currentState = value; } }
 
@@ -64,7 +62,6 @@ public class PlayerStateMachine : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<CapsuleCollider2D>();
         Animator = GetComponentInChildren<Animator>();
-        Health = GameObject.Find("Health").GetComponent<HealthUI>();
         BodySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         _groundLayerMask = LayerMask.GetMask("Ground");

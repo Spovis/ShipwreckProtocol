@@ -30,7 +30,6 @@ public class PS_Swim : PS_Base {
 
         // We use "IsMoving" to activate/deactivate the current state's idle animation
         _machine.Animator.SetBool("IsMoving", _machine.Rigidbody.velocity != Vector2.zero);
-
     }
 
     public override void OnTriggerExit2DState(Collider2D collision) {

@@ -51,12 +51,6 @@ public abstract class PS_Base
             _machine.SwitchState(PlayerStates.Jump);
             return;
         }
-
-        // Check if the player dies
-        if (_machine.Health.getHealth() <= 0)
-        {
-            _machine.SwitchState(PlayerStates.Die);
-        }
     }
     public virtual void FixedUpdateState() { }
     public virtual void OnCollisionEnter2DState(Collision2D collision) { }
