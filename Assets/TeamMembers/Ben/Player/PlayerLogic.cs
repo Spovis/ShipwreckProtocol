@@ -19,7 +19,7 @@ public class PlayerLogic : MonoBehaviour
             if(value)
             {
                 _isDrowning = true;
-                InvokeRepeating("Drown", 1, 1);
+                InvokeRepeating("Drown", 1, 1.25f);
             }
             else
             {
@@ -46,7 +46,8 @@ public class PlayerLogic : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private CapsuleCollider2D _collider;
     private SpriteRenderer _bodySpriteRenderer;
-    private PlayerInteractions _health;
+    private ParticleSystem _dieParticle;
+    private PlayerInteractions _playerInteractions;
     private PlayerStateMachine Machine => PlayerStateMachine.Instance; // Doing this just so it's less to type.
 
     [HideInInspector] public bool isFacingRight => _bodySpriteRenderer.flipX;
@@ -71,10 +72,11 @@ public class PlayerLogic : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
-        _health = GetComponent<PlayerInteractions>();
+        _playerInteractions = GetComponent<PlayerInteractions>();
         _bodySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        _shootParticle = transform.Find("ShootParticle").GetComponent<ParticleSystem>();
+        _shootParticle = transform.Find("Particles").Find("ShootParticle").GetComponent<ParticleSystem>();
+        _dieParticle = transform.Find("Particles").Find("DieParticle").GetComponent<ParticleSystem>();
 
         JumpCount = MaxJumpCount;
     }
@@ -124,8 +126,7 @@ public class PlayerLogic : MonoBehaviour
 
         if(_drownTimer >= _maxBreath)
         {
-            // hurt player
-            _health.NotifyObserver(PlayerActions.Hurt);
+            _playerInteractions.NotifyObserver(PlayerActions.Hurt);
         }
         else
         {
@@ -138,5 +139,21 @@ public class PlayerLogic : MonoBehaviour
         _shootParticle.transform.up = facingDirection;
         _shootParticle.Play();
         ObjectPoolManager.SpawnObject(_bulletPrefab, _shootParticle.transform.position, Quaternion.identity, PoolType.PlayerBullet).GetComponent<Rigidbody2D>().velocity = facingDirection * _bulletSpeed;
+    }
+
+    public void PlayDeathVisuals()
+    {
+        _bodySpriteRenderer.enabled = false;
+        _dieParticle.Play();
+        Debug.Log("play death stuff");
+    }
+
+    /// <summary>
+    /// Get's how much breath the player has left.
+    /// </summary>
+    /// <returns>The remaining breath of the player as a float.</returns>
+    public float GetRemainingBreath()
+    {
+        return _maxBreath - _drownTimer;
     }
 }
