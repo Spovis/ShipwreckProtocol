@@ -53,7 +53,7 @@ public class UIDisplay
         //Gets image from Healthfill
         Image fill = GunSpace.GetComponentInChildren<Image>();
         GameObject player = GameObject.Find("Player");
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        PlayerInteractions playerHealth = player.GetComponent<PlayerInteractions>();
         yield return new WaitForSecondsRealtime(1);
         playerHealth.NotifyObserver(PlayerActions.Fire);
         PlayerLogic.Instance.Shoot();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour, IObserver
@@ -10,6 +11,15 @@ public class HealthUI : MonoBehaviour, IObserver
     Image healthUI;
     [SerializeField] float maxHealth = 5;
     [SerializeField] float health = 4;
+    [SerializeField] string reloadSceneName;
+
+    public void Update()
+    {
+        if (health == 0)
+        {
+            StartCoroutine(deathTimer());
+        }
+    }
 
     public void Start()
     {
@@ -48,5 +58,18 @@ public class HealthUI : MonoBehaviour, IObserver
     private void OnDisable()
     {
         player.removeObserver(this);
+    }
+
+    private IEnumerator deathTimer()
+    {
+        PlayerInput.Instance.CanInput = false;
+        yield return new WaitForSecondsRealtime(3);
+        SceneManager.LoadScene(reloadSceneName);
+        PlayerInput.Instance.CanInput = true;
+    }
+
+    public float getHealth()
+    {
+        return health;
     }
 }

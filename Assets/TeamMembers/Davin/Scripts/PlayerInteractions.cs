@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealth : Subject
+public class PlayerInteractions : Subject
 {
-    private int health = 4;
-    [SerializeField] string reloadSceneName;
-    // Start is called before the first frame update
 
     // Update is called once per frame
     void Update()
@@ -30,10 +27,6 @@ public class PlayerHealth : Subject
         {
             NotifyObserver(PlayerActions.Fire);
         }
-        if (health == 0) 
-        { 
-            SceneManager.LoadScene(reloadSceneName);
-        }
         
     }
 
@@ -42,7 +35,6 @@ public class PlayerHealth : Subject
     {
         if (collision.gameObject.TryGetComponent<HealthPack>(out HealthPack component))
         {
-            health++;
             NotifyObserver(PlayerActions.Heal);
         }
     }

@@ -32,7 +32,7 @@ public class HealthUpdate
         //Gets image from Healthfill
         Image health = HealthFill.GetComponentInChildren<Image>();
         GameObject player = GameObject.Find("Player");
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        PlayerInteractions playerHealth = player.GetComponent<PlayerInteractions>();
         float starting = health.fillAmount;
         yield return new WaitForSecondsRealtime(2);
         playerHealth.NotifyObserver(PlayerActions.Hurt);
@@ -57,7 +57,7 @@ public class HealthUpdate
         //Gets image from Healthfill
         Image health = HealthFill.GetComponentInChildren<Image>();
         GameObject player = GameObject.Find("Player");
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        PlayerInteractions playerHealth = player.GetComponent<PlayerInteractions>();
         float starting = health.fillAmount;
         playerHealth.NotifyObserver(PlayerActions.Hurt);
         yield return new WaitForSecondsRealtime(2);

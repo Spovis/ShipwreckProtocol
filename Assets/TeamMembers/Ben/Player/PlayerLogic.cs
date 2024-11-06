@@ -46,7 +46,7 @@ public class PlayerLogic : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private CapsuleCollider2D _collider;
     private SpriteRenderer _bodySpriteRenderer;
-    private PlayerHealth _health;
+    private PlayerInteractions _health;
     private PlayerStateMachine Machine => PlayerStateMachine.Instance; // Doing this just so it's less to type.
 
     [HideInInspector] public bool isFacingRight => _bodySpriteRenderer.flipX;
@@ -71,7 +71,7 @@ public class PlayerLogic : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
-        _health = GetComponent<PlayerHealth>();
+        _health = GetComponent<PlayerInteractions>();
         _bodySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         _shootParticle = transform.Find("ShootParticle").GetComponent<ParticleSystem>();

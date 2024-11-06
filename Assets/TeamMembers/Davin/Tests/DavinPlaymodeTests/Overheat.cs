@@ -32,7 +32,7 @@ public class Overheat
         Image fill = GunSpace.GetComponentInChildren<Image>();
         PlayerInput.Instance.CanInput = false;
         GameObject player = GameObject.Find("Player");
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        PlayerInteractions playerHealth = player.GetComponent<PlayerInteractions>();
         yield return new WaitForSecondsRealtime(1);
         playerHealth.NotifyObserver(PlayerActions.Fire);
         PlayerLogic.Instance.Shoot();
@@ -56,7 +56,7 @@ public class Overheat
         Animator animator = GunSpace.GetComponent<Animator>();
         PlayerInput.Instance.CanInput = false;
         GameObject player = GameObject.Find("Player");
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        PlayerInteractions playerHealth = player.GetComponent<PlayerInteractions>();
         yield return new WaitForSecondsRealtime(1);
         playerHealth.NotifyObserver(PlayerActions.Fire);
         PlayerLogic.Instance.Shoot();
@@ -90,7 +90,7 @@ public class Overheat
         Animator animator = GunSpace.GetComponent<Animator>();
         PlayerInput.Instance.CanInput = false;
         GameObject player = GameObject.Find("Player");
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        PlayerInteractions playerHealth = player.GetComponent<PlayerInteractions>();
         yield return new WaitForSecondsRealtime(1);
         playerHealth.NotifyObserver(PlayerActions.Fire);
         PlayerLogic.Instance.Shoot();
