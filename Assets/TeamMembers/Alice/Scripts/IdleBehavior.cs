@@ -1,24 +1,31 @@
 using UnityEngine;
 public class IdleBehavior : EnemyBaseBehavior
 {
+    private bool is_hunter=true;
+    private Vector2 boundaryMin, boundaryMax;
     public IdleBehavior(enemy enemy, Vector2 boundaryMin, Vector2 boundaryMax) : base(enemy)
     {}
     public override void OnEnterBehavior()
     {
         Debug.Log("Entering the idle state");
         enemy.GetComponent<Animator>().SetBool("is_idle", true);
+        if (is_hunter){
+            enemy.GetComponent<Animator>().SetBool("is_idle", false);
+            enemy.SetBehavior(new PatrolBehavior(enemy, boundaryMin, boundaryMax));
+            enemy.GetComponent<Animator>().SetBool("is_hunter", true); //Transition to PatrolBehavior
+        }
     }
 
     public override void OnBehaviorUpdate()
     {
         float dist_to_player = Vector3.Distance(enemy.transform.position, enemy.player.position);
         
-        // Check if the player in bounds and within detection range
+        //Check if the player in bounds and within detection range
         if (dist_to_player <= enemy.detectRange)
         {
             Debug.Log("Player detected within idle range, moving to attack ");
             enemy.GetComponent<Animator>().SetBool("is_idle", false);
-            enemy.SetBehavior(new AttackBehavior(enemy)); // Transition to AttackBehavior
+            enemy.SetBehavior(new AttackBehavior(enemy)); //Transition to AttackBehavior
         }
         else
         {
@@ -41,8 +48,7 @@ public class IdleBehavior : EnemyBaseBehavior
 
     private bool IsPlayerInBounds()
     {
-        Vector3 playerPos = enemy.player.position; // Get the player's current position
-        // Check if the player's position is within the defined boundaries
+        Vector3 playerPos = enemy.player.position; 
         Debug.Log($"Player Position: {playerPos}");
         Debug.Log($"Min Boundary: {enemy.minBoundary}, Max Boundary: {enemy.maxBoundary}");
 

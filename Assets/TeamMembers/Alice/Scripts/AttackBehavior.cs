@@ -12,7 +12,7 @@ public class AttackBehavior : EnemyBaseBehavior
     public override void OnBehaviorUpdate()
     {
         Debug.Log("Attacking the player");
-        /*canAttack = false;
+        /*bool canAttack = false;
         PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
         if (playerHealth != NULL)
         {

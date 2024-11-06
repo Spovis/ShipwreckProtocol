@@ -4,7 +4,7 @@ public enum EnemyBehaviors
 {
     Idle,
     Attack,
-    //Patrol
+    Patrol
 }
 
 public class EnemyBehaviorFactory
@@ -19,8 +19,8 @@ public class EnemyBehaviorFactory
                 return new IdleBehavior(enemy, minBoundary, maxBoundary);
             case EnemyBehaviors.Attack:
                 return new AttackBehavior(enemy);
-            /*case EnemyBehaviors.Patrol:
-                return new PatrolBehavior(enemy);*/
+            case EnemyBehaviors.Patrol:
+                return new PatrolBehavior(enemy, minBoundary, maxBoundary);
             default:
                 return new IdleBehavior(enemy,minBoundary, maxBoundary);
         }

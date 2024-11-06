@@ -12,6 +12,7 @@ public class enemy : MonoBehaviour
     public Vector2 maxBoundary = new Vector2(116.05f, 9.940499f); 
     private bool canAttack = true;
     public int attackDamage = 10;
+    public bool is_hunter;
     public float attackPause = 2f; // it should wait 2 seconds between attacks
     public int health = 100;  
 
@@ -32,7 +33,7 @@ public class enemy : MonoBehaviour
         Destroy(gameObject);  // take enemy offscreen
     }
 
-    private EnemyBaseBehavior currentBehavior;
+    public EnemyBaseBehavior currentBehavior;
 
         void Start(){
         SetBehavior(new IdleBehavior(this, minBoundary, maxBoundary));

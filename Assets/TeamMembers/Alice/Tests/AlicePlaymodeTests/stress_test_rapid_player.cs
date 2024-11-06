@@ -12,14 +12,13 @@ public class test_boundary_detection {
     float detects_range = 15f;
 
     [UnitySetUp]
-    public IEnumerator Setup()  // Ensure this method is IEnumerator for coroutines
+    public IEnumerator Setup()  
     {
-        // Creates a new GameObject and assigns it to the testObj variable
+
         testObj = new GameObject("TestObject");
         playerObj = new GameObject("Player");
         testObj.transform.position = Vector3.zero;  //place enemy 
         playerObj.transform.position = new Vector3(10f, 0f, 0f);//place player out of range  
-        // Yield to allow for initialization
         yield return null;
     }
 
