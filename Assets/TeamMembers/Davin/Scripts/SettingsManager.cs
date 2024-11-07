@@ -5,12 +5,12 @@ using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
 
-    private SliderBase musicVolumeSlider; // Slider for music volume
-    private SliderBase sfxVolumeSlider; // Slider for sound effects volume
-    private Slider musicSlider;
-    private Slider sfxSlider;
+    private SliderBase musicVolumeSlider; // Slider superclass for music volume
+    private SliderBase sfxVolumeSlider; // Slider superclass for sound effects volume
+    private Slider musicSlider; //Actual unity slider object
+    private Slider sfxSlider; //Actual unity slider object
 
-    
+
 
     private void Awake()
     {
@@ -20,6 +20,7 @@ public class SettingsManager : MonoBehaviour
         TextMeshProUGUI musicVolumeText = GameObject.Find("MusicVolumeText").gameObject.GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI sfxVolumeText = GameObject.Find("SFXVolumeText").gameObject.GetComponent<TextMeshProUGUI>();
 
+        //Using text components get the slider components
         musicSlider = musicVolumeText.transform.parent.GetComponent<Slider>();
         sfxSlider = sfxVolumeText.transform.parent.GetComponent<Slider>();
 
@@ -35,9 +36,11 @@ public class SettingsManager : MonoBehaviour
         musicVolumeSlider.LoadSetting();
         sfxVolumeSlider.LoadSetting();
     }
+
     private void OnEnable()
     {
         musicSlider.value = musicVolumeSlider.Value;
+        sfxSlider.value = sfxVolumeSlider.Value;
     }
 
     // Method to set the music volume and save the setting
