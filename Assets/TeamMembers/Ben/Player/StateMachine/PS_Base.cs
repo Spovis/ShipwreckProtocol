@@ -30,6 +30,11 @@ public abstract class PS_Base
         // We don't want to do any physics changes if we are in the die state
         if (_machine.IsCurrentState(PlayerStates.Die)) return;
 
+        if(!_machine.IsCurrentState(PlayerStates.Attack))
+        {
+            PlayerLogic.Instance.DrownTimer = 0;
+        }
+
         if (_machine.Collider.IsTouchingLayers(_waterLayerMask)) { // In water (we don't apply this for shallow water)
             _machine.Rigidbody.drag = PlayerLogic.Instance.WaterDrag; // Raises drag
         }

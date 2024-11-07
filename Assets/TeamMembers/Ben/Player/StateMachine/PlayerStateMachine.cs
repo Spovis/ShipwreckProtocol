@@ -123,13 +123,24 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     /// <summary>
+    /// Function used to compare the previous state of the player state machine with the inputted state.
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns>Whether the player's current state is the inputted state, as a bool.</returns>
+
+    public bool IsPreviousState(PlayerStates state)
+    {
+        return GetPreviousState() == state;
+    }
+
+    /// <summary>
     /// Switches the player's state to the new state and performs the corresponding logic.
     /// </summary>
     /// <param name="newState"></param>
     public void SwitchState(PlayerStates newState) {
         CurrentState?.ExitState();
         if(CurrentState != null) PreviousState = CurrentState;
-        Debug.Log("Switching from: " + (CurrentState?.GetType().Name ?? "null") + ", to: " + newState.ToString());
+        //Debug.Log("Switching from: " + (CurrentState?.GetType().Name ?? "null") + ", to: " + newState.ToString());
 
         CurrentState = _states[newState];
         CurrentState.EnterState();
