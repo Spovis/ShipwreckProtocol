@@ -16,12 +16,6 @@ public class PS_Attack : PS_Base
             return;
         }
 
-        if (!_machine.Collider.IsTouchingLayers(_waterLayerMask))
-        {
-            PlayerLogic.Instance.IsDrowning = false;
-            PlayerLogic.Instance.DrownTimer = 0;
-        }
-
         _machine.Animator.SetTrigger("Attack");
         _machine.Logic.Shoot();
         HapticFeedback.MediumFeedback();

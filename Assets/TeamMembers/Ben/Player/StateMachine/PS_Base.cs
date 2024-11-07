@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 // The naming convention for player states is PS_<StateName>. PS stands for "Player State".
 public abstract class PS_Base
@@ -26,6 +27,12 @@ public abstract class PS_Base
 
     public virtual void EnterState() {
         // Sets physics depending on current environment
+
+        if(!_machine.Collider.IsTouchingLayers(_waterLayerMask))
+        {
+            PlayerLogic.Instance.IsDrowning = false;
+            PlayerLogic.Instance.DrownTimer = 0;
+        }
 
         // We don't want to do any physics changes if we are in the die state
         if (_machine.IsCurrentState(PlayerStates.Die)) return;
