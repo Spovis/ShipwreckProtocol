@@ -12,6 +12,7 @@ public class HealthUI : MonoBehaviour, IObserver
     [SerializeField] float maxHealth = 5;
     [SerializeField] float health = 4;
     [SerializeField] string reloadSceneName;
+    private bool BCMode = false;
 
     public void Update()
     {
@@ -32,6 +33,10 @@ public class HealthUI : MonoBehaviour, IObserver
         switch(action)
         {
             case (PlayerActions.Hurt):
+                if(BCMode)
+                {
+                    return;
+                }
                 healthUI.fillAmount = healthUI.fillAmount - .2f;
                 health--;
                 Debug.Log("Hurt received");
@@ -71,5 +76,10 @@ public class HealthUI : MonoBehaviour, IObserver
     public float getHealth()
     {
         return health;
+    }
+
+    public void setBCMode()
+    {
+        BCMode = !BCMode;
     }
 }
