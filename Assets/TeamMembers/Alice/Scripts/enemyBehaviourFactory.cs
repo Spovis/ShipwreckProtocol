@@ -20,7 +20,7 @@ public class EnemyBehaviorFactory
             case EnemyBehaviors.Attack:
                 return new AttackBehavior(enemy);
             case EnemyBehaviors.Patrol:
-                return new PatrolBehavior(enemy, minBoundary, maxBoundary);
+                return new PatrolBehavior(enemy);
             default:
                 return new IdleBehavior(enemy,minBoundary, maxBoundary);
         }

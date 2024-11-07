@@ -3,6 +3,7 @@ public class IdleBehavior : EnemyBaseBehavior
 {
     private bool is_hunter=true;
     private Vector2 boundaryMin, boundaryMax;
+    private GameObject pointA, pointB;
     public IdleBehavior(enemy enemy, Vector2 boundaryMin, Vector2 boundaryMax) : base(enemy)
     {}
     public override void OnEnterBehavior()
@@ -11,7 +12,7 @@ public class IdleBehavior : EnemyBaseBehavior
         enemy.GetComponent<Animator>().SetBool("is_idle", true);
         if (is_hunter){
             enemy.GetComponent<Animator>().SetBool("is_idle", false);
-            enemy.SetBehavior(new PatrolBehavior(enemy, boundaryMin, boundaryMax));
+            enemy.SetBehavior(new PatrolBehavior(enemy));
             enemy.GetComponent<Animator>().SetBool("is_hunter", true); //Transition to PatrolBehavior
         }
     }

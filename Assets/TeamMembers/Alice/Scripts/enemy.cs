@@ -15,6 +15,7 @@ public class enemy : MonoBehaviour
     public bool is_hunter;
     public float attackPause = 2f; // it should wait 2 seconds between attacks
     public int health = 100;  
+    
 
     // weapon hits enemy. amount of damage given by the weapon hitting it
     public void TakeDamage(int damage)
@@ -25,6 +26,24 @@ public class enemy : MonoBehaviour
             Die();
         }
     }
+    public delegate void ObstacleCollisionHandler();
+    public event ObstacleCollisionHandler OnObstacleCollision;
+
+ private void OnCollisionEnter2D(Collision2D collision)     
+    {         
+        // Handle obstacle collisions for patrol behavior
+        if (collision.gameObject.CompareTag("Obstacle") && currentBehavior is PatrolBehavior)         
+        {             
+            Debug.Log($"Enemy collided with: {collision.gameObject.name}");             
+            ((PatrolBehavior)currentBehavior).HandleObstacleCollision();
+        }
+
+        // Handle general behavior collisions
+        if (currentBehavior != null)         
+        {             
+            currentBehavior.OnBehaviorCollisionEnter2D();         
+        }     
+    }     
 
     //enemy dies
     private void Die()
@@ -62,13 +81,7 @@ public class enemy : MonoBehaviour
     
         
         //when colliding, enter
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (currentBehavior != null)
-            {
-                currentBehavior.OnBehaviorCollisionEnter2D();
-            }
-        }
+
         //on behavior, trigger
         private void OnTriggerEnter2D(Collider2D other)
         {
