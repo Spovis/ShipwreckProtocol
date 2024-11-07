@@ -138,7 +138,7 @@ public class PlayerStateMachine : MonoBehaviour
     /// </summary>
     /// <param name="newState"></param>
     public void SwitchState(PlayerStates newState) {
-        CurrentState?.ExitState();
+        CurrentState?.ExitState(newState);
         if(CurrentState != null) PreviousState = CurrentState;
         //Debug.Log("Switching from: " + (CurrentState?.GetType().Name ?? "null") + ", to: " + newState.ToString());
 

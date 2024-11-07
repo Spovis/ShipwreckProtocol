@@ -14,10 +14,15 @@ public class PS_Swim : PS_Base {
         PlayerLogic.Instance.IsDrowning = true;
     }
 
-    public override void ExitState() 
+    public override void ExitState(PlayerStates newState) 
     { 
-        base.ExitState();
-        PlayerLogic.Instance.IsDrowning = false;
+        base.ExitState(newState);
+
+        if(newState != PlayerStates.Attack)
+        {
+            PlayerLogic.Instance.IsDrowning = false;
+            PlayerLogic.Instance.DrownTimer = 0;
+        }
     }
 
     public override void UpdateState() {

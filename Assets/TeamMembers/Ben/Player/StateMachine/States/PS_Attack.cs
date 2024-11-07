@@ -16,6 +16,12 @@ public class PS_Attack : PS_Base
             return;
         }
 
+        if (!_machine.Collider.IsTouchingLayers(_waterLayerMask))
+        {
+            PlayerLogic.Instance.IsDrowning = false;
+            PlayerLogic.Instance.DrownTimer = 0;
+        }
+
         _machine.Animator.SetTrigger("Attack");
         _machine.Logic.Shoot();
         HapticFeedback.MediumFeedback();
@@ -23,7 +29,7 @@ public class PS_Attack : PS_Base
         if (_machine.IsGrounded) _machine.Rigidbody.velocity *= Vector3.up;
     }
 
-    public override void ExitState() { base.ExitState(); }
+    public override void ExitState(PlayerStates newState) { base.ExitState(newState); }
 
     public override void OnCollisionEnter2DState(Collision2D collision) {
         _machine.Rigidbody.velocity *= Vector3.up;

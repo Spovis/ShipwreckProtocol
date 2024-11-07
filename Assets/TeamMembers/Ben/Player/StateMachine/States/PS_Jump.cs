@@ -14,7 +14,7 @@ public class PS_Jump : PS_Base {
         _machine.Logic.JumpPlayer();
     }
 
-    public override void ExitState() { base.ExitState(); }
+    public override void ExitState(PlayerStates newState) { base.ExitState(newState); }
 
     public override void UpdateState() {
         base.UpdateState();
