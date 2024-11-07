@@ -36,4 +36,5 @@ public class SliderBase
     {
         Debug.Log("SaveSetting called in base class");
     }
+
 }

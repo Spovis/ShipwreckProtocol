@@ -6,6 +6,30 @@ public class PlayerLogic : MonoBehaviour
 {
     public static PlayerLogic Instance { get; private set; }
 
+    [Header("Water Settings")]
+    public float WaterDrag = 8f;
+    public float MaxBreath = 3f; // This + 1 is time until player starts taking damage in water
+    private float _drownTimer = 0;
+    private bool _isDrowning = false;
+    public bool IsDrowning
+    {
+        get { return _isDrowning; }
+        set
+        {
+            if(value)
+            {
+                _isDrowning = true;
+                InvokeRepeating("Drown", 1, 1f);
+            }
+            else
+            {
+                _isDrowning = false;
+                _drownTimer = 0;
+                CancelInvoke("Drown");
+            }
+        }
+    }
+
     [Header("Attack Settings")]
     //[SerializeField] private float _attackCooldown = 0.5f;
     [SerializeField] private float _bulletSpeed = 10f;
@@ -22,10 +46,16 @@ public class PlayerLogic : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private CapsuleCollider2D _collider;
     private SpriteRenderer _bodySpriteRenderer;
+    private ParticleSystem _dieParticle;
+    private PlayerInteractions _playerInteractions;
+    private HealthUI _health;
+
+    private bool _hasDied = false;
     private PlayerStateMachine Machine => PlayerStateMachine.Instance; // Doing this just so it's less to type.
 
     [HideInInspector] public bool isFacingRight => _bodySpriteRenderer.flipX;
     [HideInInspector] public Vector3 facingDirection => isFacingRight ? Vector3.right : Vector3.left;
+    [HideInInspector] public bool isShootParticlePlaying => _shootParticle.isPlaying;
 
     // Start is called before the first frame update
     void Awake()
@@ -45,9 +75,12 @@ public class PlayerLogic : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
+        _playerInteractions = GetComponent<PlayerInteractions>();
         _bodySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _health = GameObject.Find("Health").GetComponent<HealthUI>();
 
-        _shootParticle = transform.Find("ShootParticle").GetComponent<ParticleSystem>();
+        _shootParticle = transform.Find("Particles").Find("ShootParticle").GetComponent<ParticleSystem>();
+        _dieParticle = transform.Find("Particles").Find("DieParticle").GetComponent<ParticleSystem>();
 
         JumpCount = MaxJumpCount;
     }
@@ -57,6 +90,8 @@ public class PlayerLogic : MonoBehaviour
         SetSpriteOrientation();
 
         TryAttack();
+
+        TryDie();
     }
 
     /// <summary>
@@ -85,9 +120,21 @@ public class PlayerLogic : MonoBehaviour
 
     public void TryAttack() {
         if (PlayerInput.Instance.IsAttackPressed) {
-            // If the player is already attacking and tries to attack again, skip the initiation.
+            Machine.SwitchState(PlayerStates.Attack);
+        }
+    }
 
-                Machine.SwitchState(PlayerStates.Attack);
+    private void Drown()
+    {
+        if (!IsDrowning) return;
+
+        if(_drownTimer >= MaxBreath)
+        {
+            _playerInteractions.NotifyObserver(PlayerActions.Hurt);
+        }
+        else
+        {
+            _drownTimer++;
         }
     }
 
@@ -96,5 +143,33 @@ public class PlayerLogic : MonoBehaviour
         _shootParticle.transform.up = facingDirection;
         _shootParticle.Play();
         ObjectPoolManager.SpawnObject(_bulletPrefab, _shootParticle.transform.position, Quaternion.identity, PoolType.PlayerBullet).GetComponent<Rigidbody2D>().velocity = facingDirection * _bulletSpeed;
+    }
+
+    private void TryDie()
+    {
+        // Check if the player dies, doing it here because some states completely override UpdateState
+        if (!_hasDied && _health.getHealth() <= 0)
+        {
+            PlayDeathVisuals();
+            PlayerStateMachine.Instance.SwitchState(PlayerStates.Die);
+            _hasDied = true;
+            return;
+        }
+    }
+
+    private void PlayDeathVisuals()
+    {
+        _bodySpriteRenderer.enabled = false;
+        _dieParticle.Play();
+        Debug.Log("play death stuff");
+    }
+
+    /// <summary>
+    /// Get's how much breath the player has left.
+    /// </summary>
+    /// <returns>The remaining breath of the player as a float.</returns>
+    public float GetRemainingBreath()
+    {
+        return MaxBreath - _drownTimer;
     }
 }

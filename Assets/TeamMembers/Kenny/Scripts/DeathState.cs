@@ -7,7 +7,13 @@ public class DeathState : BossState {
     animator.SetTrigger("IsDead");
   }
 
-  public override void OnStateUpdate(GameObject gameObject, Animator animator) {
+  public override void OnStateUpdate(
+    GameObject gameObject,
+    Animator animator,
+    BossStateMachine stateMachine,
+    Rigidbody2D fireballPrefab,
+    Transform player)
+  {
       // Check if the "IsDead" trigger is set and the Death animation has completed
       if (animator.GetCurrentAnimatorStateInfo(0).IsName("Death") &&
         animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.98f)
@@ -16,5 +22,9 @@ public class DeathState : BossState {
       }
    }
 
-  public override void OnExitState() { }
+  public override void OnExitState(Animator animator) { }
+
+  public override void OnTriggerEnter2D(Collider2D collider, Boss boss) {
+    Debug.Log("DeathState.OnTriggerEnter2D called");
+  }
 }

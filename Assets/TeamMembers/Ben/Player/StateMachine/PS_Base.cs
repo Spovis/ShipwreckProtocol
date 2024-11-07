@@ -26,8 +26,12 @@ public abstract class PS_Base
 
     public virtual void EnterState() {
         // Sets physics depending on current environment
+
+        // We don't want to do any physics changes if we are in the die state
+        if (_machine.IsCurrentState(PlayerStates.Die)) return;
+
         if (_machine.Collider.IsTouchingLayers(_waterLayerMask)) { // In water (we don't apply this for shallow water)
-            _machine.Rigidbody.drag = 8; // Raises drag
+            _machine.Rigidbody.drag = PlayerLogic.Instance.WaterDrag; // Raises drag
         }
         else { // Not in water
             _machine.Rigidbody.drag = playerDrag;
@@ -39,7 +43,11 @@ public abstract class PS_Base
     // state, we will put the logic here in the base class.
 
     public virtual void UpdateState() {
-        if(_machine.Input.IsJumpPressed && _machine.Logic.JumpCount < _machine.Logic.MaxJumpCount) {
+        // We don't want to do any updates if we are in the die state
+        if (_machine.IsCurrentState(PlayerStates.Die)) return;
+
+        // Check for jump
+        if (_machine.Input.IsJumpPressed && _machine.Logic.JumpCount < _machine.Logic.MaxJumpCount) {
             _machine.SwitchState(PlayerStates.Jump);
             return;
         }
@@ -47,14 +55,20 @@ public abstract class PS_Base
     public virtual void FixedUpdateState() { }
     public virtual void OnCollisionEnter2DState(Collision2D collision) { }
     public virtual void OnCollisionExit2DState(Collision2D collision) {
-        if (collision.gameObject.layer == _groundLayer.value) {
+        // We don't want to do any changes if we are in the die state
+        if (_machine.IsCurrentState(PlayerStates.Die)) return;
+
+        if (collision.gameObject.layer == _groundLayer.value && _machine.Logic.JumpCount < 1) {
             _machine.SwitchState(PlayerStates.Fall);
             _machine.Logic.JumpCount++; // If the player walks off a ledge, we count it towards a jump.
             return;
         }
     }
     public virtual void OnTriggerEnter2DState(Collider2D collision) {
-        if(collision.gameObject.layer == _waterLayer.value) {
+        // We don't want to do any changes if we are in the die state
+        if (_machine.IsCurrentState(PlayerStates.Die)) return;
+
+        if (collision.gameObject.layer == _waterLayer.value) {
             _machine.SwitchState(PlayerStates.Swim);
             return;
         }

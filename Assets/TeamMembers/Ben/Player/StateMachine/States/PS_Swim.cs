@@ -6,13 +6,20 @@ public class PS_Swim : PS_Base {
 
     float currentDrag;
 
-    public override void EnterState() {
+    public override void EnterState() 
+    {
         base.EnterState();
 
         _machine.Animator.SetTrigger("Swim");
+        PlayerLogic.Instance.IsDrowning = true;
     }
 
-    public override void ExitState() { base.ExitState(); }
+    public override void ExitState() 
+    { 
+        base.ExitState();
+
+        PlayerLogic.Instance.IsDrowning = false;
+    }
 
     public override void UpdateState() {
         _machine.Logic.MovePlayer(0.8f);
@@ -23,7 +30,6 @@ public class PS_Swim : PS_Base {
 
         // We use "IsMoving" to activate/deactivate the current state's idle animation
         _machine.Animator.SetBool("IsMoving", _machine.Rigidbody.velocity != Vector2.zero);
-
     }
 
     public override void OnTriggerExit2DState(Collider2D collision) {

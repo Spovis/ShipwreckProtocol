@@ -10,6 +10,7 @@ public enum PlayerStates {
     Tread,
     Jump,
     Fall,
+    Die,
     Attack,
 }
 
@@ -78,6 +79,7 @@ public class PlayerStateMachine : MonoBehaviour
         _states.Add(PlayerStates.Jump, new PS_Jump(this));
         _states.Add(PlayerStates.Fall, new PS_Fall(this));
         _states.Add(PlayerStates.Attack, new PS_Attack(this));
+        _states.Add(PlayerStates.Die, new PS_Die(this));
     }
 
     private void Start() {
@@ -111,7 +113,6 @@ public class PlayerStateMachine : MonoBehaviour
         return PlayerStates.Null;
     }
 
-
     /// <summary>
     /// Function used to compare the current state of the player state machine with the inputted state.
     /// </summary>
@@ -128,6 +129,7 @@ public class PlayerStateMachine : MonoBehaviour
     public void SwitchState(PlayerStates newState) {
         CurrentState?.ExitState();
         if(CurrentState != null) PreviousState = CurrentState;
+        Debug.Log("Switching from: " + (CurrentState?.GetType().Name ?? "null") + ", to: " + newState.ToString());
 
         CurrentState = _states[newState];
         CurrentState.EnterState();

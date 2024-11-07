@@ -16,7 +16,7 @@ public class SFXVolumeSlider : SliderBase
     protected override void OnValueChanged(float value)
     {
         // Update the audio source volume for sound effects
-        AudioManager.Instance.fxSource.volume = value;
+        AudioManager.Instance.fxSource.volume = value/100;
 
         // Refresh the volume text display
         UpdateVolumeText(value);
@@ -26,7 +26,7 @@ public class SFXVolumeSlider : SliderBase
     private void UpdateVolumeText(float value)
     {
 
-        volumeText.text = "Volume: " + $"{Mathf.RoundToInt(value * 100)}" + "%"; // Display as a percentage (0–100)
+        volumeText.text = "Volume: " + $"{Mathf.RoundToInt(value)}" + "%"; // Display as a percentage (0–100)
     }
 
     // Save the current SFX volume setting to PlayerPrefs
