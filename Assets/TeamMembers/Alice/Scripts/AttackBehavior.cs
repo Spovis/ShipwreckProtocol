@@ -19,15 +19,15 @@ public class AttackBehavior : EnemyBaseBehavior
 
     public override void OnBehaviorUpdate()
     {
-        // First check if player reference exists
+        
         if (enemy.player == null) return;
 
-        // Check distance to player
+        //dist to player
         float distToPlayer = Vector3.Distance(enemy.transform.position, enemy.player.position);
 
         if (distToPlayer <= enemy.detectRange)
         {
-            // Player is in range, try to shoot if cooldown is ready
+            
             if (Time.time >= lastAttackTime + attackCooldown)
             {
                 ShootProjectile();
@@ -36,7 +36,7 @@ public class AttackBehavior : EnemyBaseBehavior
         }
         else
         {
-            // Player has left range, switch back to patrol
+            //switch back to patrol
             enemy.SetBehavior(new PatrolBehavior(enemy));
         }
     }

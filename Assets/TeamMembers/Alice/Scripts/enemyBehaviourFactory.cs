@@ -11,7 +11,7 @@ public class EnemyBehaviorFactory
 {
     public static EnemyBaseBehavior GetBehavior(EnemyBehaviors behaviorType, enemy enemy)
     {
-        Vector2 minBoundary = enemy.minBoundary; // Get boundaries from the enemy instance
+        Vector2 minBoundary = enemy.minBoundary; //Get boundaries from the enemy instance
         Vector2 maxBoundary = enemy.maxBoundary;
         switch (behaviorType)
         {
