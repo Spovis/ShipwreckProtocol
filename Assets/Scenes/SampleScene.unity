@@ -740,8 +740,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7474fee97616f415aa785d4037bd5dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTemplate: {fileID: 1140314718332507845, guid: 2c34f82fe270247f1813de2704e15d80, type: 3}
   player: {fileID: 1691666015}
-  detectRange: 2
+  detectRange: 5
   minBoundary: {x: -74, y: -18}
   maxBoundary: {x: 116.05, y: 9.940499}
   attackDamage: 10
@@ -2431,7 +2432,7 @@ Transform:
   m_GameObject: {fileID: 1247944537}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.590935, y: -2.3605099, z: -10}
+  m_LocalPosition: {x: 27.583176, y: -2.36052, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3675,6 +3676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hunter
       objectReference: {fileID: 0}
+    - target: {fileID: 1625900319960127374, guid: ff9295afd5f65439ebf1bcb4de509328, type: 3}
+      propertyPath: detectRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8154489018965691954, guid: ff9295afd5f65439ebf1bcb4de509328, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3898,6 +3903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7474fee97616f415aa785d4037bd5dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTemplate: {fileID: 0}
   player: {fileID: 1691666015}
   detectRange: 10
   minBoundary: {x: -74, y: -18}
