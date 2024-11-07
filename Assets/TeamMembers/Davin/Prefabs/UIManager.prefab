@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   maxHealth: 5
-  health: 4
+  health: 5
   reloadSceneName: SampleScene
 --- !u!1 &210795650323072069
 GameObject:

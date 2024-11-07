@@ -17,7 +17,6 @@ public class PS_Swim : PS_Base {
     public override void ExitState() 
     { 
         base.ExitState();
-
         PlayerLogic.Instance.IsDrowning = false;
     }
 

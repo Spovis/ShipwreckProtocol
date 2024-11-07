@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 1986519915603731913}
   - component: {fileID: 7354348651098732231}
   - component: {fileID: 108239209900389256}
-  - component: {fileID: 2995224759463868292}
+  - component: {fileID: 3909034320910641707}
   - component: {fileID: 7203781630457435448}
   - component: {fileID: 721064668305990370}
   - component: {fileID: 312642660517950502}
@@ -275,7 +275,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0952816, y: -0.112228274}
   m_Size: {x: 0.83060837, y: 3.0439637}
   m_Direction: 0
---- !u!114 &2995224759463868292
+--- !u!114 &3909034320910641707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

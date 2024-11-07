@@ -9,7 +9,7 @@ public class PlayerLogic : MonoBehaviour
     [Header("Water Settings")]
     public float WaterDrag = 8f;
     public float MaxBreath = 3f; // This + 1 is time until player starts taking damage in water
-    private float _drownTimer = 0;
+    public float DrownTimer = 0;
     private bool _isDrowning = false;
     public bool IsDrowning
     {
@@ -24,7 +24,6 @@ public class PlayerLogic : MonoBehaviour
             else
             {
                 _isDrowning = false;
-                _drownTimer = 0;
                 CancelInvoke("Drown");
             }
         }
@@ -128,13 +127,13 @@ public class PlayerLogic : MonoBehaviour
     {
         if (!IsDrowning) return;
 
-        if(_drownTimer >= MaxBreath)
+        if(DrownTimer >= MaxBreath)
         {
             _playerInteractions.NotifyObserver(PlayerActions.Hurt);
         }
         else
         {
-            _drownTimer++;
+            DrownTimer++;
         }
     }
 
@@ -170,6 +169,6 @@ public class PlayerLogic : MonoBehaviour
     /// <returns>The remaining breath of the player as a float.</returns>
     public float GetRemainingBreath()
     {
-        return MaxBreath - _drownTimer;
+        return MaxBreath - DrownTimer;
     }
 }
