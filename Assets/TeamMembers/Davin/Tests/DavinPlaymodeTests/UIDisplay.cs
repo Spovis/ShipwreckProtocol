@@ -62,4 +62,17 @@ public class UIDisplay
         Assert.AreNotEqual(fill.fillAmount, 0, "Overheat gauge should fill up");
         yield return new WaitForSecondsRealtime(1);
     }
+
+    [UnityTest]
+    public IEnumerator OxygenNotActive()
+    {
+        GameObject UIManager = GameObject.FindGameObjectWithTag("UIManager");
+        GameObject OxygenUI = UIManager.transform.Find("Oxygen").gameObject;
+        //Gets Health from Health UI
+        GameObject Slider = OxygenUI.transform.Find("Slider").gameObject;
+        yield return new WaitForSecondsRealtime(1);
+
+        Assert.IsFalse(Slider.activeSelf,"Oxygen gauge should be off");
+        yield return new WaitForSecondsRealtime(1);
+    }
 }
