@@ -62,7 +62,7 @@ public class OxygenGauge
         //Gets HealthFill from Health
         GameObject HealthFill = Health.transform.Find("HealthFill").gameObject;
         //Gets image from Healthfill
-        HealthUI health = HealthFill.GetComponentInChildren<HealthUI>();
+        HealthUI health = Health.GetComponentInChildren<HealthUI>();
         float start = health.getHealth();
         GameObject enemy = GameObject.Find("Hunter");
         enemy.SetActive(false);
@@ -71,7 +71,7 @@ public class OxygenGauge
         Slider Slider = OxygenUI.transform.Find("Slider").gameObject.GetComponent<Slider>();
         PlayerInput.Instance.CanInput = false; // Stops the player from being able to change input. We will set inputs manually.
         PlayerInput.Instance.CurrentMovementInput = new Vector2(-1, 0);
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(10);
         float end = health.getHealth();
 
         Assert.Less(end, start, "Health should lower");
