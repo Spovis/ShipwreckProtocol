@@ -2217,7 +2217,21 @@ MonoBehaviour:
   - name: HealthPack
     clip: {fileID: 8300000, guid: fb80157511b872d48a66c83d7c9edcd1, type: 3}
   - name: Yarn
-    clip: {fileID: 8300000, guid: 3aa2d265452ed83408a4e3b1524bab23, type: 3}
+    clip: {fileID: 8300000, guid: e512d5161b3d68541919f465ec5bfc54, type: 3}
+  - name: EnemyFireball
+    clip: {fileID: 8300000, guid: 2a9102247e5c9cf4da413fdb4a624e8b, type: 3}
+  - name: Jump
+    clip: {fileID: 8300000, guid: b0a92ea4db3779c419f487783a843561, type: 3}
+  - name: Shoot
+    clip: {fileID: 8300000, guid: c80f9eb4eaa0d8a4db7fe3d56e219b66, type: 3}
+  - name: EnemyHit
+    clip: {fileID: 8300000, guid: 61c80972a49eefa438247f833df6c676, type: 3}
+  - name: Step
+    clip: {fileID: 8300000, guid: dd3201f6f1da03c42a7655d7420d2b54, type: 3}
+  - name: Swim
+    clip: {fileID: 8300000, guid: bcc075c97d5a9d1428541a86d948e954, type: 3}
+  - name: WaterStep
+    clip: {fileID: 8300000, guid: 835f2c3041f06ce4aa31e69a078ade21, type: 3}
   musicSource: {fileID: 2066764729}
   fxSource: {fileID: 1460301101}
 --- !u!4 &1131415235

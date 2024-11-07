@@ -10,7 +10,7 @@ public class PS_Tread : PS_Base {
         _machine.Animator.SetTrigger("Tread");
     }
 
-    public override void ExitState() { base.ExitState(); }
+    public override void ExitState(PlayerStates newState) { base.ExitState(newState); }
 
     public override void UpdateState() {
         _machine.Logic.MovePlayer(0.6f);

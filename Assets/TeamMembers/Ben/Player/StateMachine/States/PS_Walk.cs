@@ -10,7 +10,7 @@ public class PS_Walk : PS_Base {
         _machine.Animator.SetTrigger("Walk");
     }
 
-    public override void ExitState() { base.ExitState(); }
+    public override void ExitState(PlayerStates newState) { base.ExitState(newState); }
 
     public override void UpdateState() {
         base.UpdateState();
