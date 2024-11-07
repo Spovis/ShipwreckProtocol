@@ -1708,6 +1708,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4914690761169476956, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
+      propertyPath: bcmode
+      value: 
+      objectReference: {fileID: 503419454}
+    - target: {fileID: 4914690761169476956, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
       propertyPath: settingsMenu
       value: 
       objectReference: {fileID: 1236586397}

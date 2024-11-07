@@ -9,11 +9,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject confirmationMenu;
+    [SerializeField] BCModeSaver bcmode;
 
     // Start is called before the first frame update
     void Start()
     {
         settingsMenu.SetActive(true);
+        bcmode.loadBCMode();
         settingsMenu.SetActive(false);
     }
 

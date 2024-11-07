@@ -504,6 +504,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1123685876}
   settingsMenu: {fileID: 1984030350}
   confirmationMenu: {fileID: 1984030350}
+  bcmode: {fileID: 289767969}
 --- !u!114 &252997764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +515,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 707433e14e7144046aea4ef532c45668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &289767969 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7502879711713140319, guid: 598959dc2eea9e546acdc72cc3a39d34, type: 3}
+  m_PrefabInstance: {fileID: 1793508393}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410bb3ba8a97ba488b6606eab0cda14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &469586522
