@@ -9,25 +9,11 @@ public class PlayerInteractions : Subject
     // Update is called once per frame
     void Update()
     {
-        //lowers health
-        /*if (Input.GetKeyDown(KeyCode.K) && health != 0)
-        {
-            health--;
-            NotifyObserver(PlayerActions.Hurt);
-            Debug.Log("Health lowered to " + health);
-        }
-        //raises health up to 5
-        else if (Input.GetKeyDown(KeyCode.J) && health < 5)
-        {
-            health++;
-            NotifyObserver(PlayerActions.Heal);
-            Debug.Log("Health raised to " + health);
-        }*/
         if (PlayerInput.Instance.IsAttackPressed && PlayerInput.Instance.CanAttack == true)
         {
             NotifyObserver(PlayerActions.Fire);
         }
-        
+
     }
 
 
@@ -37,12 +23,16 @@ public class PlayerInteractions : Subject
         {
             NotifyObserver(PlayerActions.Heal);
         }
-        
+        if (collision.gameObject.TryGetComponent<Projectile>(out Projectile component2))
+        {
+            NotifyObserver(PlayerActions.Hurt);
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       if (collision.gameObject.TryGetComponent<Fireball>(out Fireball component1))
+        if (collision.gameObject.TryGetComponent<Fireball>(out Fireball component1))
         {
             NotifyObserver(PlayerActions.Hurt);
         }
