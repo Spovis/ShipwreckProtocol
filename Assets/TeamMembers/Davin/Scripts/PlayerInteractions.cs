@@ -37,5 +37,14 @@ public class PlayerInteractions : Subject
         {
             NotifyObserver(PlayerActions.Heal);
         }
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       if (collision.gameObject.TryGetComponent<Fireball>(out Fireball component1))
+        {
+            NotifyObserver(PlayerActions.Hurt);
+        }
     }
 }
