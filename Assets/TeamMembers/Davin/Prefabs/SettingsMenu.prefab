@@ -513,6 +513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8340306362161405214}
   - component: {fileID: 6519476628994322552}
+  - component: {fileID: 7502879711713140319}
   m_Layer: 0
   m_Name: BCMode
   m_TagString: Untagged
@@ -588,8 +589,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: HealthUI, TeamMembersScripts
+      - m_Target: {fileID: 7502879711713140319}
+        m_TargetAssemblyTypeName: BCModeSaver, Assembly-CSharp
         m_MethodName: setBCMode
         m_Mode: 1
         m_Arguments:
@@ -601,6 +602,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &7502879711713140319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3250653731286478643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8410bb3ba8a97ba488b6606eab0cda14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BCMode: 0
+  BCModeToggle: {fileID: 6519476628994322552}
 --- !u!1 &3489421064214727204
 GameObject:
   m_ObjectHideFlags: 0

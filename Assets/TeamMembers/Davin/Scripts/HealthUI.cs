@@ -24,6 +24,7 @@ public class HealthUI : MonoBehaviour, IObserver
 
     public void Start()
     {
+        BCMode = PlayerPrefs.GetInt("BCMode", 0) == 1;
         healthUI.fillAmount = health/maxHealth;
     }
     //when receiving a notification from subject
