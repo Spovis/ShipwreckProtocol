@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
+    public GameObject projectileTemplate;
     public Transform player;
     public float detectRange = 15f;
     private Animator animator;
