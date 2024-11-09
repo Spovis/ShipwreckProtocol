@@ -10,7 +10,7 @@ public class PS_Fall : PS_Base {
         _machine.Animator.SetTrigger("Fall");
     }
 
-    public override void ExitState() { base.ExitState(); }
+    public override void ExitState(PlayerStates newState) { base.ExitState(newState); }
 
     public override void UpdateState() {
         base.UpdateState();

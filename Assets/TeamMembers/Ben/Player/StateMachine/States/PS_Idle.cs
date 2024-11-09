@@ -30,7 +30,7 @@ public class PS_Idle : PS_Base
         _machine.Logic.JumpCount = 0;
     }
 
-    public override void ExitState() { base.ExitState(); }
+    public override void ExitState(PlayerStates newState) { base.ExitState(newState); }
 
     public override void UpdateState() {
         base.UpdateState();

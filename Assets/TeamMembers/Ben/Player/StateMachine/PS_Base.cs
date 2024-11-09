@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 // The naming convention for player states is PS_<StateName>. PS stands for "Player State".
 public abstract class PS_Base
@@ -27,13 +28,14 @@ public abstract class PS_Base
     public virtual void EnterState() {
         // Sets physics depending on current environment
 
-        // We don't want to do any physics changes if we are in the die state
-        if (_machine.IsCurrentState(PlayerStates.Die)) return;
-
-        if(!_machine.IsCurrentState(PlayerStates.Attack))
+        if(!_machine.Collider.IsTouchingLayers(_waterLayerMask))
         {
+            PlayerLogic.Instance.IsDrowning = false;
             PlayerLogic.Instance.DrownTimer = 0;
         }
+
+        // We don't want to do any physics changes if we are in the die state
+        if (_machine.IsCurrentState(PlayerStates.Die)) return;
 
         if (_machine.Collider.IsTouchingLayers(_waterLayerMask)) { // In water (we don't apply this for shallow water)
             _machine.Rigidbody.drag = PlayerLogic.Instance.WaterDrag; // Raises drag
@@ -42,7 +44,7 @@ public abstract class PS_Base
             _machine.Rigidbody.drag = playerDrag;
         }
     }
-    public virtual void ExitState() { }
+    public virtual void ExitState(PlayerStates newState) { }
 
     // If there is some behaviour that is consistent across almost every
     // state, we will put the logic here in the base class.
@@ -57,6 +59,7 @@ public abstract class PS_Base
             return;
         }
     }
+
     public virtual void FixedUpdateState() { }
     public virtual void OnCollisionEnter2DState(Collision2D collision) { }
     public virtual void OnCollisionExit2DState(Collision2D collision) {

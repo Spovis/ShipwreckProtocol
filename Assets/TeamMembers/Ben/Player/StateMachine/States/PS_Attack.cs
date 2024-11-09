@@ -23,7 +23,7 @@ public class PS_Attack : PS_Base
         if (_machine.IsGrounded) _machine.Rigidbody.velocity *= Vector3.up;
     }
 
-    public override void ExitState() { base.ExitState(); }
+    public override void ExitState(PlayerStates newState) { base.ExitState(newState); }
 
     public override void OnCollisionEnter2DState(Collision2D collision) {
         _machine.Rigidbody.velocity *= Vector3.up;
