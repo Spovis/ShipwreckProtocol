@@ -16,6 +16,7 @@ public class PlayerLogic : MonoBehaviour
         get { return _isDrowning; }
         set
         {
+            if(_isDrowning == value) return; // If the value is the same, don't do anything (this is to prevent the InvokeRepeating from being called multiple times
             if(value)
             {
                 _isDrowning = true;
