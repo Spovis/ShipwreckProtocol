@@ -22,10 +22,4 @@ public class DeathState : BossState {
         UnityEngine.Object.Destroy(gameObject);
       }
    }
-
-  public override void OnExitState(Animator animator) { }
-
-  public override void OnTriggerEnter2D(Collider2D collider, Boss boss) {
-    Debug.Log("DeathState.OnTriggerEnter2D called");
-  }
 }

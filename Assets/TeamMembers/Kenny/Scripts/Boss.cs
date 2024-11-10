@@ -47,4 +47,8 @@ public class Boss : MonoBehaviour {
     public int GetHealth() {
         return health;
     }
+
+    public BossState GetState() {
+        return stateMachine.GetState();
+    }
 }
