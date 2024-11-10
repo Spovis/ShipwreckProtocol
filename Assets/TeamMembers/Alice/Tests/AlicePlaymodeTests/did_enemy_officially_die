@@ -55,7 +55,7 @@ public class Enemy_Fully_Dead
         enemyScript.TakeDamage(1); // Kill the enemy
         yield return null;
 
-        Assert.AreEqual(0, enemyScript.health, "Enemy health should be 0 after taking 1 damage");
+        Assert.AreEqual(0, enemyScript.health, "Enemy health should be 0 after damage");
         yield return null;
     }
 }
