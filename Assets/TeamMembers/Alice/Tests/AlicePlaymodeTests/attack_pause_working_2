@@ -1,0 +1,50 @@
+using System.Collections;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.TestTools;
+/*my enemy has a brief pause in between shooting(very brief), so the player isn't bombarded constantly. 
+This test checks that the enemy is in fact pausing correctly.*/
+public class attack_pause_working
+{
+    GameObject enemyObj;
+    float attackPause = .5f;
+
+    [UnitySetUp]
+    public IEnumerator Setup()
+    {
+        enemyObj = new GameObject("Enemy");
+        var enemyScript = enemyObj.AddComponent<enemy>();  
+        enemyScript.attackPause = attackPause;
+        yield return null;
+    }
+
+    //Test that the attack pause starts after the first attack it does
+    [UnityTest]
+    public IEnumerator Test_AttackPauseStarts()
+    {
+        var enemyScript = enemyObj.GetComponent<enemy>();
+        enemyScript.Attack(); 
+
+        // Verify that the enemy cannot attack after the first attack (should be on cooldown)
+        Assert.IsFalse(enemyScript.canAttack, "Enemy stops attacking to wait");
+
+        yield return null;
+    }
+
+    //attack pause ends after the time, enemy can now re-attack
+    [UnityTest]
+    public IEnumerator Test_AttackPauseFinished()
+    {
+        var enemyScript = enemyObj.GetComponent<enemy>();
+        enemyScript.Attack(); // First attack
+
+        // Wait for the attack cooldown to finish
+        yield return new WaitForSeconds(attackPause);
+
+        //enemy can now attack
+        Assert.IsTrue(enemyScript.canAttack, "Enemy attacks again after cooldown");
+
+        yield return null;
+    }
+}
+

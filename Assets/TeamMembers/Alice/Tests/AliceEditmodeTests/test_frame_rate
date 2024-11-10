@@ -3,6 +3,8 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+
+/*this test is just to check frame rate for my enemy and make sure it's appearing in the game correctly*/
 public class Check_Frame_Rates{
 [UnityTest]
     public IEnumerator FrameEnemyBehavior()

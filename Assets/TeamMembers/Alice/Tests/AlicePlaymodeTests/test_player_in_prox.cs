@@ -16,7 +16,7 @@ public class Alice_Test_Player_Prox {
         testObj = new GameObject("TestObject");
         playerObj = new GameObject("Player");
 
-        // initial positions
+        
         testObj.transform.position = Vector3.zero;  // (0,0,0)
         playerObj.transform.position = new Vector3(10f, 0f, 0f); // Player starts pretty far away
 
