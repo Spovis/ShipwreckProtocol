@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// For details about WHEN each method is called, see BossState.cs
 public class IdleState : BossState {
   public override void OnEnterState(Animator animator) {
     animator.Play("Idle");
@@ -12,7 +13,7 @@ public class IdleState : BossState {
     Rigidbody2D fireballPrefab,
     Transform player)
   {
-    // if the distance between the player and the boss is less than 5
+    // if the distance between the player and the boss is less than 10
     if (Vector2.Distance(player.position, gameObject.transform.position) < 10) {
       stateMachine.UpdateState(3, animator);
     }
