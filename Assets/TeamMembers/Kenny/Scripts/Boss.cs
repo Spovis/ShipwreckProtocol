@@ -6,7 +6,6 @@ using UnityEngine;
 // unity editor (thus it is a monobehaviour)
 public class Boss : MonoBehaviour {
     private int health = 100;
-    private int attackPower;
     public Transform player;
     private Animator animator;
     public Rigidbody2D fireballPrefab;
