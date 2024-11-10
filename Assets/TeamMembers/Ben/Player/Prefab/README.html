@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TL6 Ben - Player Asset</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .title {
+            margin: 0;
+        }
+
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .overview-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .rating {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+
+        .stars {
+            color: #f1c40f;
+        }
+
+        .reviews {
+            color: #7f8c8d;
+        }
+
+        .price {
+            font-size: 1.4em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        button {
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:active {
+            background-color: #1f618d;
+        }
+
+        .video-section {
+            margin-top: 20px;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Put all the information about our prefabs in here-->
+        <h1 class="title">Player Controller</h1>
+        <div class="info-section">
+            <div><strong>Author:</strong> Ben Bonus</div>
+
+            <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="reviews">(396 reviews)</span>
+            </div>
+
+            <div class="price">
+                <span>$59.99</span>
+                <button>Add to Cart</button>
+            </div>
+            
+            <video controls autoplay>
+                <!-- Put your video source into the src section below, with the type of video it is. Mine is mp4 -->
+                <source src="./player_prefab.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="overview-section">
+            <div><strong>Version:</strong> 1.0</div>
+            
+            <div>
+                <strong>Description:</strong>
+                This player controller is built for creating a scalable, easy to use 2D platformer. It has several built-in states and transitions to ensure the correct behavior when playing the game. By using a state machine, new states can be easily added with unique functionality without affecting existing states.
+            </div>
+
+            <div>
+                The Player asset includes the following:
+                <ul>
+                    <li>Player Input Management with controller and mobile support</li>
+                    <li>Scalable State Machine</li>
+                    <li>Drag-and-drop player controller</li>
+                </ul>
+            </div>
+
+            <div>
+                <strong>Features:</strong>
+                <ul>
+                    <li>On-screen-controls that can be enabled or disabled easily</li>
+                    <li>Easily transition between predefined states that gives the player its behaviors</li>
+                    <li>Easily add new states to the state machine with their own logic to suit your game</li>
+                </ul>
+            </div>
+
+            <div><strong>Requirements:</strong> Unity 2022.3.43f1 or later</div>
+        </div>
+    </div>
+</body>
+</html>
