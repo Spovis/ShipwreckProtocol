@@ -6,12 +6,6 @@ public class Fireball : MonoBehaviour
 {
     public float speed = 10f;
     private Vector3 direction;
-    private SpriteRenderer spriteRenderer;
-
-    private void Awake()
-    {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
 
     public void SetDirection(Vector3 dir)
     {

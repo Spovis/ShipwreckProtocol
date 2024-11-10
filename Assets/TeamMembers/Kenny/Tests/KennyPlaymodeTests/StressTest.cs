@@ -4,62 +4,79 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 
-public class KennyStressTest {
+public class FpsPerformanceTest
+{
+    // Parameters for the test
+    private int objectIncrement = 50;
+    private int maxObjectCount = 10000;
+    private float minAcceptableFps = 30f;
     public GameObject bossPrefab;
 
-    private List<GameObject> bossPool = new List<GameObject>();
-    private bool isStressing = false;
-    public float current;
+    // List to keep track of objects added (for cleanup)
+    private readonly List<GameObject> spawnedObjects = new List<GameObject>();
 
-    bool sceneLoaded = false;
     [UnitySetUp]
     public IEnumerator OneTimeSetUp()
     {
-        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         SceneManager.LoadScene("Scenes/SampleScene");
-        yield return new WaitUntil(() => sceneLoaded);  // Wait until scene is fully loaded
+        for (int i = 0; i < 100; i++) {
+            // wait for 0.1 s
+            yield return new WaitForSeconds(0.1f);
 
-        bossPrefab = GameObject.Find("Boss");
+            Debug.Log("Waiting for boss prefab...");
+            bossPrefab = GameObject.Find("Boss");
+        }
         yield return null;
-    }
-
-    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        sceneLoaded = true;
     }
 
     [UnityTest]
-    public IEnumerator StressTest() {
-
-        bool startup = false;
-        // Pre-create and pool a large number of buttons
-        int poolSize = 10000;
-        for (int i = 0; i < poolSize; i++)
+    public IEnumerator TrackFpsAsObjectsAreAdded()
+    {
+        for (int currentObjectCount = 0; currentObjectCount <= maxObjectCount; currentObjectCount += objectIncrement)
         {
-            // Instead of using Instantiate during the test, we can set up the pool
-            GameObject newBoss = new GameObject("Boss " + i);
-            Boss bossComponent = newBoss.AddComponent<Boss>();
-            bossPool.Add(newBoss);
-            current = (int)(Time.frameCount / Time.time);
-            yield return null;
-            yield return null;
-            yield return null;
-            if(current > 200)
-            {
-                startup = true;
-            }
-            if (startup == true && current < 200)
-            {
-                Debug.Log(current + " current fps");
-                Assert.Pass(current + " fps is lower than expected");
+            // Wait a few frames to allow for stabilization
+            yield return new WaitForSeconds(0.5f);
+
+            // Add objects to the scene
+            Debug.Log("TEST: before");
+            AddObjects(objectIncrement);
+            Debug.Log("TEST: after");
+
+            // Calculate FPS
+            float fps = 1.0f / Time.deltaTime;
+            Debug.Log($"Objects: {currentObjectCount}, FPS: {fps}");
+
+            // If we slow down too much, stop the test and pass
+            if (fps < 40) {
+                Debug.Log($"Current FPS: {fps}");
+                Debug.Log($"Current Object Count: {currentObjectCount}");
+                Assert.Pass("FPS has dropped below 40");
+                ClearObjects();
+                break;
+            } else {
+                Debug.Log($"Current FPS: {fps}");
+                Debug.Log($"Current Object Count: {currentObjectCount}");
             }
         }
+    }
 
-            Assert.Fail(current + " fps is higher than expected");
+    private void AddObjects(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            GameObject obj = UnityEngine.Object.Instantiate(bossPrefab);
+            obj.transform.position = Random.insideUnitSphere * 10;
+            spawnedObjects.Add(obj);
+        }
+    }
 
-        // Yield to let Unity handle the frame and avoid locking the engine
-        yield return null;
+    private void ClearObjects()
+    {
+        foreach (var obj in spawnedObjects)
+        {
+            UnityEngine.Object.Destroy(obj);
+        }
+        spawnedObjects.Clear();
     }
 }

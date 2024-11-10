@@ -11,20 +11,20 @@ public class BoundaryPlaymodeTest {
     Vector2 boundaryMin = new Vector2(-0.03f, 9.940499f);  
     Vector2 boundaryMax = new Vector2(116.05f, 9.940499f);
 
-    //setting up the test
+    
     [UnitySetUp]
     public IEnumerator Setup()  
     {
-        //add a player object
+       
         player = new GameObject("Player");
         player.AddComponent<Rigidbody2D>();
 
-        //enemy object
+        
         enemy = new GameObject("Enemy");
         enemy.AddComponent<Rigidbody2D>();
         enemy.AddComponent<enemy>();
         
-        //put in player and enemy
+        
         player.transform.position = new Vector3(0, 0, 0); 
         enemy.transform.position = new Vector3(-5, 0, 0);  //Enemy at random loc
 
@@ -38,7 +38,7 @@ public class BoundaryPlaymodeTest {
         player.transform.position = new Vector3(5, 5, 0);
         yield return null;  
 
-        // Check if the player's position is within the boundary
+        //Check if the player's position is within the boundary
         Assert.IsTrue(PlayerInBounds(), "Player is within the boundaries.");
 
         yield return null;

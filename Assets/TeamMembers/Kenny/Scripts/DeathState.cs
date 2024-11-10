@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// For details about WHEN each method is called, see BossState.cs
 public class DeathState : BossState {
   public override void OnEnterState(Animator animator) {
     animator.SetTrigger("IsDead");

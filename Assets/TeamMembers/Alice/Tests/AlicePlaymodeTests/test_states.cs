@@ -3,7 +3,7 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-
+/*this test sees if enemy resets when player dies*/
 public class ResetDeath{
 [UnityTest]
 public IEnumerator EnemyResetsPlayerDeath()

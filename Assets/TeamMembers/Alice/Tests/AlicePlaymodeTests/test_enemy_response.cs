@@ -3,7 +3,7 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-
+/*test seeing how fast is the enemy responding when the player gets in range*/
 public class TestEnemyResponse
 {
     [UnityTest]
