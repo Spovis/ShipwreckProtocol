@@ -10,11 +10,13 @@ public class BCModeSaver : MonoBehaviour
 
     public void loadBCMode()
     {
+        //loads player pref and sets box to match
         BCMode = PlayerPrefs.GetInt("BCMode", 0) == 1;
         BCModeToggle.isOn = BCMode;
     }
     public void setBCMode()
     {
+        //saves to player prefs and switches box
         BCMode = !BCMode;
         PlayerPrefs.SetInt("BCMode", BCMode ? 1 : 0);
     }
