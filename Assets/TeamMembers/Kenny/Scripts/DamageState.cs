@@ -21,9 +21,4 @@ public class DamageState : BossState {
       stateMachine.UpdateState(0, animator);
     }
   }
-
-  public override void OnExitState(Animator animator) { }
-
-  public override void OnTriggerEnter2D(Collider2D collider, Boss boss) {
-  }
 }

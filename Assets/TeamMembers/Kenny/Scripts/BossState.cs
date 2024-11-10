@@ -25,6 +25,6 @@ public abstract class BossState {
 
   // Called when the boss collides with another object
   public virtual void OnTriggerEnter2D(Collider2D collider, Boss boss) {
-    Debug.Log("abstract class definition of OnCollisionEnter2D called");
+    Debug.Log("abstract class definition of OnTriggerEnter2D called");
   }
 }
