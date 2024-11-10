@@ -3,30 +3,31 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+/*this test should spawn tons of enemies to test and then make sure the game can handle it if needed*/
 public class SpawnLots{
     [UnityTest]
-public IEnumerator SpawnEnemies()
-{
-    int enemyCount = 10;//could go higher
-    List<enemy> enemies = new List<enemy>();
-    for (int i = 0; i < enemyCount; i++)
+    public IEnumerator SpawnEnemies()
     {
-        var enemyGameObject = new GameObject($"Enemy_{i}");
-        var enemy = enemyGameObject.AddComponent<enemy>();
-        enemy.SetBehavior(new IdleBehavior(enemy, enemy.minBoundary, enemy.maxBoundary));
-        enemies.Add(enemy);
-    }
-    for (int i = 0; i < 50; i++)//could also make a while loop
-    {
-        foreach (var enemy in enemies)
+        int enemyCount = 10;//could go higher
+        List<enemy> enemies = new List<enemy>();
+        for (int i = 0; i < enemyCount; i++)
         {
-            yield return new WaitForSeconds(0.1f);
+            var enemyGameObject = new GameObject($"Enemy_{i}");
+            var enemy = enemyGameObject.AddComponent<enemy>();
+            enemy.SetBehavior(new IdleBehavior(enemy, enemy.minBoundary, enemy.maxBoundary));
+            enemies.Add(enemy);
         }
-        yield return null;
-    }
+        for (int i = 0; i < 50; i++)//could also make a while loop
+        {
+            foreach (var enemy in enemies)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+            yield return null;
+        }
 
-    foreach (var enemy in enemies){
-        Object.Destroy(enemy.gameObject);
+        foreach (var enemy in enemies){
+            Object.Destroy(enemy.gameObject);
+        }
     }
-}
 }

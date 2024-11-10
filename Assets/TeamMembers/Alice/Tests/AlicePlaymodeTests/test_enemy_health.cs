@@ -2,7 +2,8 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-
+/*this test is just to check damage. Unlike the other damage test, which is more general, 
+this is a specicfic damage scenario with damage hardcoded in*/
 public class test_enemy_health {
 
 
