@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Serves as the middle-man between the Boss and its states. You should never
+// directly initialize any of the state classes outside of this class
 public class BossStateMachine {
+  // static binding
   private static BossState[] possibleStates = new BossState[] {
     new IdleState(),
     new DeathState(),

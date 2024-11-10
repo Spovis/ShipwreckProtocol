@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This is the script that should be attached to the boss game object in the
+// unity editor (thus it is a monobehaviour)
 public class Boss : MonoBehaviour {
     private int health = 100;
-    private int attackPower;
     public Transform player;
     private Animator animator;
     public Rigidbody2D fireballPrefab;
+    // Initialize the state machine
     private BossStateMachine stateMachine = new BossStateMachine();
 
     // Start is called before the first frame update
@@ -22,6 +24,7 @@ public class Boss : MonoBehaviour {
         stateMachine.GetState().OnStateUpdate(gameObject, animator, stateMachine, fireballPrefab, player);
     }
 
+    // Every time another object in the game collides with the boss
     void OnTriggerEnter2D(Collider2D collider) {
         stateMachine.GetState().OnTriggerEnter2D(collider, this);
     }

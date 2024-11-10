@@ -1,0 +1,52 @@
+.top-section  {
+  display: flex;
+  gap: 10px
+}
+
+p {
+  margin: 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.video-container {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.video-container > video {
+  width: 100%;
+  height: auto;
+}
+
+.add-to-cart {
+  margin: 10px 0;
+  background-color: #5C50FF;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.review {
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.indent {
+  margin-left: 20px;
+}
+
+.bottom-section {
+  margin-top: 40px;
+  max-width: 600px;
+}
