@@ -1,7 +1,6 @@
 using UnityEngine;
 
-// This defines the shape of the base class for all boss states. The methods
-// defined here should never actually be called at runtime.
+// This defines the shape of the base class for all boss states.
 public abstract class BossState {
   // Called when the boss changes TO a particular state
   public virtual void OnEnterState(Animator animator) {

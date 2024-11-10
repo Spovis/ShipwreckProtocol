@@ -19,9 +19,6 @@ public class IdleState : BossState {
     }
   }
 
-  public override void OnExitState(Animator animator) {
-  }
-
   public override void OnTriggerEnter2D(Collider2D collider, Boss boss) {
     if (collider.gameObject.tag == "PlayerAttack") {
       boss.TakeDamage(20);
