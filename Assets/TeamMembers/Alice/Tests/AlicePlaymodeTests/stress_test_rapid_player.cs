@@ -17,6 +17,8 @@ public class test_boundary_detection {
 
         testObj = new GameObject("TestObject");
         playerObj = new GameObject("Player");
+        testObj.AddComponent<Animator>();
+        playerObj.AddComponent<Animator>();
         testObj.transform.position = Vector3.zero;  //place enemy 
         playerObj.transform.position = new Vector3(10f, 0f, 0f);//place player out of range  
         yield return null;

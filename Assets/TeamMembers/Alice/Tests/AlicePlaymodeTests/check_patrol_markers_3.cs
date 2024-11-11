@@ -13,6 +13,7 @@ public class patrol_bounds{
     {
         enemyObj = new GameObject("Enemy");
         var enemyScript = enemyObj.AddComponent<enemy>();
+        enemyObj.AddComponent<Animator>();
         enemyScript.minBoundary = minBoundary;
         enemyScript.maxBoundary = maxBoundary;
         enemyScript.SetBehavior(new PatrolBehavior(enemyScript)); 
@@ -22,7 +23,7 @@ public class patrol_bounds{
     [UnityTest]
     public IEnumerator Test_PatrolMaxBoundary()
     {
-        var enemyScript = enemyObj.GetComponent<Enemy>();
+        var enemyScript = enemyObj.GetComponent<enemy>();
 
         enemyObj.transform.position = maxBoundary;
         yield return new WaitForSeconds(1f);
@@ -37,7 +38,7 @@ public class patrol_bounds{
     [UnityTest]
     public IEnumerator Test_PatrolMinBoundary()
     {
-        var enemyScript = enemyObj.GetComponent<Enemy>();
+        var enemyScript = enemyObj.GetComponent<enemy>();
 
         //Move the enemy to the min boundary
         enemyObj.transform.position = minBoundary;
@@ -53,7 +54,7 @@ public class patrol_bounds{
     [UnityTest]
     public IEnumerator Test_EnemyPositionAfterTurningAtMaxBoundary()
     {
-        var enemyScript = enemyObj.GetComponent<Enemy>();
+        var enemyScript = enemyObj.GetComponent<enemy>();
 
         //Move the enemy to the max boundary
         enemyObj.transform.position = maxBoundary;
@@ -69,7 +70,7 @@ public class patrol_bounds{
     [UnityTest]
     public IEnumerator Test_EnemyPositionAfterTurningAtMinBoundary()
     {
-        var enemyScript = enemyObj.GetComponent<Enemy>();
+        var enemyScript = enemyObj.GetComponent<enemy>();
 
         enemyObj.transform.position = minBoundary;
         yield return new WaitForSeconds(1f);

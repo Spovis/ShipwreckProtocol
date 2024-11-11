@@ -12,6 +12,7 @@ public class Enemy_Fully_Dead
     {
         enemyObj = new GameObject("Enemy");
         var enemyScript = enemyObj.AddComponent<enemy>();
+        enemyObj.AddComponent<Animator>();
         enemyScript.health = 1;  // Initial health is set to 1, will be killed by 1 damage
         yield return null;
     }

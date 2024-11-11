@@ -14,6 +14,8 @@ public class Alice_Test_PlayerOut_Prox {
        
         testObj = new GameObject("TestObject");
         playerObj = new GameObject("Player");
+        testObj.AddComponent<Animator>();
+        playerObj.AddComponent<Animator>();
 
         // Initial positions
         testObj.transform.position = Vector3.zero; 

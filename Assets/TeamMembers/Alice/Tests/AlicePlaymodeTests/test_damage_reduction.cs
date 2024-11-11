@@ -15,6 +15,7 @@ public class Enemy_Damage_Reduction
         
         enemyObj = new GameObject("Enemy");
         var enemyScript = enemyObj.AddComponent<enemy>();
+        enemyObj.AddComponent<Animator>();
         enemyScript.health = initialHealth;
         yield return null;
     }

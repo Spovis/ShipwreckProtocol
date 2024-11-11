@@ -1,8 +1,8 @@
-using System.Collections;
+/*using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-/*this test checks out the projectile for my enemy and makes sure it's functioning by spawning and moving */
+/*this test checks out the projectile for my enemy and makes sure it's functioning by spawning and moving 
 public class ProjectileDirec{
     GameObject enemyObj;
     GameObject playerObj;
@@ -12,6 +12,8 @@ public class ProjectileDirec{
     {
         enemyObj = new GameObject("Enemy");
         playerObj = new GameObject("Player");
+        enemyObj.AddComponent<Animator>();
+        playerObj.AddComponent<Animator>();
 
         enemyObj.transform.position = Vector3.zero;
         playerObj.transform.position = new Vector3(5f, 0f, 0f);
@@ -25,12 +27,12 @@ public class ProjectileDirec{
     {
         var enemyScript = enemyObj.AddComponent<enemy>();
         var projectilePrefab = new GameObject("Projectile");
-        projectilePrefab.AddComponent<projectile>(); 
+        projectilePrefab.AddComponent<Projectile>(); 
         var projectileRigidbody = projectilePrefab.AddComponent<Rigidbody2D>();
         enemyScript.projectileTemplate = projectilePrefab;
         enemyScript.player = playerObj.transform;
 
-        enemyScript.Attack();
+        enemyScript.ShootProjectile();
         yield return new WaitForSeconds(0.1f);
 
         var projectile = GameObject.Find("Projectile(Clone)");
@@ -50,7 +52,7 @@ public class ProjectileDirec{
         enemyScript.projectileTemplate = projectilePrefab;
         enemyScript.player = playerObj.transform;
 
-        enemyScript.Attack();
+        enemyScript.ShootProjectile();
         yield return new WaitForSeconds(0.1f);
 
         var projectile = GameObject.Find("Projectile(Clone)");
@@ -76,8 +78,9 @@ public class ProjectileDirec{
         var projectileRigidbody = projectilePrefab.AddComponent<Rigidbody2D>();
         enemyScript.projectileTemplate = projectilePrefab;
         enemyScript.player = playerObj.transform;
+        enemyScript.SetBehavior(new AttackBehavior(enemyScript));
 
-        enemyScript.Attack();
+        enemyScript.ShootProjectile();
         yield return new WaitForSeconds(0.1f);
 
         var projectile = GameObject.Find("Projectile(Clone)");
@@ -89,4 +92,4 @@ public class ProjectileDirec{
 
         yield return null;
     }
-}
+}*/

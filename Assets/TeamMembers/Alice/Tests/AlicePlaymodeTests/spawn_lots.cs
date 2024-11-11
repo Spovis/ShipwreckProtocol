@@ -14,6 +14,7 @@ public class SpawnLots{
         {
             var enemyGameObject = new GameObject($"Enemy_{i}");
             var enemy = enemyGameObject.AddComponent<enemy>();
+            enemyGameObject.AddComponent<Animator>();
             enemy.SetBehavior(new IdleBehavior(enemy, enemy.minBoundary, enemy.maxBoundary));
             enemies.Add(enemy);
         }

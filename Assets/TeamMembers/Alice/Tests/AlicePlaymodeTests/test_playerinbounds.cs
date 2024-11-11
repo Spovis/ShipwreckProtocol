@@ -24,7 +24,8 @@ public class BoundaryPlaymodeTest {
         enemy.AddComponent<Rigidbody2D>();
         enemy.AddComponent<enemy>();
         
-        
+        enemy.AddComponent<Animator>();
+        player.AddComponent<Animator>();
         player.transform.position = new Vector3(0, 0, 0); 
         enemy.transform.position = new Vector3(-5, 0, 0);  //Enemy at random loc
 

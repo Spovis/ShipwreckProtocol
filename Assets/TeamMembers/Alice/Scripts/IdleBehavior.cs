@@ -31,7 +31,7 @@ public class IdleBehavior : EnemyBaseBehavior
             Debug.Log($"Player  out of detection range. dist ={dist_to_player} range is {enemy.detectRange} ");
         }
         if(IsPlayerInBounds()){
-            Debug.Log("Plaayer is in bounds");
+            Debug.Log("Player is in bounds");
         }
         else{
             Debug.Log("Not in bounds");
