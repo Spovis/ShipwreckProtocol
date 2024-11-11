@@ -18,72 +18,61 @@ public class enemy : MonoBehaviour
 
     public EnemyBaseBehavior currentBehavior;
 
-    void Start()
-    {
+//automatically start at idle, but will rapidly move to patrol
+    void Start(){
         SetBehavior(new IdleBehavior(this, minBoundary, maxBoundary));
     }
 
-    public void SetBehavior(EnemyBaseBehavior newBehavior)
-    {
-        if (currentBehavior != null)
-        {
+    /*swaps old behavior for new one. if its not null go to exitbehavior*/
+    public void SetBehavior(EnemyBaseBehavior newBehavior){
+        if (currentBehavior != null){
             currentBehavior.OnExitBehavior();
         }
         currentBehavior = newBehavior;
         currentBehavior.OnEnterBehavior();
     }
 
-    void Update()
-    {
-        if (currentBehavior != null)
-        {
+    void Update(){
+        if (currentBehavior != null){
             currentBehavior.OnBehaviorUpdate();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        //apply damage
-        if (collider.CompareTag("PlayerAttack"))
-        {
+    private void OnTriggerEnter2D(Collider2D collider){
+        //apply damage if the player is attacking
+        if (collider.CompareTag("PlayerAttack")){
             TakeDamage(20);  
         }
 
         //change behaviors if needed
-        if (currentBehavior != null)
-        {
+        if (currentBehavior != null){
             currentBehavior.OnBehaviorTriggerEnter2D();
         }
     }
 
     // Damage 
-    public void TakeDamage(int damage)
-    {
+    public void TakeDamage(int damage){
         health -= damage;
-        if (health <= 0)
-        {
+        if (health <= 0){
             Die();
         }
     }
 
     //die when zero
-    private void Die()
-    {
+    private void Die(){
         Debug.Log("Enemy died and was removed from screen");
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //obstacle collisions for patrol behavior
-        if (collision.gameObject.CompareTag("Obstacle") && currentBehavior is PatrolBehavior)
-        {
+    private void OnCollisionEnter2D(Collision2D collision){
+
+        //obstacle collisions for patrol behavior. 
+        if (collision.gameObject.CompareTag("Obstacle") && currentBehavior is PatrolBehavior){
             Debug.Log($"Enemy collided with: {collision.gameObject.name}");
             ((PatrolBehavior)currentBehavior).HandleObstacleCollision();
         }
 
-        //general collisions
-        if (currentBehavior != null)
-        {
+        //general collisions that aren't tagged with obstacle
+        if (currentBehavior != null){
             currentBehavior.OnBehaviorCollisionEnter2D();
         }
     }

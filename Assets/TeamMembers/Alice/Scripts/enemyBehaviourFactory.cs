@@ -1,6 +1,6 @@
 
 using UnityEngine;
-public enum EnemyBehaviors
+public enum EnemyBehaviors //different types of behaviors
 {
     Idle,
     Attack,
@@ -9,14 +9,13 @@ public enum EnemyBehaviors
 
 public class EnemyBehaviorFactory
 {
-    public static EnemyBaseBehavior GetBehavior(EnemyBehaviors behaviorType, enemy enemy)
-    {
-        Vector2 minBoundary = enemy.minBoundary; //Get boundaries from the enemy instance
+    //get the behavior type and the enemy instance
+    public static EnemyBaseBehavior GetBehavior(EnemyBehaviors behaviorType, enemy enemy){
+        Vector2 minBoundary = enemy.minBoundary; //Get boundaries from enemy
         Vector2 maxBoundary = enemy.maxBoundary;
-        switch (behaviorType)
-        {
+        switch (behaviorType){
             case EnemyBehaviors.Idle:
-                return new IdleBehavior(enemy, minBoundary, maxBoundary);
+                return new IdleBehavior(enemy, minBoundary, maxBoundary); //I use those in IdleBehavior
             case EnemyBehaviors.Attack:
                 return new AttackBehavior(enemy);
             case EnemyBehaviors.Patrol:

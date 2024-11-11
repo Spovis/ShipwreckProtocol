@@ -761,7 +761,7 @@ MonoBehaviour:
   minBoundary: {x: -74, y: -18}
   maxBoundary: {x: 116.05, y: 9.940499}
   attackDamage: 10
-  is_hunter: 1
+  is_hunter: 0
   attackPause: 2
   health: 100
 --- !u!212 &282171500
@@ -3846,6 +3846,10 @@ PrefabInstance:
     - target: {fileID: 123081036541835947, guid: ff9295afd5f65439ebf1bcb4de509328, type: 3}
       propertyPath: m_Name
       value: Hunter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625900319960127374, guid: ff9295afd5f65439ebf1bcb4de509328, type: 3}
+      propertyPath: is_hunter
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1625900319960127374, guid: ff9295afd5f65439ebf1bcb4de509328, type: 3}
       propertyPath: detectRange

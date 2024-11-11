@@ -16,7 +16,9 @@ public class Alice_Test_Player_Prox {
         testObj = new GameObject("TestObject");
         playerObj = new GameObject("Player");
 
-        
+        testObj.AddComponent<Animator>();
+        playerObj.AddComponent<Animator>();
+
         testObj.transform.position = Vector3.zero;  // (0,0,0)
         playerObj.transform.position = new Vector3(10f, 0f, 0f); // Player starts pretty far away
 
