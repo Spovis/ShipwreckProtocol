@@ -45,7 +45,7 @@ public class enemy : MonoBehaviour
         //apply damage
         if (collider.CompareTag("PlayerAttack"))
         {
-            TakeDamage(20);  //apply damage
+            TakeDamage(20);  
         }
 
         //change behaviors if needed
