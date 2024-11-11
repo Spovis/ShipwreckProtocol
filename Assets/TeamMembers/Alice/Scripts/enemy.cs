@@ -20,6 +20,7 @@ public class enemy : MonoBehaviour
 
 //automatically start at idle, but will rapidly move to patrol
     void Start(){
+        animator = GetComponent<Animator>();
         SetBehavior(new IdleBehavior(this, minBoundary, maxBoundary));
     }
 

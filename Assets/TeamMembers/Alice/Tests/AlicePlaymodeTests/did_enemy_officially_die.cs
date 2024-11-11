@@ -11,9 +11,12 @@ public class Enemy_Fully_Dead
     public IEnumerator Setup()
     {
         enemyObj = new GameObject("Enemy");
+        GameObject playerObj = new GameObject("Player");
         var enemyScript = enemyObj.AddComponent<enemy>();
         enemyObj.AddComponent<Animator>();
+        playerObj.AddComponent<Animator>();
         enemyScript.health = 1;  // Initial health is set to 1, will be killed by 1 damage
+        enemyScript.player = playerObj.transform;
         yield return null;
     }
 

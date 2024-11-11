@@ -52,7 +52,7 @@ public class patrol_bounds{
 
     //enemy position changed when it reaches the max boundary
     [UnityTest]
-    public IEnumerator Test_EnemyPositionAfterTurningAtMaxBoundary()
+    public IEnumerator Test_EnemyTurningMax()
     {
         var enemyScript = enemyObj.GetComponent<enemy>();
 
@@ -68,7 +68,7 @@ public class patrol_bounds{
 
     //Test if the enemy position is changed when it reaches the min boundary
     [UnityTest]
-    public IEnumerator Test_EnemyPositionAfterTurningAtMinBoundary()
+    public IEnumerator Test_EnemyTurningMin()
     {
         var enemyScript = enemyObj.GetComponent<enemy>();
 

@@ -13,7 +13,13 @@ public class TestEnemyResponse
         var enemyGameObject = new GameObject("Enemy");
         var enemy = enemyGameObject.AddComponent<enemy>();
         enemyGameObject.AddComponent<Animator>();
-        enemy.player = new GameObject("Player").transform; 
+        var enemyScript = enemy.GetComponent<enemy>();
+
+        var player = new GameObject("Player");
+        player.AddComponent<Rigidbody2D>();
+        player.AddComponent<Animator>();
+        enemyScript.player = player.transform;
+
         enemy.player.position = new Vector3(0, 0, 0); 
         enemy.detectRange = 5f; 
 
