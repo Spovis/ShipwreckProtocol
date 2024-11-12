@@ -5,6 +5,7 @@ using UnityEngine.TestTools;
 /*this test checks my patrolling function is watching the boundaries correctly.*/
 public class patrol_bounds{
     GameObject enemyObj;
+    GameObject playerObj;
     Vector2 minBoundary = new Vector2(-10f, 0f);
     Vector2 maxBoundary = new Vector2(10f, 0f);
 
@@ -17,6 +18,11 @@ public class patrol_bounds{
         enemyScript.minBoundary = minBoundary;
         enemyScript.maxBoundary = maxBoundary;
         enemyScript.SetBehavior(new PatrolBehavior(enemyScript)); 
+
+        playerObj = new GameObject("Player");
+        playerObj.AddComponent<Rigidbody2D>();
+        playerObj.AddComponent<Animator>();
+        enemyScript.player = playerObj.transform;
         yield return null;
     }
 

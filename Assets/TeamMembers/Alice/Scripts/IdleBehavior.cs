@@ -8,7 +8,7 @@ public class IdleBehavior : EnemyBaseBehavior
     //just calls the base constructor
     public IdleBehavior(enemy enemy, Vector2 boundaryMin, Vector2 boundaryMax) : base(enemy)
     {}
-    public override void OnEnterBehavior(){
+    public /*override*/ void OnEnterBehavior(){
         Debug.Log("Entering the idle state");
         enemy.GetComponent<Animator>().SetBool("is_idle", true);
         if (is_hunter){

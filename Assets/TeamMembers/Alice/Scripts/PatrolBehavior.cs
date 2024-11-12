@@ -10,7 +10,7 @@ public class PatrolBehavior : EnemyBaseBehavior
     {
     }
 
-    public override void OnEnterBehavior()
+    public /*override*/ void OnEnterBehavior()
     {
         Debug.Log("Entering patrol state");
         enemy.GetComponent<Animator>().SetBool("is_patrolling", true);

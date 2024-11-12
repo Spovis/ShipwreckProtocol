@@ -10,7 +10,7 @@ public abstract class EnemyBaseBehavior
     }
 
 //these are my virtual static functions that I can override in each specific behavior
-    public virtual void OnEnterBehavior() { }
+    public /*virtual*/ void OnEnterBehavior() { }
     public virtual void OnExitBehavior() { }
     public virtual void OnBehaviorUpdate() { }
     public virtual void OnBehaviorCollisionEnter2D() { }

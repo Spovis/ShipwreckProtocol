@@ -17,7 +17,7 @@ public class AttackBehavior : EnemyBaseBehavior
     }
     
     /*as we enter the attack behavior*/
-    public override void OnEnterBehavior()
+    public /*override*/ void OnEnterBehavior()
     {
         Debug.Log("Now about to start attacking"); 
         enemy.GetComponent<Animator>().SetBool("is_attacking", true); 
