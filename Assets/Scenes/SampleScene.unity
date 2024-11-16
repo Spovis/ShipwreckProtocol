@@ -723,7 +723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &282171495
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4011,6 +4011,10 @@ PrefabInstance:
     - target: {fileID: 123081036541835947, guid: ff9295afd5f65439ebf1bcb4de509328, type: 3}
       propertyPath: m_Name
       value: Hunter
+      objectReference: {fileID: 0}
+    - target: {fileID: 123081036541835947, guid: ff9295afd5f65439ebf1bcb4de509328, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1625900319960127374, guid: ff9295afd5f65439ebf1bcb4de509328, type: 3}
       propertyPath: is_hunter

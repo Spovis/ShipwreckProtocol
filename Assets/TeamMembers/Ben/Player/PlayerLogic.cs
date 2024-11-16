@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerLogic : MonoBehaviour
 {
     public static PlayerLogic Instance { get; private set; }
+
+    private Dictionary<string, int> _inventory = new();
 
     [Header("Water Settings")]
     public float WaterDrag = 8f;
@@ -85,6 +88,34 @@ public class PlayerLogic : MonoBehaviour
         JumpCount = MaxJumpCount;
     }
 
+    #region Inventory
+    public void PrintInventory()
+    {
+        Debug.Log("Player's current inventory:");
+        foreach(var keyValuePair in _inventory)
+        {
+            Debug.Log(keyValuePair.Key + " : " + keyValuePair.Value);
+        }
+
+        Debug.Log("Player has healthpack? " + CheckInventoryForItem("HealthPack"));
+    }
+    public bool CheckInventoryForItem(Items itemToCheck) => CheckInventoryForItem(itemToCheck.name);
+    public bool CheckInventoryForItem(string ItemNameToCheck) => _inventory.ContainsKey(ItemNameToCheck);
+    public Dictionary<string, int> GetInventory() => _inventory;
+    public void AddItemToInventory(Items itemToAdd, int amountToAdd = 1) => AddItemToInventory(itemToAdd.name, amountToAdd);
+    public void AddItemToInventory(string itemNameToAdd, int amountToAdd = 1)
+    {
+        if (CheckInventoryForItem(itemNameToAdd))
+        {
+            _inventory[itemNameToAdd] += amountToAdd;
+        }
+        else
+        {
+            _inventory.Add(itemNameToAdd, amountToAdd);
+        }
+    }
+    #endregion
+
     private void Update()
     {
         SetSpriteOrientation();
@@ -92,6 +123,11 @@ public class PlayerLogic : MonoBehaviour
         TryAttack();
 
         TryDie();
+
+        if(Keyboard.current.iKey.wasPressedThisFrame)
+        {
+            PrintInventory();
+        }
     }
 
     /// <summary>

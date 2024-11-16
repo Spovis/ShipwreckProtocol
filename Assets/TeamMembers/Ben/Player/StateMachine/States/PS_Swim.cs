@@ -11,6 +11,7 @@ public class PS_Swim : PS_Base {
         base.EnterState();
 
         _machine.Animator.SetTrigger("Swim");
+        AudioManager.Instance.PlayFX("Swim");
         PlayerLogic.Instance.IsDrowning = true;
     }
 

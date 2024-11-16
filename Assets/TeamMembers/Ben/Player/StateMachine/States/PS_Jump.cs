@@ -8,6 +8,7 @@ public class PS_Jump : PS_Base {
         base.EnterState();
 
         _machine.Animator.SetTrigger("Jump");
+        AudioManager.Instance.PlayFX("Jump");
 
         _machine.Logic.JumpCount++;
 
