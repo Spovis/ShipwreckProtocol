@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Bullet : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Bullet : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _collider;
     private TrailRenderer _trailRenderer;
+    private Light2DBase _lightObj;
 
     private float lifetime;
     public static float bulletLifetime = 10f;
@@ -19,6 +21,7 @@ public class Bullet : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _trailRenderer = GetComponent<TrailRenderer>();
         _collider = GetComponent<CircleCollider2D>();
+        _lightObj = GetComponentInChildren<Light2DBase>();
     }
 
     private void Update() {
@@ -35,6 +38,7 @@ public class Bullet : MonoBehaviour
         _spriteRenderer.enabled = state;
         _collider.enabled = state;
         _trailRenderer.enabled = state;
+        _lightObj.enabled = state;
     }
 
     private void OnEnable() {

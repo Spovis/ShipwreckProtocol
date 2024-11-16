@@ -590,7 +590,7 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 03ac24a7fb7f2cd40bfffd2d9ad81b8e, type: 2}
   m_sharedMaterial: {fileID: 7614975553292077141, guid: 03ac24a7fb7f2cd40bfffd2d9ad81b8e, type: 2}
   m_fontSharedMaterials:
-  - {fileID: 8187269684908148831, guid: c58acce99886a0a428667287b0e685b7, type: 2}
+  - {fileID: 7614975553292077141, guid: 03ac24a7fb7f2cd40bfffd2d9ad81b8e, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:

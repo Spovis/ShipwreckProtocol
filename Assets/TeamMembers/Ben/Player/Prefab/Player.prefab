@@ -313,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaterDrag: 8
   MaxBreath: 3
+  DrownTimer: 0
   _bulletSpeed: 40
   _bulletPrefab: {fileID: 8947272925407141667, guid: b77d1b5cdb0087e42a903f87cbfa6f83, type: 3}
   MoveSpeed: 15
@@ -5298,7 +5299,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

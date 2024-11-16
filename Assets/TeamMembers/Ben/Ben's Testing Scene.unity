@@ -740,6 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7474fee97616f415aa785d4037bd5dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTemplate: {fileID: 0}
   player: {fileID: 1691666015}
   detectRange: 2
   minBoundary: {x: -74, y: -18}
@@ -3898,6 +3899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7474fee97616f415aa785d4037bd5dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTemplate: {fileID: 0}
   player: {fileID: 1691666015}
   detectRange: 10
   minBoundary: {x: -74, y: -18}
