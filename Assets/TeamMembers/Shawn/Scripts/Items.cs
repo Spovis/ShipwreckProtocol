@@ -12,6 +12,7 @@ public class Items : MonoBehaviour
 
     protected void AddToPlayerInventory()
     {
+        Debug.Log($"Adding {GetType().Name} to inventory");
         PlayerLogic.Instance.AddItemToInventory(this);
     }
 

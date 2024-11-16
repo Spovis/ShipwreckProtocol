@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
 
         if (sound == null)
         {
-            Debug.Log("Can't Find FX Sound");
+            Debug.LogWarning("Can't Find FX Sound of " + name);
         }
         else
         {

@@ -96,16 +96,27 @@ public class PlayerLogic : MonoBehaviour
         {
             Debug.Log(keyValuePair.Key + " : " + keyValuePair.Value);
         }
-
-        Debug.Log("Player has healthpack? " + CheckInventoryForItem("HealthPack"));
     }
-    public bool CheckInventoryForItem(Items itemToCheck) => CheckInventoryForItem(itemToCheck.name);
-    public bool CheckInventoryForItem(string ItemNameToCheck) => _inventory.ContainsKey(ItemNameToCheck);
+
+    public bool CheckInventoryForItem(Items itemToGet, out int amount) => CheckInventoryForItem(itemToGet.GetType().Name, out amount);
+    public bool CheckInventoryForItem(string itemNameToGet, out int amount)
+    {
+        if (_inventory.ContainsKey(itemNameToGet))
+        {
+            amount = _inventory[itemNameToGet];
+            return true;
+        }
+        else
+        {
+            amount = 0;
+            return false;
+        }
+    }
     public Dictionary<string, int> GetInventory() => _inventory;
-    public void AddItemToInventory(Items itemToAdd, int amountToAdd = 1) => AddItemToInventory(itemToAdd.name, amountToAdd);
+    public void AddItemToInventory(Items itemToAdd, int amountToAdd = 1) => AddItemToInventory(itemToAdd.GetType().Name, amountToAdd);
     public void AddItemToInventory(string itemNameToAdd, int amountToAdd = 1)
     {
-        if (CheckInventoryForItem(itemNameToAdd))
+        if (CheckInventoryForItem(itemNameToAdd, out int amount))
         {
             _inventory[itemNameToAdd] += amountToAdd;
         }
