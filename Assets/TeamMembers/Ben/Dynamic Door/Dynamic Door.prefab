@@ -180,8 +180,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e8a2b99b76a694b9053631a2af43ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredItemName: 
+  requiredItemName: Crowbar
   requiredItemAmount: 1
+  onSuccessText: 
+  onFailText: Door requires a crowbar to open
+  isOneTimeUse: 1
   InteractionRange: 0.75
   OnSuccessfulInteract:
     m_PersistentCalls:

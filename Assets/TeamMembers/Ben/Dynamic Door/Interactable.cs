@@ -11,9 +11,14 @@ public class Interactable : MonoBehaviour
     [Tooltip("The amount of the required item needed to successfully interact")][Min(1)] public int requiredItemAmount = 1;
 
     [Header("Interactable Settings")]
+    [Tooltip("Whether this interactable is a one-time use or not")] public bool isOneTimeUse = true;
+    [Tooltip("Text to display above the player if successfully interacted with")] public string onSuccessText = "";
+    [Tooltip("Text to display above the player if interaction failed (did not meet requirements)")] public string onFailText = "";
     public float InteractionRange = 0.75f;
     public UnityEvent OnSuccessfulInteract;
     public UnityEvent OnFailedInteract;
+
+    private int _interactionCount = 0;
 
     private CircleCollider2D _interactionCollider;
 
@@ -52,10 +57,14 @@ public class Interactable : MonoBehaviour
             //Basically, if we do require an item(is not null or empty), then check if we have it and that we have the right amount of it
             if (string.IsNullOrEmpty(requiredItemName) || (PlayerLogic.Instance.CheckInventoryForItem(requiredItemName, out int amount) && amount >= requiredItemAmount))
             {
+                if(isOneTimeUse && _interactionCount > 0) return;
+                PopupText.Show(onSuccessText);
                 OnSuccessfulInteract.Invoke();
+                _interactionCount++;
             }
             else
             {
+                PopupText.Show(onFailText, true);
                 OnFailedInteract.Invoke();
             }
         }

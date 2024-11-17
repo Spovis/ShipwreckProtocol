@@ -12,6 +12,7 @@ public class Crowbar : Items
         AddToPlayerInventory();
         //AudioManager.Instance.PlayFX("HealthPack");
 
+        PopupText.Show("Crowbar Collected");
         OnCrowbarTouched?.Invoke();
      
         Destroy(gameObject);

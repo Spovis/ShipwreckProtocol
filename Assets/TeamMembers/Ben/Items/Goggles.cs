@@ -12,6 +12,7 @@ public class Goggles : Items
         AddToPlayerInventory();
         //AudioManager.Instance.PlayFX("HealthPack");
 
+        PopupText.Show("Goggles Collected");
         OnGogglesTouched?.Invoke();
      
         Destroy(gameObject);
