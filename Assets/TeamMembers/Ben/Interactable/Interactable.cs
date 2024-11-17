@@ -11,16 +11,22 @@ public class Interactable : MonoBehaviour
     [Tooltip("The amount of the required item needed to successfully interact")][Min(1)] public int requiredItemAmount = 1;
 
     [Header("Interactable Settings")]
+    public float InteractionRange = 0.75f;
     [Tooltip("Whether this interactable is a one-time use or not")] public bool isOneTimeUse = true;
+    [Space(10)]
+    [SerializeField] private bool showOutline = true;
+    private Material _normalMat;
+    [SerializeField] private Material _outlineMat;
+    [Space(10)]
     [Tooltip("Text to display above the player if successfully interacted with")] public string onSuccessText = "";
     [Tooltip("Text to display above the player if interaction failed (did not meet requirements)")] public string onFailText = "";
-    public float InteractionRange = 0.75f;
     public UnityEvent OnSuccessfulInteract;
     public UnityEvent OnFailedInteract;
 
     private int _interactionCount = 0;
 
     private CircleCollider2D _interactionCollider;
+    private SpriteRenderer _spriteRenderer;
 
     private bool _isPlayerInInteractionRange = false;
     public bool IsPlayerInInteractionRange => _isPlayerInInteractionRange;
@@ -32,6 +38,9 @@ public class Interactable : MonoBehaviour
         _interactionCollider = GetComponent<CircleCollider2D>();
         _interactionCollider.isTrigger = true;
         _interactionCollider.radius = InteractionRange;
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _normalMat = _spriteRenderer.material;
     }
 
     /// <summary>
@@ -42,11 +51,16 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(showOutline && _outlineMat != null)
+        {
+            _spriteRenderer.material = _outlineMat;
+        }
         _isPlayerInInteractionRange = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        _spriteRenderer.material = _normalMat;
         _isPlayerInInteractionRange = false;
     }   
 

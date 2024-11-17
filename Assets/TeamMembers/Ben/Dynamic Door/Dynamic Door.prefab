@@ -182,10 +182,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredItemName: Crowbar
   requiredItemAmount: 1
+  InteractionRange: 0.75
+  isOneTimeUse: 1
+  showOutline: 1
+  _outlineMat: {fileID: 2100000, guid: a1368bdf374ee3c4694d37de34a8658c, type: 2}
   onSuccessText: 
   onFailText: Door requires a crowbar to open
-  isOneTimeUse: 1
-  InteractionRange: 0.75
   OnSuccessfulInteract:
     m_PersistentCalls:
       m_Calls: []
