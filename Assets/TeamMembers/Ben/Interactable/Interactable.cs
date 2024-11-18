@@ -51,6 +51,8 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!collision.CompareTag("Player")) return;
+
         if(showOutline && _outlineMat != null)
         {
             _spriteRenderer.material = _outlineMat;
@@ -60,6 +62,8 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (!collision.CompareTag("Player")) return;
+
         _spriteRenderer.material = _normalMat;
         _isPlayerInInteractionRange = false;
     }   

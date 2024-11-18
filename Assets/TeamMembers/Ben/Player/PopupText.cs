@@ -48,10 +48,7 @@ public class PopupText : MonoBehaviour
     private IEnumerator FadeOut()
     {
         yield return new WaitForSeconds(1.5f);
-        _fadeOutTween = DOVirtual.Color(Color.white, Color.clear, 1.5f, (value) =>
-        {
-            _text.color = value;
-        });
+        _fadeOutTween = _text.DOColor(Color.clear, 1.5f);
     }
 
     /// <summary>
