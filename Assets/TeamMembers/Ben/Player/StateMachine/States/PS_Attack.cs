@@ -17,6 +17,7 @@ public class PS_Attack : PS_Base
         }
 
         _machine.Animator.SetTrigger("Attack");
+        AudioManager.Instance.PlayFX("Shoot");
         _machine.Logic.Shoot();
         HapticFeedback.MediumFeedback();
 

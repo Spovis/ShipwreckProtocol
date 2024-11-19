@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInteractions : Subject
 {
-
     // Update is called once per frame
     void Update()
     {

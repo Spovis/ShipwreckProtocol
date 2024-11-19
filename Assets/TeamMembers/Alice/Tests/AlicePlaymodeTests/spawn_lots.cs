@@ -9,13 +9,25 @@ public class SpawnLots{
     public IEnumerator SpawnEnemies()
     {
         int enemyCount = 10;//could go higher
+        Vector2 minBoundary = new Vector2(-10f, 0f);
+        Vector2 maxBoundary = new Vector2(10f, 0f);
         List<enemy> enemies = new List<enemy>();
+        GameObject playerObj = new GameObject("Player");
+        playerObj.AddComponent<Rigidbody2D>();
+        playerObj.AddComponent<Animator>();
+        playerObj.transform.position = new Vector3(10f, 0f, 0f);
         for (int i = 0; i < enemyCount; i++)
         {
-            var enemyGameObject = new GameObject($"Enemy_{i}");
-            var enemy = enemyGameObject.AddComponent<enemy>();
-            enemy.SetBehavior(new IdleBehavior(enemy, enemy.minBoundary, enemy.maxBoundary));
-            enemies.Add(enemy);
+            GameObject enemyObj = new GameObject("Enemy" + i);
+            var enemyScript = enemyObj.AddComponent<enemy>();
+            enemyObj.AddComponent<Animator>();
+
+            enemyScript.minBoundary = minBoundary;
+            enemyScript.maxBoundary = maxBoundary;
+            enemyScript.SetBehavior(new IdleBehavior(enemyScript, enemyScript.minBoundary, enemyScript.maxBoundary));
+            enemyScript.player = playerObj.transform;
+            playerObj.transform.position = new Vector3(10f, 0f, 0f);
+            enemies.Add(enemyScript);
         }
         for (int i = 0; i < 50; i++)//could also make a while loop
         {

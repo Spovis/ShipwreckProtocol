@@ -67,7 +67,7 @@ public class PlayerStateMachine : MonoBehaviour
         _groundLayerMask = LayerMask.GetMask("Ground");
 
 #if UNITY_EDITOR // By using #if UNITY_EDITOR, this code won't be compiled during a build.
-        _debugText = GetComponentInChildren<TMP_Text>();
+        _debugText = transform.Find("DebugText").GetComponent<TMP_Text>();
         _debugText.enabled = false;
 #endif
 

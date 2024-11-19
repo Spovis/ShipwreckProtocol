@@ -9,6 +9,7 @@ TagManager:
   - PlayerAttack
   - Collectable
   - Obstacle
+  - Interactable
   layers:
   - Default
   - TransparentFX

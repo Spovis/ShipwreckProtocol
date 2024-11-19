@@ -2,6 +2,8 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.Utilities;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -32,6 +34,8 @@ public class PlayerInput : MonoBehaviour
 
     private bool _isPausePressed;
     private bool _isPauseHeld;
+
+    private bool _isAnyButtonPressed;
 
     /// <summary>
     /// Indicates whether the player is able to input or not.
@@ -112,6 +116,11 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     public bool IsPauseHeld { get { return _isPauseHeld; } set { _isPauseHeld = value; } }
 
+    /// <summary>
+    /// Indicates whether any button is pressed this frame.
+    /// </summary>
+    public bool IsAnyButtonPressed { get { return _isAnyButtonPressed; } set { _isAnyButtonPressed = value; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -146,6 +155,20 @@ public class PlayerInput : MonoBehaviour
 
         _playerInput.Player.Pause.started += OnPauseInput;
         _playerInput.Player.Pause.canceled += OnPauseInput;
+
+        InputSystem.onAnyButtonPress.Call((currentAction) => {
+            IsAnyButtonPressed = true;
+            //if (currentAction is ButtonControl button && IsAnyButtonPressed)
+            //{
+            //    //ONLY USE THIS DEBUG FOR TROUBLESHOOTING, CAUSES BIG LAG.
+            //    Debug.Log($"Key {currentAction.name} pressed! (text: {currentAction.displayName})");
+            //}
+        });
+    }
+
+    private void Update()
+    {
+
     }
 
     private void LateUpdate()
@@ -160,6 +183,7 @@ public class PlayerInput : MonoBehaviour
         IsInteractPressed = false;
         IsAttackPressed = false;
         IsPausePressed = false;
+        IsAnyButtonPressed = false;
     }
 
     private void OnEnable() {

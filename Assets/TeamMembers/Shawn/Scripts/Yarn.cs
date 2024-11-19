@@ -3,31 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Yarn : Items, ICollectables
+public class Yarn : Items
 {
     public static event Action OnYarnTouched;
+
+    private float _scoreIncrement = 5f;
+
     public override void Collect()
     {
-        //need to track score?
-        //TBD yarn(score)++
-        OnYarnTouched?.Invoke();
-        Debug.Log("Yarn Touched"); //debug, needs removed
+        AddToPlayerInventory();
+        GameManager.Instance.Score += _scoreIncrement;
         AudioManager.Instance.PlayFX("Yarn");
+
+        OnYarnTouched?.Invoke();
+
         Destroy(gameObject);
     }
 }
-
-//public class Yarn : MonoBehaviour, ICollectables
-//{
-//    public static event Action OnYarnTouched;
-//    public void Collect()
-//    {
-//        //need to track score
-//        //TBD yarn(score)++, 
-//        OnYarnTouched?.Invoke();
-//        Debug.Log("Yarn Touched");
-//        AudioManager.Instance.PlayFX("Yarn");
-//        Destroy(gameObject);
-//    }
-//}
-

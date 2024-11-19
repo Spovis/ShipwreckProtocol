@@ -6,10 +6,9 @@ public class Collector : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ICollectables collectable = collision.GetComponent<ICollectables>();
-        if(collectable != null )
+        if(collision.TryGetComponent(out Items itemTouched))
         {
-            collectable.Collect();
+            itemTouched.Collect();
         }
     }
 }

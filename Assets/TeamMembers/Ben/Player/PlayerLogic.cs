@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerLogic : MonoBehaviour
 {
     public static PlayerLogic Instance { get; private set; }
+
+    private Dictionary<string, int> _inventory = new();
 
     [Header("Water Settings")]
     public float WaterDrag = 8f;
@@ -85,6 +88,45 @@ public class PlayerLogic : MonoBehaviour
         JumpCount = MaxJumpCount;
     }
 
+    #region Inventory
+    public void PrintInventory()
+    {
+        Debug.Log("Player's current inventory:");
+        foreach(var keyValuePair in _inventory)
+        {
+            Debug.Log(keyValuePair.Key + " : " + keyValuePair.Value);
+        }
+    }
+
+    public bool CheckInventoryForItem(Items itemToGet, out int amount) => CheckInventoryForItem(itemToGet.GetType().Name, out amount);
+    public bool CheckInventoryForItem(string itemNameToGet, out int amount)
+    {
+        if (_inventory.ContainsKey(itemNameToGet))
+        {
+            amount = _inventory[itemNameToGet];
+            return true;
+        }
+        else
+        {
+            amount = 0;
+            return false;
+        }
+    }
+    public Dictionary<string, int> GetInventory() => _inventory;
+    public void AddItemToInventory(Items itemToAdd, int amountToAdd = 1) => AddItemToInventory(itemToAdd.GetType().Name, amountToAdd);
+    public void AddItemToInventory(string itemNameToAdd, int amountToAdd = 1)
+    {
+        if (CheckInventoryForItem(itemNameToAdd, out int amount))
+        {
+            _inventory[itemNameToAdd] += amountToAdd;
+        }
+        else
+        {
+            _inventory.Add(itemNameToAdd, amountToAdd);
+        }
+    }
+    #endregion
+
     private void Update()
     {
         SetSpriteOrientation();
@@ -92,6 +134,11 @@ public class PlayerLogic : MonoBehaviour
         TryAttack();
 
         TryDie();
+
+        if(Keyboard.current.iKey.wasPressedThisFrame)
+        {
+            PrintInventory();
+        }
     }
 
     /// <summary>

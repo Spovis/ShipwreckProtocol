@@ -12,10 +12,9 @@ public IEnumerator EnemyHealthTest()
     var enemy = new GameObject("Enemy");
     var enemyComponent = enemy.AddComponent<enemy>();
     
-    
     enemyComponent.health = 100;
     int damage = 25;
-    
+    enemy.AddComponent<Animator>();
     enemyComponent.TakeDamage(damage); 
 
     // Wait one frame

@@ -22,7 +22,9 @@ public class AttackState : BossState {
     {
       attacked = true;
 
-      Rigidbody2D[] fireballs = {
+        AudioManager.Instance.PlayFX("EnemyFireball");
+
+        Rigidbody2D[] fireballs = {
         UnityEngine.Object.Instantiate(fireballPrefab, gameObject.transform.position, gameObject.transform.rotation) as Rigidbody2D,
         UnityEngine.Object.Instantiate(fireballPrefab, gameObject.transform.position, gameObject.transform.rotation) as Rigidbody2D,
         UnityEngine.Object.Instantiate(fireballPrefab, gameObject.transform.position, gameObject.transform.rotation) as Rigidbody2D,

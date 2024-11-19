@@ -11,7 +11,7 @@ public IEnumerator EnemyResetsPlayerDeath()
     var enemyGameObject = new GameObject("Enemy");
     var enemy = enemyGameObject.AddComponent<enemy>();
     enemy.SetBehavior(new IdleBehavior(enemy, enemy.minBoundary, enemy.maxBoundary));
-    
+    enemyGameObject.AddComponent<Animator>();
     enemy.player.gameObject.SetActive(false); //kill player
     yield return new WaitForSeconds(0.1f);
     yield return null;

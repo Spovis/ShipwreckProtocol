@@ -23,8 +23,10 @@ public class BoundaryPlaymodeTest {
         enemy = new GameObject("Enemy");
         enemy.AddComponent<Rigidbody2D>();
         enemy.AddComponent<enemy>();
-        
-        
+        var enemyScript = enemy.GetComponent<enemy>();
+        enemy.AddComponent<Animator>();
+        player.AddComponent<Animator>();
+        enemyScript.player = player.transform;
         player.transform.position = new Vector3(0, 0, 0); 
         enemy.transform.position = new Vector3(-5, 0, 0);  //Enemy at random loc
 

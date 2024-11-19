@@ -4,14 +4,13 @@ public class PatrolBehavior : EnemyBaseBehavior
 {
     private Vector3 currentTarget;
     private bool isObstacleHit = false;
-    private bool is_hunter;
     private float speed = 5.0f;
 
     public PatrolBehavior(enemy enemy) : base(enemy)
     {
     }
 
-    public override void OnEnterBehavior()
+    public /*override*/ void OnEnterBehavior()
     {
         Debug.Log("Entering patrol state");
         enemy.GetComponent<Animator>().SetBool("is_patrolling", true);

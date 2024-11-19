@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager Instance;
+
+    private float _runTime = 0;
+    private float _score = 0;
+    public float RunTime { get { return _runTime; } }
+    public float Score { get { return _score; } set { _score = value; } }
+
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        _runTime += Time.deltaTime;
     }
 }

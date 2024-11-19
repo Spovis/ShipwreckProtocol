@@ -15,6 +15,7 @@ public class EnemyBounds
     {
         enemyGameObject = new GameObject("Enemy");
         enemy = enemyGameObject.AddComponent<enemy>();
+        enemyGameObject.AddComponent<Animator>();
         enemy.minBoundary = minBoundary;
         enemy.maxBoundary = maxBoundary;
         enemy.transform.position = new Vector3(50f, 0f, 0f);
