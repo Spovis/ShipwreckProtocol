@@ -165,6 +165,11 @@ public class PlayerLogic : MonoBehaviour
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, JumpForce * multiplier);
     }
 
+    public void IncrementMaxJumpCount(int amount = 1)
+    {
+        MaxJumpCount += amount;
+    }
+
     public void TryAttack() {
         if (PlayerInput.Instance.IsAttackPressed) {
             Machine.SwitchState(PlayerStates.Attack);
