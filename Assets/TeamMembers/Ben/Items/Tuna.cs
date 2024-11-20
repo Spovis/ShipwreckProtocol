@@ -13,7 +13,7 @@ public class Tuna : Items
         PlayerLogic.Instance.IncrementMaxJumpCount();
         //AudioManager.Instance.PlayFX("HealthPack");
 
-        PopupText.Show("+1 Jumps");
+        PopupText.Show("+1 Jump Count");
         OnTunaTouched?.Invoke();
      
         Destroy(gameObject);
