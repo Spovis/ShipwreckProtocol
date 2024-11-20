@@ -29,7 +29,7 @@ public class Oxygen : MonoBehaviour
                 fill.gameObject.SetActive(false);
             }
         }
-        if(PlayerStateMachine.Instance.IsCurrentState(PlayerStates.Swim))
+        if(PlayerLogic.Instance.IsDrowning)
         {
             slider.gameObject.SetActive(true);
         }

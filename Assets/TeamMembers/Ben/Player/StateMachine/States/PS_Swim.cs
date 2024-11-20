@@ -12,7 +12,11 @@ public class PS_Swim : PS_Base {
 
         _machine.Animator.SetTrigger("Swim");
         AudioManager.Instance.PlayFX("Swim");
-        PlayerLogic.Instance.IsDrowning = true;
+
+        if (!PlayerLogic.Instance.CheckInventoryForItem("Goggles", out int amount))
+        {
+            PlayerLogic.Instance.IsDrowning = true;
+        }
     }
 
     public override void ExitState(PlayerStates newState) 
