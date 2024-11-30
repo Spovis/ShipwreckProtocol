@@ -10,7 +10,9 @@ public class DynamicDoor : MonoBehaviour
 
     private Vector3 finalPos;
 
-    public bool IsMoving = false;
+    [HideInInspector] public bool IsMoving = false;
+
+    [SerializeField] private bool _interactOnCollision = false;
 
     private void Awake()
     {
@@ -45,5 +47,14 @@ public class DynamicDoor : MonoBehaviour
     public void OnFailedOpen()
     {
         //Debug.Log("Failed to open door!");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && _interactOnCollision)
+        {
+            _interactable.Interact();
+        }
+
     }
 }

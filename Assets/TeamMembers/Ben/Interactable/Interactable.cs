@@ -72,19 +72,24 @@ public class Interactable : MonoBehaviour
     {
         if(_isPlayerInInteractionRange && PlayerInput.Instance.IsInteractPressed)
         {
-            //Basically, if we do require an item(is not null or empty), then check if we have it and that we have the right amount of it
-            if (string.IsNullOrEmpty(requiredItemName) || (PlayerLogic.Instance.CheckInventoryForItem(requiredItemName, out int amount) && amount >= requiredItemAmount))
-            {
-                if(isOneTimeUse && _interactionCount > 0) return;
-                PopupText.Show(onSuccessText);
-                OnSuccessfulInteract.Invoke();
-                _interactionCount++;
-            }
-            else
-            {
-                PopupText.Show(onFailText, true);
-                OnFailedInteract.Invoke();
-            }
+            Interact();
+        }
+    }
+
+    public void Interact()
+    {
+        //Basically, if we do require an item(is not null or empty), then check if we have it and that we have the right amount of it
+        if (string.IsNullOrEmpty(requiredItemName) || (PlayerLogic.Instance.CheckInventoryForItem(requiredItemName, out int amount) && amount >= requiredItemAmount))
+        {
+            if (isOneTimeUse && _interactionCount > 0) return;
+            PopupText.Show(onSuccessText);
+            OnSuccessfulInteract.Invoke();
+            _interactionCount++;
+        }
+        else
+        {
+            PopupText.Show(onFailText, true);
+            OnFailedInteract.Invoke();
         }
     }
 }
