@@ -12,7 +12,7 @@ public class DynamicDoor : MonoBehaviour
 
     [HideInInspector] public bool IsMoving = false;
 
-    [SerializeField] private bool _interactOnCollision = false;
+    [SerializeField] private bool _interactOnCollision = true;
 
     private void Awake()
     {
