@@ -1,70 +1,48 @@
 using UnityEngine;
-
 public class PatrolBehavior : EnemyBaseBehavior 
 {
     private Vector3 currentTarget;
     private bool isObstacleHit = false;
     private float speed = 5.0f;
 
-    public PatrolBehavior(enemy enemy) : base(enemy)
-    {
-    }
+    public PatrolBehavior(enemy enemy) : base(enemy) { }
 
-    public /*override*/ void OnEnterBehavior()
+    public override void OnEnterBehavior()
     {
         Debug.Log("Entering patrol state");
         enemy.GetComponent<Animator>().SetBool("is_patrolling", true);
-        enemy.GetComponent<Animator>().SetBool("is_hunter", true);
-        currentTarget = enemy.minBoundary;
+        enemy.GetComponent<Animator>().SetBool("is_idle",false);
+        //enemy.GetComponent<Animator>().SetBool("is_hunter", true);
+        currentTarget = enemy.pointA.position;  // Use pointA as the initial target
     }
-
     public override void OnBehaviorUpdate()
     {
-        float distToPlayer = Vector3.Distance(enemy.transform.position, enemy.player.position);
-        
-        if (distToPlayer <= enemy.detectRange)
-        {
-            Debug.Log("Player detected within patrol range, transitioning to attack");
+        float dist_to_player = Vector3.Distance(enemy.transform.position, enemy.player.position); 
+        if (dist_to_player <= enemy.detectRange){
             enemy.GetComponent<Animator>().SetBool("is_patrolling", false);
-            enemy.SetBehavior(new AttackBehavior(enemy));
+            enemy.SetBehavior(new AttackBehavior(enemy)); //Transition to AttackBehavior
         }
-        else
-        {
-            Patrol();
-        }
+        Patrol();
 
-        if (IsPlayerInBounds())
-        {
-            Debug.Log("Player in bounds.");
-        }
-        else
-        {
-            Debug.Log("Player not in bounds.");
-        }
     }
+
 
     private void Patrol() 
     {
         Debug.Log("patrolling");
         if (isObstacleHit)
         {
-            //delay
-            isObstacleHit = false;  //reset
-            return;  //exit
+            isObstacleHit = false;  // Reset flag
+            return;
         }
 
         if (Vector3.Distance(enemy.transform.position, currentTarget) < 0.1f)
         {
-            if (Vector3.Distance(currentTarget, enemy.minBoundary) < 0.1f)
-            {
-                currentTarget = enemy.maxBoundary;
-            }
-            else if (Vector3.Distance(currentTarget, enemy.maxBoundary) < 0.1f)
-            {
-                currentTarget = enemy.minBoundary;
-            }
+            // Switch target between pointA and pointB
+            currentTarget = currentTarget == enemy.pointA.position ? enemy.pointB.position : enemy.pointA.position;
             FlipDirection();
         }
+
         enemy.transform.position = Vector3.MoveTowards(
             enemy.transform.position, 
             currentTarget, 
@@ -76,33 +54,20 @@ public class PatrolBehavior : EnemyBaseBehavior
     {
         isObstacleHit = true;
         Debug.Log("Obstacle collision handled in patrol behavior");
-        
-        //Change direction when obstacle
-        if (Vector3.Distance(currentTarget, enemy.minBoundary) < 0.1f)
-        {
-            currentTarget = enemy.maxBoundary;
-        }
-        else if (Vector3.Distance(currentTarget, enemy.maxBoundary) < 0.1f)
-        {
-            currentTarget = enemy.minBoundary;
-        }
-        
+
+        // Flip to the opposite patrol point
+        currentTarget = currentTarget == enemy.pointA.position ? enemy.pointB.position : enemy.pointA.position;
         FlipDirection();
     }
 
     private void FlipDirection() 
     {
         Vector3 scale = enemy.transform.localScale;
-        if (currentTarget.x > enemy.transform.position.x)
-        {
-            scale.x = Mathf.Abs(scale.x);
-        }
-        else
-        {
-            scale.x = -Mathf.Abs(scale.x);
-        }
+        scale.x = currentTarget.x > enemy.transform.position.x ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
         enemy.transform.localScale = scale;
     }
+
+
 
     private bool IsPlayerInBounds()
     {

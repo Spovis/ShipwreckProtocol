@@ -5,7 +5,7 @@ using UnityEngine;
 /*this is my attack behavior function. Here I code the enemy's attacks.*/
 public class AttackBehavior : EnemyBaseBehavior 
 {
-    private float attackCooldown = 0.5f;
+    private float attackCooldown = 1f;
     private float lastAttackTime;
 
     /*my constructor, I pass an enemy object into here, and then use the base feature of C# to give the enemy object to 
@@ -17,7 +17,7 @@ public class AttackBehavior : EnemyBaseBehavior
     }
     
     /*as we enter the attack behavior*/
-    public /*override*/ void OnEnterBehavior()
+    public override void OnEnterBehavior()
     {
         Debug.Log("Now about to start attacking"); 
         enemy.GetComponent<Animator>().SetBool("is_attacking", true); 
@@ -39,6 +39,7 @@ public class AttackBehavior : EnemyBaseBehavior
             As it progresses, it'll be 0.7+0.5, 1.0+0.5) etc etc*/
             if (Time.time >= lastAttackTime + attackCooldown)
             {
+                Debug.Log("shooting");
                 ShootProjectile();
                 lastAttackTime = Time.time; //resets lastAttackTime to a new time-whebever the shooting occurred.
             }
@@ -46,41 +47,62 @@ public class AttackBehavior : EnemyBaseBehavior
         else
         {
             //switch back to patrol
+            Debug.Log("Going to patrol");
             enemy.SetBehavior(new PatrolBehavior(enemy));
         }
     }
     
 
     /*if there's a player and there's a projectile available, */
-    private void ShootProjectile()
+   private void ShootProjectile()
+{
+    Debug.Log("Preparing projectile");
+    if (enemy.player != null && enemy.projectileTemplate != null)
     {
-        if (enemy.player != null && enemy.projectileTemplate != null) 
-        {
-            /*used normalized here to focus on the direction of the vector from the enemy to player*/
-            Vector3 direction = (enemy.player.position - enemy.transform.position).normalized;
-            //Atan gets the angle of vector from x axis and convert it to degrees from rads <
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            
-            /*create a new instance of my projectile using a unity method. sets my pos at enemy, Quaternion.Euler
-            gives the angle I want my projectile rotated at.(so it kind of looks like it's aiming right at the player)
-            */
-            GameObject projectile = GameObject.Instantiate(
-                enemy.projectileTemplate,
-                enemy.transform.position,
-                Quaternion.Euler(0, 0, angle)
-            );
-            
-            projectile.SetActive(true);
-            Debug.Log("Shooting projectile at player");
-        }
-        else
-        {
-            //warning me in case I lose references. I had it happen a couple times where my player got
-            //disconnected off of my enemy for some reason
-            Debug.LogWarning($"Missing references - Player: {enemy.player}, Template: {enemy.projectileTemplate}");
-        }
-    }
+        Debug.Log("Shooting projectile");
 
+        // Calculate the direction from the enemy to the player
+        Vector3 direction = (enemy.player.position - enemy.transform.position);
+        if (direction.magnitude == 0)
+        {
+            Debug.LogError("Direction is zero! Cannot normalize.");
+            return;
+        }
+
+        Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
+
+        // Instantiate the projectile at the enemy's position
+        GameObject projectileInstance = GameObject.Instantiate(
+            enemy.projectileTemplate,
+            enemy.transform.position,
+            Quaternion.identity // Default rotation; angle is handled by Rigidbody2D
+        );
+
+        if (projectileInstance == null)
+        {
+            Debug.LogError("Failed to instantiate projectile.");
+            return;
+        }
+
+        // Ensure the projectile is active
+        projectileInstance.SetActive(true);
+
+        // Get the projectile script
+        Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
+        if (projectileScript == null)
+        {
+            Debug.LogError("Projectile script is missing on the instantiated projectile.");
+            return;
+        }
+
+        // Initialize the projectile
+        projectileScript.Initialize(direction2D);
+    }
+    else
+    {
+        Debug.LogWarning($"Missing references - Player: {enemy.player}, Template: {enemy.projectileTemplate}");
+    }
+}
     public override void OnExitBehavior()
     {
         Debug.Log("Leaving the attack state");

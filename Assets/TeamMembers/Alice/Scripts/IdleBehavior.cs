@@ -8,13 +8,16 @@ public class IdleBehavior : EnemyBaseBehavior
     //just calls the base constructor
     public IdleBehavior(enemy enemy, Vector2 boundaryMin, Vector2 boundaryMax) : base(enemy)
     {}
-    public /*override*/ void OnEnterBehavior(){
+    public override void OnEnterBehavior(){
         Debug.Log("Entering the idle state");
         enemy.GetComponent<Animator>().SetBool("is_idle", true);
         if (is_hunter){
+            Debug.Log("Hunter transitioning to PatrolBehavior.");
             enemy.GetComponent<Animator>().SetBool("is_idle", false);
             enemy.SetBehavior(new PatrolBehavior(enemy)); //if it's a patrolling enemy, set behavior automatically to patrol
-            enemy.GetComponent<Animator>().SetBool("is_hunter", true); //Transition to PatrolBehavior
+            enemy.GetComponent<Animator>().SetBool("is_patrolling", true);
+        }else{
+            Debug.Log("not a hunter, no PatrolBehavior.");
         }
     }
 
@@ -42,6 +45,8 @@ public class IdleBehavior : EnemyBaseBehavior
     public override void OnExitBehavior(){
         Debug.Log("Now leaving the idle state");
         enemy.GetComponent<Animator>().SetBool("is_idle", false);
+        enemy.GetComponent<Animator>().SetBool("is_patrolling", false);
+        enemy.GetComponent<Animator>().SetBool("is_attacking", true);
     }
 
     private bool IsPlayerInBounds(){

@@ -7,9 +7,10 @@ public class Projectile : MonoBehaviour
     public float life_of_projectile = 3f; 
     private Rigidbody2D rb;
 
-    private void Start(){
+    private void Awake(){
         rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, life_of_projectile);
+        Debug.Log("Is this being called?");
     }
 
     public void Initialize(Vector2 direction)

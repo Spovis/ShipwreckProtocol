@@ -6,13 +6,14 @@ public class enemy : MonoBehaviour
 {
     public GameObject projectileTemplate;
     public Transform player;
+    public Transform pointA;
+    public Transform pointB;
     public float detectRange = 15f;
     private Animator animator;
     public Vector2 minBoundary = new Vector2(-74f, -18f); 
     public Vector2 maxBoundary = new Vector2(116.05f, 9.940499f); 
     private bool canAttack = true;
     public int attackDamage = 10;
-    public bool is_hunter;
     public float attackPause = 2f;
     public int health = 100;
 
@@ -22,6 +23,10 @@ public class enemy : MonoBehaviour
     void Start(){
         animator = GetComponent<Animator>();
         SetBehavior(new IdleBehavior(this, minBoundary, maxBoundary));
+         if (player == null)
+    {
+        player = GameObject.FindWithTag("Player")?.transform; // Find player by tag
+    }
     }
 
     /*swaps old behavior for new one. if its not null go to exitbehavior*/
