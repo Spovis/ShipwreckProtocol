@@ -3627,7 +3627,7 @@ PrefabInstance:
       objectReference: {fileID: 1691666016}
     - target: {fileID: 3067174718470440534, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
       propertyPath: reloadSceneName
-      value: Game_Kenny
+      value: Game
       objectReference: {fileID: 0}
     - target: {fileID: 3459522454157399803, guid: 4412f5eaee0cae746b281e080421813b, type: 3}
       propertyPath: m_AnchorMax.x
