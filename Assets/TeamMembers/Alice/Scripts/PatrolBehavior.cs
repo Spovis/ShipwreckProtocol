@@ -9,7 +9,7 @@ public class PatrolBehavior : EnemyBaseBehavior
 
     public override void OnEnterBehavior()
     {
-        Debug.Log("Entering patrol state");
+        //Debug.Log("Entering patrol state");
         enemy.GetComponent<Animator>().SetBool("is_patrolling", true);
         enemy.GetComponent<Animator>().SetBool("is_idle",false);
         //enemy.GetComponent<Animator>().SetBool("is_hunter", true);
@@ -29,7 +29,7 @@ public class PatrolBehavior : EnemyBaseBehavior
 
     private void Patrol() 
     {
-        Debug.Log("patrolling");
+        //Debug.Log("patrolling");
         if (isObstacleHit)
         {
             isObstacleHit = false;  // Reset flag
@@ -53,7 +53,7 @@ public class PatrolBehavior : EnemyBaseBehavior
     public void HandleObstacleCollision()
     {
         isObstacleHit = true;
-        Debug.Log("Obstacle collision handled in patrol behavior");
+        //Debug.Log("Obstacle collision handled in patrol behavior");
 
         // Flip to the opposite patrol point
         currentTarget = currentTarget == enemy.pointA.position ? enemy.pointB.position : enemy.pointA.position;
@@ -72,8 +72,8 @@ public class PatrolBehavior : EnemyBaseBehavior
     private bool IsPlayerInBounds()
     {
         Vector3 playerPos = enemy.player.position;
-        Debug.Log($"Player Position: {playerPos}");
-        Debug.Log($"Min Boundary: {enemy.minBoundary}, Max Boundary: {enemy.maxBoundary}");
+        //Debug.Log($"Player Position: {playerPos}");
+        //Debug.Log($"Min Boundary: {enemy.minBoundary}, Max Boundary: {enemy.maxBoundary}");
         
         return playerPos.x >= enemy.minBoundary.x && 
                playerPos.x <= enemy.maxBoundary.x &&
@@ -83,7 +83,7 @@ public class PatrolBehavior : EnemyBaseBehavior
 
     public override void OnExitBehavior()
     {
-        Debug.Log("Exiting patrol state");
+        //Debug.Log("Exiting patrol state");
         enemy.GetComponent<Animator>().SetBool("is_patrolling", false);
     }
 }
