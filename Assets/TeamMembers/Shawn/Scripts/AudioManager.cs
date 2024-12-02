@@ -56,4 +56,20 @@ public class AudioManager : MonoBehaviour
             fxSource.PlayOneShot(sound.clip);
         }
     }
+
+    public void PlayFXRandomizePitch(string name)
+    {
+        Sound sound = Array.Find(fxSound, x => x.name == name);
+
+        if (sound == null)
+        {
+            Debug.LogWarning("Can't Find FX Sound of " + name);
+        }
+        else
+        {
+            fxSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+            fxSource.PlayOneShot(sound.clip);
+            fxSource.pitch = 1;
+        }
+    }
 }

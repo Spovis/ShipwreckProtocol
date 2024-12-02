@@ -55,6 +55,7 @@ public class ScreenWriter : MonoBehaviour
             //if (PlayerInput.Instance.IsAnyButtonPressed) writeTime = 0.02f;
 
             _screenText.text += letter;
+            AudioManager.Instance.PlayFXRandomizePitch("Text");
             yield return new WaitForSeconds(writeTime);
         }
     }
