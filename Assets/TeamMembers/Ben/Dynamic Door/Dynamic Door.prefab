@@ -207,3 +207,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsMoving: 0
+  _interactOnCollision: 1
