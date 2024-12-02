@@ -11,8 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Intro.unity
     guid: ba98c4b3d16b572499df7017cf547437
-  - enabled: 1
-    path: Assets/Scenes/Game.unity
+  - enabled: 0
+    path: Assets/Scenes/_old_version.unity
     guid: ff2de4feb2e9241c080cdd2cbdd04687
   - enabled: 0
     path: Assets/TeamMembers/Sam/Scenes/Room 1.unity
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: 67dd5e5e32a5b4e5d82682747c2e68e9
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: c0f1b830402e947a7ac12ceb62c49c0f
   m_configObjects: {}
