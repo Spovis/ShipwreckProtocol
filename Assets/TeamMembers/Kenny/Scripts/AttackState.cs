@@ -43,7 +43,7 @@ public class AttackState : BossState {
       attacked = false;
     }
 
-    if (Vector2.Distance(player.position, gameObject.transform.position) > 10) {
+    if (Vector2.Distance(player.position, gameObject.transform.position) > 20) {
       stateMachine.UpdateState(0, animator);
     }
   }

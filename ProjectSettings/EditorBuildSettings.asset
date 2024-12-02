@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/TeamMembers/Sam/Scenes/Room 2.unity
     guid: c8ce38d4f789944c7bdbcc6039535fb6
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 67dd5e5e32a5b4e5d82682747c2e68e9
   m_configObjects: {}

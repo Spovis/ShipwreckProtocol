@@ -50,6 +50,8 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Water") || collision.gameObject.layer == LayerMask.NameToLayer("ShallowWater")) return;
         if (collision.CompareTag("Player") || collision.CompareTag("PlayerAttack") || collision.CompareTag("Interactable") || collision.CompareTag("Collectable")) return;
 
+        if (collision.gameObject.name == "CameraBounds") return;
+
         _burstParticle.Play();
         ToggleComponents(false);
 

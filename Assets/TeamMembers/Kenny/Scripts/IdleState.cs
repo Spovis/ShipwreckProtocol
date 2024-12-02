@@ -14,7 +14,7 @@ public class IdleState : BossState {
     Transform player)
   {
     // if the distance between the player and the boss is less than 10
-    if (Vector2.Distance(player.position, gameObject.transform.position) < 10) {
+    if (Vector2.Distance(player.position, gameObject.transform.position) < 20) {
       stateMachine.UpdateState(3, animator);
     }
   }
