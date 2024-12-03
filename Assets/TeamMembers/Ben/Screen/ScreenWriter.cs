@@ -1,4 +1,3 @@
-using Codice.Client.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,7 +36,7 @@ public class ScreenWriter : MonoBehaviour
 
         _screenText = GetComponentInChildren<TMP_Text>();
         _continueText = _screenText.transform.GetChild(0).GetComponent<TMP_Text>();
-        _continueText.text = "Press any key to continue...";
+        _continueText.text = "Press anything to continue...";
         _continueText.enabled = false;
     }
 
@@ -56,6 +55,7 @@ public class ScreenWriter : MonoBehaviour
             //if (PlayerInput.Instance.IsAnyButtonPressed) writeTime = 0.02f;
 
             _screenText.text += letter;
+            AudioManager.Instance.PlayFXRandomizePitch("Text");
             yield return new WaitForSeconds(writeTime);
         }
     }
@@ -70,7 +70,7 @@ public class ScreenWriter : MonoBehaviour
             yield return WriteWord(line);
             _continueText.enabled = true;
             //yield return new WaitUntil(() => PlayerInput.Instance.IsAnyButtonPressed);
-            yield return new WaitUntil(() => Keyboard.current.anyKey.wasPressedThisFrame);
+            yield return new WaitUntil(() => Keyboard.current.anyKey.wasPressedThisFrame || Pointer.current.press.wasPressedThisFrame);
             _continueText.enabled = false;
             yield return null; // Wait a frame to make sure the button press is not carried over to the next line.
             Instance._screenText.text = "";
