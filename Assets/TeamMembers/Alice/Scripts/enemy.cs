@@ -49,6 +49,13 @@ public class enemy : MonoBehaviour
             TakeDamage(20);  
         }
 
+        //obstacle collisions for patrol behavior. 
+        if (collider.gameObject.CompareTag("EnemyPoint") && currentBehavior is PatrolBehavior)
+        {
+            //Debug.Log($"Enemy collided with: {collider.gameObject.name}");
+            ((PatrolBehavior)currentBehavior).HandleObstacleCollision();
+        }
+
         //change behaviors if needed
         if (currentBehavior != null){
             currentBehavior.OnBehaviorTriggerEnter2D();
@@ -72,8 +79,9 @@ public class enemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision){
 
         //obstacle collisions for patrol behavior. 
-        if (collision.gameObject.CompareTag("Obstacle") && currentBehavior is PatrolBehavior){
-            Debug.Log($"Enemy collided with: {collision.gameObject.name}");
+        if (collision.gameObject.CompareTag("Obstacle") && currentBehavior is PatrolBehavior)
+        {
+            //Debug.Log($"Enemy collided with: {collider.gameObject.name}");
             ((PatrolBehavior)currentBehavior).HandleObstacleCollision();
         }
 
